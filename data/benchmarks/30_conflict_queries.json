@@ -1,0 +1,744 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-03-21",
+    "description": "Conflict detection benchmark for FinThesisGuard. Each query pairs two contradictory claims from different sources (regulatory vs news, news vs regulatory, news vs news). The system must identify the contradiction, cite both conflicting sources, and explain the discrepancy.",
+    "total_queries": 30,
+    "conflict_types": {
+      "regulatory_vs_news": 12,
+      "news_vs_news": 10,
+      "temporal_conflict": 5,
+      "quantitative_conflict": 3
+    },
+    "expected_agent": "agent4_conflict_detector",
+    "evaluation_criteria": {
+      "conflict_identified": "Boolean — system must flag a conflict",
+      "sources_cited": "Boolean — both conflicting sources must be referenced",
+      "resolution_provided": "Boolean — system should explain why one source is authoritative",
+      "confidence_score": "0–1 — system's confidence in the conflict assessment"
+    }
+  },
+  "conflict_queries": [
+
+    {
+      "id": "cq_001",
+      "conflict_type": "regulatory_vs_news",
+      "query": "What is the maximum FPI investment limit in a single listed Indian company?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI regulations state that a single FPI or its investor group cannot exceed 10% of the paid-up equity capital of a listed Indian company.",
+        "document_title": "SEBI Master Circular on FPIs",
+        "date": "2023-08-15"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "According to a business news report, the FPI limit for a single entity in any listed company was reported as 5% based on an older regulatory framework.",
+        "document_title": "Business Standard article on FPI limits",
+        "date": "2021-03-10"
+      },
+      "expected_conflict_type": "temporal_regulatory_update",
+      "expected_resolution": "Source A (SEBI Master Circular, 2023) is authoritative. The 5% figure in Source B is outdated — SEBI revised the limit to 10% in the consolidated FPI framework. Source B reflects pre-2019 regulations.",
+      "difficulty": "medium",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_002",
+      "conflict_type": "news_vs_news",
+      "query": "Did HDFC Bank's CASA ratio improve or decline in the quarter after the HDFC merger?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Hindu Business Line reported that HDFC Bank's CASA ratio declined to 37.6% post-merger from 43% pre-merger due to dilution from HDFC Ltd's wholesale-funded book.",
+        "document_title": "Hindu Business Line — HDFC Bank Q2 FY24 results analysis",
+        "date": "2023-10-18"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Economic Times reported that HDFC Bank maintained its CASA ratio above 40% in the first quarter post-merger, demonstrating strong deposit mobilisation.",
+        "document_title": "Economic Times — HDFC Bank post-merger performance",
+        "date": "2023-09-02"
+      },
+      "expected_conflict_type": "data_discrepancy",
+      "expected_resolution": "Both sources may be accurate for different quarters. Source B refers to Q1 FY24 (immediately post-merger, July 2023) and Source A refers to Q2 FY24 (October 2023). The CASA ratio progressively declined as HDFC Ltd's book was integrated. Context of reporting period is the resolving factor.",
+      "difficulty": "hard",
+      "resolution_authority": "temporal_context"
+    },
+
+    {
+      "id": "cq_003",
+      "conflict_type": "regulatory_vs_news",
+      "query": "What is the SEBI-mandated minimum public shareholding requirement for listed PSUs?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI's Minimum Public Shareholding regulations require Public Sector Undertakings (PSUs) to maintain at least 25% public shareholding.",
+        "document_title": "SEBI LODR Regulations — Minimum Public Shareholding",
+        "date": "2023-11-20"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "A news article noted that PSUs are required to maintain only 10% public shareholding, enjoying a relaxation from the 25% norm applicable to private companies.",
+        "document_title": "Mint — PSU shareholding norms article",
+        "date": "2022-06-14"
+      },
+      "expected_conflict_type": "regulatory_interpretation_error",
+      "expected_resolution": "Source B is incorrect. SEBI amended the MPS norms in 2015 to require all listed companies including PSUs to achieve 25% public shareholding. The 10% figure was the older transitional threshold for PSUs which has since been removed. Source A (SEBI regulations, 2023) is authoritative.",
+      "difficulty": "medium",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_004",
+      "conflict_type": "news_vs_news",
+      "query": "What was TCS's revenue growth guidance for FY26?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "TCS management indicated in their Q3 FY26 earnings call that they expect industry-leading growth of 8–10% in constant currency for FY26.",
+        "document_title": "ET Markets — TCS Q3 FY26 earnings call summary",
+        "date": "2026-01-12"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Analysts quoted in a Mint article suggest TCS is likely to grow at 4–6% in FY26 due to continued weakness in BFSI and hi-tech verticals.",
+        "document_title": "Mint — TCS FY26 outlook preview",
+        "date": "2026-02-28"
+      },
+      "expected_conflict_type": "management_vs_analyst_estimate",
+      "expected_resolution": "Both sources are accurate in context: Source A reflects management aspiration/guidance, while Source B reflects independent analyst consensus estimates, which may be more conservative. These are not factual contradictions but represent different perspectives (company guidance vs market consensus). The system should surface both and flag that analyst consensus is below management guidance.",
+      "difficulty": "medium",
+      "resolution_authority": "contextual_distinction"
+    },
+
+    {
+      "id": "cq_005",
+      "conflict_type": "regulatory_vs_news",
+      "query": "What is the RBI's repo rate as of early 2026?",
+      "source_a": {
+        "source_type": "rbi",
+        "namespace": "regulatory",
+        "claim": "RBI's Monetary Policy Committee reduced the repo rate to 6.25% in its February 2026 meeting, marking the first rate cut after a prolonged pause.",
+        "document_title": "RBI MPC February 2026 Resolution",
+        "date": "2026-02-07"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "A financial news article states the RBI repo rate remains at 6.50% with no indication of imminent rate cuts given persistent food inflation.",
+        "document_title": "Bloomberg Quint — RBI rate outlook article",
+        "date": "2025-12-15"
+      },
+      "expected_conflict_type": "temporal_conflict",
+      "expected_resolution": "Source B is outdated (December 2025). Source A (RBI official resolution, February 2026) is the authoritative and more recent source. The RBI did cut rates in February 2026. Source B was accurate at the time of publication but has since been superseded by the actual policy action.",
+      "difficulty": "easy",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_006",
+      "conflict_type": "news_vs_news",
+      "query": "Was SEBI's investigation into Adani Group stocks resolved or ongoing as of 2024?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "The Supreme Court of India in January 2024 gave a clean chit to the Adani Group, finding SEBI had investigated the matter adequately and no further investigation was warranted.",
+        "document_title": "The Hindu — Supreme Court Adani ruling",
+        "date": "2024-01-03"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "SEBI is still conducting investigations into offshore FPI entities linked to Adani Group to determine if regulatory disclosure violations occurred.",
+        "document_title": "Economic Times — SEBI Adani investigation update",
+        "date": "2024-03-15"
+      },
+      "expected_conflict_type": "partial_fact_conflict",
+      "expected_resolution": "Both sources are accurate in different dimensions. Source A refers to the Supreme Court's finding on the investigation conducted so far (January 2024). Source B reports that certain specific aspects of the SEBI investigation (FPI ownership structure) remained pending even after the Supreme Court order. The conflict is between a high-level court ruling and an ongoing investigative workstream. The system should surface both and explain this nuance.",
+      "difficulty": "hard",
+      "resolution_authority": "nuanced_coexistence"
+    },
+
+    {
+      "id": "cq_007",
+      "conflict_type": "quantitative_conflict",
+      "query": "What was HDFC Bank's Net NPA ratio in Q2 FY24?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "HDFC Bank's Net NPA ratio stood at 0.35% as of Q2 FY24, a marginal improvement from 0.40% in Q1 FY24.",
+        "document_title": "Business Standard — HDFC Bank Q2 FY24 results",
+        "date": "2023-10-22"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "According to HDFC Bank's Q2 FY24 investor presentation, the bank reported net NPA of 0.41%, unchanged from the prior quarter.",
+        "document_title": "Moneycontrol — HDFC Bank Q2 FY24 result highlights",
+        "date": "2023-10-21"
+      },
+      "expected_conflict_type": "quantitative_discrepancy",
+      "expected_resolution": "One of the sources likely contains a reporting error. The primary source of truth should be the company's BSE/NSE filing or investor presentation. The system should flag the quantitative conflict and direct the user to verify against the official stock exchange filing. A 0.35% vs 0.41% difference is material for asset quality analysis.",
+      "difficulty": "medium",
+      "resolution_authority": "primary_source_verification_required"
+    },
+
+    {
+      "id": "cq_008",
+      "conflict_type": "regulatory_vs_news",
+      "query": "What is the maximum leverage allowed for retail derivatives traders in India?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI's True to Label circular requires brokers to apply peak margin norms — traders must maintain 100% of SPAN + Exposure margin for overnight F&O positions. Intraday leverage for F&O is not separately permitted at broker level beyond SEBI-defined margins.",
+        "document_title": "SEBI Circular on Peak Margin Requirement",
+        "date": "2021-05-01"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Several online brokers offer up to 5x leverage on intraday equity derivatives, allowing traders to take larger positions than their available capital.",
+        "document_title": "Mint — Online broker comparison article",
+        "date": "2023-08-20"
+      },
+      "expected_conflict_type": "regulatory_vs_market_practice",
+      "expected_resolution": "Source B describes market practice that may not be compliant with SEBI's peak margin norms (Source A). SEBI's 2021 circular mandated that brokers cannot offer leverage beyond SEBI-prescribed margins for F&O. The brokers mentioned in Source B may be using intraday product structures that technically comply while offering effective leverage — or may be non-compliant. Source A (regulatory) sets the legal standard.",
+      "difficulty": "hard",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_009",
+      "conflict_type": "news_vs_news",
+      "query": "Did Paytm's monthly transacting users increase or decrease after RBI's action in early 2024?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Paytm reported that monthly transacting users declined from 100 million to 78 million in the quarter following RBI's directive to Paytm Payments Bank in February 2024.",
+        "document_title": "Hindu Business Line — Paytm Q1 FY25 results",
+        "date": "2024-08-08"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Paytm's management stated on an analyst call that despite the RBI action, the company has retained the large majority of its user base, with active users stabilising at around 85–90 million.",
+        "document_title": "Economic Times — Paytm analyst call Q4 FY24",
+        "date": "2024-05-22"
+      },
+      "expected_conflict_type": "data_period_conflict",
+      "expected_resolution": "Source B (May 2024 / Q4 FY24) likely refers to early stabilisation, while Source A (Q1 FY25, August 2024) represents the outcome after a full quarter of impact. The numbers 78M (Q1 FY25) vs 85–90M (Q4 FY24) represent different time periods and may both be accurate. The system should flag this as a temporal discrepancy requiring the user to check which reporting period is relevant.",
+      "difficulty": "medium",
+      "resolution_authority": "temporal_context"
+    },
+
+    {
+      "id": "cq_010",
+      "conflict_type": "regulatory_vs_news",
+      "query": "Can Indian mutual funds invest in physical gold directly?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI regulations permit Gold ETFs (Exchange Traded Funds) to invest in physical gold (99.5% purity), and Fund of Funds can invest in Gold ETF units. However, open-ended actively managed mutual fund schemes (other than Gold ETFs) cannot hold physical gold directly.",
+        "document_title": "SEBI Master Circular on Mutual Funds",
+        "date": "2024-01-15"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "An article about multi-asset mutual funds mentions that fund managers are now directly buying gold as part of their asset allocation strategy in multi-asset schemes.",
+        "document_title": "Value Research Online — Multi-asset fund analysis",
+        "date": "2024-06-10"
+      },
+      "expected_conflict_type": "schema_ambiguity",
+      "expected_resolution": "Source B likely refers to Gold ETF units held within multi-asset fund schemes, not physical gold. SEBI permits multi-asset funds to hold gold exposure through Gold ETFs (Source A framework). The article may use loose language ('buying gold') that creates a false conflict. The regulatory source (A) is definitive — physical gold holding is restricted to Gold ETFs only.",
+      "difficulty": "medium",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_011",
+      "conflict_type": "news_vs_news",
+      "query": "What was India's GDP growth rate in FY24?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "India's GDP growth for FY24 came in at 8.2% according to the first advance estimate, significantly above the consensus forecast of 6.9%.",
+        "document_title": "Business Standard — India GDP FY24 advance estimate",
+        "date": "2024-02-29"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "India's GDP growth for FY24 was revised to 7.8% in the second advance estimate, still above the consensus but below the initial 8.2% reading.",
+        "document_title": "Reuters — India GDP second estimate",
+        "date": "2024-05-31"
+      },
+      "expected_conflict_type": "data_revision_conflict",
+      "expected_resolution": "Both figures (8.2% and 7.8%) are accurate for different estimation points in time. The GDP data goes through multiple rounds of revision. Source A is the first advance estimate (February 2024) and Source B is the second advance estimate or first revised estimate (May 2024). The latest official estimate should be used. This is a data revision, not a true conflict — the system should clarify this distinction.",
+      "difficulty": "medium",
+      "resolution_authority": "latest_official_estimate"
+    },
+
+    {
+      "id": "cq_012",
+      "conflict_type": "regulatory_vs_news",
+      "query": "Are P-Notes or Offshore Derivative Instruments (ODIs) on equity derivatives permitted in India?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI's 2019 amendment to FPI regulations prohibits ODIs referencing derivatives as underlying assets, except where the derivative is used for hedging the ODI issuer's equity holding in India.",
+        "document_title": "SEBI FPI Circular on ODI Restrictions",
+        "date": "2019-04-10"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Market participants continue to use participatory notes to invest in Indian equity derivatives markets, bypassing direct FPI registration requirements.",
+        "document_title": "Financial Express — P-Note market update",
+        "date": "2023-09-05"
+      },
+      "expected_conflict_type": "regulation_vs_market_practice",
+      "expected_resolution": "Source A establishes the legal prohibition on derivative ODIs. Source B may refer to residual ODI activity on equity holdings (still permitted) or may reflect non-compliance. The system should flag that Source A is the definitive regulatory position, and any market activity described in Source B that involves derivative ODIs would be non-compliant.",
+      "difficulty": "hard",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_013",
+      "conflict_type": "news_vs_news",
+      "query": "Has Infosys's headcount increased or decreased in FY25?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Infosys reduced its headcount by 15,000 employees in FY25 as part of cost optimisation measures, with fresher intake cut significantly.",
+        "document_title": "Mint — Infosys FY25 headcount analysis",
+        "date": "2025-02-14"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Infosys maintained stable headcount at approximately 317,000 in Q3 FY25, with net addition expected to be positive in Q4 as deal ramp-ups require talent.",
+        "document_title": "ET Tech — Infosys Q3 FY25 results",
+        "date": "2025-01-16"
+      },
+      "expected_conflict_type": "period_and_basis_conflict",
+      "expected_resolution": "Source A reflects full FY25 headcount change while Source B provides the Q3 FY25 snapshot. A flat Q3 headcount is consistent with an overall annual decline if earlier quarters had sharper reductions. Both sources may be accurate for their respective reference periods. Actual headcount data from Infosys's annual report is the definitive source.",
+      "difficulty": "medium",
+      "resolution_authority": "primary_filing_verification"
+    },
+
+    {
+      "id": "cq_014",
+      "conflict_type": "regulatory_vs_news",
+      "query": "What is the GST rate on life insurance premiums in India?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "GST at 18% applies to life insurance premiums for traditional endowment plans. Term insurance premiums for pure risk cover attract 18% GST. ULIPs attract 18% GST on the premium portion allocated to mortality charges and fund management charges.",
+        "document_title": "IRDAI Circular on GST applicability to insurance",
+        "date": "2023-07-01"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "The government is planning to reduce GST on term insurance to 12% to boost India's low insurance penetration, with a decision expected at the next GST Council meeting.",
+        "document_title": "Business Standard — GST on insurance reform",
+        "date": "2024-09-10"
+      },
+      "expected_conflict_type": "current_vs_proposed_policy",
+      "expected_resolution": "Source A reflects current law (18% GST). Source B describes a policy proposal under discussion — not yet enacted law. The system should flag this as a 'current vs proposed' conflict and note that the investment thesis predicated on reduced GST would depend on the proposal being approved, which is a legislative assumption.",
+      "difficulty": "medium",
+      "resolution_authority": "source_a_with_caveat"
+    },
+
+    {
+      "id": "cq_015",
+      "conflict_type": "news_vs_news",
+      "query": "Did RBI increase or decrease CRR in December 2024?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "RBI announced a 50 basis points reduction in CRR (from 4.5% to 4.0%) at its December 2024 policy meeting to inject Rs 1.16 lakh crore liquidity into the banking system.",
+        "document_title": "RBI MPC December 2024 post-meeting press",
+        "date": "2024-12-06"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Ahead of the December 2024 policy meeting, analysts unanimously expected RBI to keep CRR unchanged at 4.5%, maintaining the liquidity absorption stance.",
+        "document_title": "Bloomberg Quint — RBI December 2024 preview",
+        "date": "2024-12-04"
+      },
+      "expected_conflict_type": "pre_vs_post_event_conflict",
+      "expected_resolution": "Source B is a pre-event analyst expectation (December 4, 2024) while Source A is the actual policy outcome (December 6, 2024). The CRR was cut, contra analyst expectations. This is not a factual conflict — Source B recorded analyst consensus before the event; Source A records the actual outcome. The system should prioritise Source A as the realised fact.",
+      "difficulty": "easy",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_016",
+      "conflict_type": "news_vs_news",
+      "query": "Has Reliance Industries commenced oil production from its KG-D6 deepwater block?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Reliance Industries and BP resumed gas production from the KG-D6 block's R-Cluster, Satellite Cluster, and MJ field, with total production exceeding 30 mmscmd by 2023.",
+        "document_title": "Hindu Business Line — RIL KG-D6 production update",
+        "date": "2023-04-18"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Reliance Industries' KG-D6 gas field has been plagued by technical problems and declining reservoirs, with production far below initial projections of 80 mmscmd.",
+        "document_title": "Oil & Gas industry report — RIL KG-D6 history",
+        "date": "2022-11-20"
+      },
+      "expected_conflict_type": "temporal_operational_update",
+      "expected_resolution": "Source B describes historical underperformance of the original MA field (2009–2017). Source A reflects the renewed production from new cluster developments (R-Cluster etc.) from 2020 onwards. Both are accurate for their respective periods. The conflict arises from different reference points in the KG-D6 project lifecycle.",
+      "difficulty": "medium",
+      "resolution_authority": "temporal_context"
+    },
+
+    {
+      "id": "cq_017",
+      "conflict_type": "regulatory_vs_news",
+      "query": "Is the LTCG (Long-Term Capital Gains) tax rate on listed equities in India 10% or 12.5%?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "Effective from July 23, 2024 (Union Budget 2024-25), LTCG on listed equity shares and equity-oriented mutual funds exceeding Rs 1.25 lakh per year is taxed at 12.5% (increased from 10%), without indexation benefit.",
+        "document_title": "Finance Act 2024 — LTCG Amendment",
+        "date": "2024-07-23"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Investors pay 10% LTCG tax on gains from listed equities above Rs 1 lakh per year, with no indexation benefit, under the current tax regime.",
+        "document_title": "Economic Times — Equity taxation guide",
+        "date": "2023-11-15"
+      },
+      "expected_conflict_type": "pre_budget_vs_post_budget",
+      "expected_resolution": "Source B reflects the pre-Budget 2024 tax rate (10%, Rs 1 lakh exemption). Source A reflects the revised post-Budget 2024 rate (12.5%, Rs 1.25 lakh exemption) effective July 23, 2024. This is a genuine conflict for queries made after July 2024 — Source A is the current applicable rate and should take precedence.",
+      "difficulty": "easy",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_018",
+      "conflict_type": "news_vs_news",
+      "query": "What is the current market share of Zomato in India's food delivery segment?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Zomato holds approximately 55–57% market share in India's food delivery space, with Swiggy accounting for the remaining 43–45%.",
+        "document_title": "Redseer Consulting — Food delivery market report 2024",
+        "date": "2024-09-05"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "According to a CRISIL analysis, Zomato's market share is closer to 50% with Swiggy mounting a strong recovery to nearly match Zomato in order volumes.",
+        "document_title": "CRISIL Research — Online food delivery analysis",
+        "date": "2024-07-20"
+      },
+      "expected_conflict_type": "methodology_conflict",
+      "expected_resolution": "The discrepancy (55–57% vs ~50%) likely stems from different measurement methodologies — order volume vs GMV vs active users. Redseer and CRISIL may use different data sources and definitional frameworks. The system should flag the methodological basis for each claim and note that both are estimates from different research firms.",
+      "difficulty": "medium",
+      "resolution_authority": "methodology_dependent"
+    },
+
+    {
+      "id": "cq_019",
+      "conflict_type": "regulatory_vs_news",
+      "query": "What is the maximum period for which mutual funds can invest in debt instruments of a single issuer?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI regulations state that a mutual fund scheme cannot invest more than 10% of its NAV in debt instruments (excluding government securities) of a single issuer, with the limit extendable to 12% with trustee approval.",
+        "document_title": "SEBI Master Circular on Mutual Funds — Concentration Limits",
+        "date": "2024-01-15"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Several mutual funds have accumulated over 15% exposure to a single NBFC issuer in their credit risk fund portfolios, raising concerns about SEBI concentration guidelines.",
+        "document_title": "Mint — Credit risk fund exposure analysis",
+        "date": "2023-12-07"
+      },
+      "expected_conflict_type": "compliance_violation_flag",
+      "expected_resolution": "Source A establishes the regulatory limit (10%, extendable to 12%). Source B describes what appears to be non-compliant behaviour by certain funds. The system should flag this as a potential regulatory violation, not a conflicting rule. If the 15% figure is accurate, those funds may have breached SEBI norms.",
+      "difficulty": "medium",
+      "resolution_authority": "source_a_with_compliance_flag"
+    },
+
+    {
+      "id": "cq_020",
+      "conflict_type": "news_vs_news",
+      "query": "Is India's current account deficit widening or narrowing in FY25?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "India's current account deficit narrowed to 0.7% of GDP in Q2 FY25, driven by strong services exports and softer oil prices.",
+        "document_title": "RBI Quarterly CAD data news release",
+        "date": "2024-12-28"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "India's current account deficit is expected to widen to 1.8–2.0% of GDP for FY25 as gold imports surge and trade deficit widens in H2.",
+        "document_title": "SBI Research — India CAD FY25 forecast",
+        "date": "2024-10-15"
+      },
+      "expected_conflict_type": "actual_vs_forecast_conflict",
+      "expected_resolution": "Source A is actual Q2 FY25 data (narrow CAD of 0.7%). Source B is a full-year FY25 forecast made before the full data was available. A narrow Q2 CAD is consistent with a wider full-year estimate if H2 trade conditions deteriorate. The system should distinguish between realised data (Source A) and forward estimates (Source B).",
+      "difficulty": "medium",
+      "resolution_authority": "data_vs_forecast_distinction"
+    },
+
+    {
+      "id": "cq_021",
+      "conflict_type": "regulatory_vs_news",
+      "query": "Is algorithmic trading permitted for retail investors in India?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI's consultation paper (2021) proposed that retail investor algorithmic trading via API access should be permitted through registered brokers, who are responsible for risk management of client algos. As of 2023, SEBI has not finalized the retail algo framework — retail investors can currently access algos only through broker-developed platforms.",
+        "document_title": "SEBI Consultation Paper on Algo Trading for Retail Investors",
+        "date": "2021-12-09"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Multiple fintech companies and discount brokers are offering algorithmic trading tools to retail investors through their platforms, enabling automated strategy execution.",
+        "document_title": "Financial Express — Retail algo trading platforms",
+        "date": "2024-03-20"
+      },
+      "expected_conflict_type": "regulation_gap_vs_practice",
+      "expected_resolution": "Source A describes the regulatory framework in transition — retail algo trading through broker platforms is effectively permitted but the formal framework is pending. Source B accurately describes current market practice which operates in this regulatory grey area. Both are consistent — the market has moved ahead of formal regulation.",
+      "difficulty": "hard",
+      "resolution_authority": "nuanced_coexistence"
+    },
+
+    {
+      "id": "cq_022",
+      "conflict_type": "news_vs_news",
+      "query": "What was ICICI Bank's credit card market share as of H1 FY25?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "ICICI Bank overtook HDFC Bank to become India's largest credit card issuer by outstanding cards as of September 2024, with approximately 18 million cards in force.",
+        "document_title": "RBI data analysis — Credit card rankings H1 FY25",
+        "date": "2024-10-22"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "HDFC Bank remains India's #1 credit card issuer with 19 million credit cards outstanding, maintaining its leadership position despite ICICI's aggressive expansion.",
+        "document_title": "Moneycontrol — Credit card industry tracker",
+        "date": "2024-11-08"
+      },
+      "expected_conflict_type": "ranking_data_conflict",
+      "expected_resolution": "The discrepancy in rankings may reflect different data points — 'outstanding cards' vs 'active cards' vs 'new issuance'. ICICI may have overtaken HDFC in new card issuances while HDFC retains the outstanding card count leadership. The data date cut-off may also differ (September vs October). Primary source should be RBI's monthly payment system data.",
+      "difficulty": "medium",
+      "resolution_authority": "primary_rbi_data_verification"
+    },
+
+    {
+      "id": "cq_023",
+      "conflict_type": "temporal_conflict",
+      "query": "What is the SEBI-mandated minimum KYC requirement for mutual fund investments in India?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI's simplified KYC framework allows investors to invest up to Rs 50,000 per mutual fund per year using Aadhaar-based video KYC without full in-person verification.",
+        "document_title": "SEBI Master Circular on KYC for Mutual Funds",
+        "date": "2024-04-01"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "SEBI requires all mutual fund investors to complete full KYC (PAN card, Aadhaar, in-person verification) before investing any amount — even for SIP amounts as small as Rs 500.",
+        "document_title": "Moneycontrol — MF KYC guide for beginners",
+        "date": "2022-06-30"
+      },
+      "expected_conflict_type": "policy_update_conflict",
+      "expected_resolution": "Source B reflects pre-2023 KYC norms. SEBI progressively simplified KYC norms through 2022–2024, introducing digital/video KYC and relaxed limits for small-ticket investments. Source A (2024) reflects the more current, simplified framework. Source B is outdated and should not be used for current guidance.",
+      "difficulty": "easy",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_024",
+      "conflict_type": "news_vs_news",
+      "query": "Has Bajaj Finance's net NPA ratio been rising or falling in recent quarters?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Bajaj Finance reported rising delinquencies in its urban consumer lending segment in Q2 FY25, with GNPA rising 20 bps quarter-on-quarter to 1.06% — signalling early cycle stress in unsecured credit.",
+        "document_title": "ET Markets — Bajaj Finance Q2 FY25 deep dive",
+        "date": "2024-10-25"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Bajaj Finance management guided for stable to improving asset quality in FY25, with GNPA expected to return to below 1% by Q4 FY25 as seasonal factors normalise.",
+        "document_title": "Bajaj Finance Q2 FY25 earnings call transcript excerpt",
+        "date": "2024-10-24"
+      },
+      "expected_conflict_type": "reported_vs_guided_conflict",
+      "expected_resolution": "Source A reports the current GNPA outcome (1.06%, rising). Source B presents management guidance/expectation for future improvement (<1% by Q4 FY25). These are not contradictory — current data shows stress while management expects improvement. The system should surface both and note the gap between current data and management guidance as a key watchpoint.",
+      "difficulty": "medium",
+      "resolution_authority": "contextual_distinction"
+    },
+
+    {
+      "id": "cq_025",
+      "conflict_type": "regulatory_vs_news",
+      "query": "Is STCG tax on listed equity currently 15% or 20% in India?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "Short-term capital gains (STCG) tax on listed equity shares and equity mutual funds held for less than 12 months was increased to 20% effective July 23, 2024 (Budget 2024-25).",
+        "document_title": "Finance Act 2024 — STCG Amendment",
+        "date": "2024-07-23"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Short-term capital gains from equity investments are taxed at a flat 15% in India, irrespective of the investor's income tax slab.",
+        "document_title": "ClearTax — Equity taxation guide",
+        "date": "2024-03-10"
+      },
+      "expected_conflict_type": "pre_budget_vs_post_budget",
+      "expected_resolution": "Source B reflects pre-Budget 2024 rate (15%). Source A reflects the revised rate post-July 23, 2024 Budget (20%). This is a material discrepancy for any thesis or tax planning analysis. Source A is the current applicable rate. Source B is outdated by approximately 4 months.",
+      "difficulty": "easy",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_026",
+      "conflict_type": "news_vs_news",
+      "query": "Are small-cap mutual funds experiencing net inflows or outflows in 2024?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "AMFI data shows small-cap equity funds received record net inflows of Rs 4,700 crore in November 2024, driven by retail SIP momentum.",
+        "document_title": "Hindu Business Line — AMFI mutual fund data November 2024",
+        "date": "2024-12-09"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "After SEBI's stress test disclosure norms for small-cap funds, several AMCs saw outflows and restricted fresh lump-sum inflows into their small-cap schemes in March 2024.",
+        "document_title": "Mint — Small-cap fund restrictions update",
+        "date": "2024-03-20"
+      },
+      "expected_conflict_type": "temporal_market_dynamics",
+      "expected_resolution": "Both are accurate for different time periods. Source B describes the March 2024 period when SEBI stress test disclosures triggered temporary outflows and AMC-level restrictions. Source A describes November 2024 when inflows resumed strongly. The small-cap fund market normalised after the initial stress test impact. Both sources document different phases of the same phenomenon.",
+      "difficulty": "medium",
+      "resolution_authority": "temporal_context"
+    },
+
+    {
+      "id": "cq_027",
+      "conflict_type": "regulatory_vs_news",
+      "query": "What is the mandatory hedging requirement for Indian companies' foreign currency borrowings (ECB)?",
+      "source_a": {
+        "source_type": "rbi",
+        "namespace": "regulatory",
+        "claim": "RBI mandates that infrastructure companies borrowing via ECB must hedge a minimum of 70% of ECB exposure for ECBs with an original maturity up to 5 years. For longer tenors, no mandatory hedging is required, though RBI encourages it.",
+        "document_title": "RBI Master Direction on External Commercial Borrowings",
+        "date": "2023-09-12"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Indian companies with ECB borrowings are required to hedge 100% of their forex exposure, as any unhedged currency risk can lead to systemic vulnerabilities.",
+        "document_title": "FICCI industry note on forex risk management",
+        "date": "2022-11-05"
+      },
+      "expected_conflict_type": "sector_specific_vs_general_claim",
+      "expected_resolution": "Source B overstates the requirement. RBI's mandatory hedging varies by sector and ECB type — infrastructure companies have 70% mandatory hedging for short-tenor ECBs, while other sectors and longer-tenor ECBs have different requirements. A blanket '100% mandatory hedging' claim is inaccurate. Source A (RBI Master Direction) is authoritative.",
+      "difficulty": "hard",
+      "resolution_authority": "source_a"
+    },
+
+    {
+      "id": "cq_028",
+      "conflict_type": "quantitative_conflict",
+      "query": "What was Nifty 50's price-to-earnings multiple at the end of FY24?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Nifty 50 was trading at approximately 21x forward earnings (FY25E) as of March 31, 2024, implying a slight premium to its long-term average of 18–19x.",
+        "document_title": "Kotak Securities — FY25 equity outlook",
+        "date": "2024-04-02"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Nifty 50 trailing P/E stood at 24.5x as of March 2024, above the historical mean of 22x, suggesting elevated valuations.",
+        "document_title": "ICICI Securities — Valuation Dashboard March 2024",
+        "date": "2024-04-05"
+      },
+      "expected_conflict_type": "trailing_vs_forward_pe_conflict",
+      "expected_resolution": "Both figures are accurate but for different P/E measures. Source A uses forward P/E (based on next year FY25 estimated earnings) which is lower than trailing. Source B uses trailing P/E (based on last 12 months' actual earnings). These should not be compared directly — analysts use both but must distinguish them. The system should flag this methodological difference.",
+      "difficulty": "medium",
+      "resolution_authority": "methodology_distinction"
+    },
+
+    {
+      "id": "cq_029",
+      "conflict_type": "news_vs_news",
+      "query": "Has the private sector capex cycle in India recovered in FY24–25?",
+      "source_a": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Private sector capex in India is on a strong recovery path, with corporate capex announcements in FY24 reaching a 10-year high, driven by PLI beneficiaries, real estate, and data centres.",
+        "document_title": "CMIE CapEx Database analysis — Business Today",
+        "date": "2024-07-15"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Despite positive macro conditions, private sector capital expenditure recovery remains concentrated in a few sectors. Broad-based private capex cycle is yet to take hold, with most companies prioritising deleveraging and dividend payouts over new investments.",
+        "document_title": "Axis Capital — India Corporate Capex Analysis",
+        "date": "2024-08-20"
+      },
+      "expected_conflict_type": "breadth_vs_selective_recovery",
+      "expected_resolution": "Both analyses are valid but measure different dimensions. Source A captures aggregate/headline capex announcements (showing a high), while Source B focuses on breadth of participation (concentrated in few sectors). A sector-concentrated capex boom can simultaneously be 'a 10-year high' in aggregate and 'narrow' in participation. The system should surface both views and note the distinction between aggregate vs distributed recovery.",
+      "difficulty": "hard",
+      "resolution_authority": "complementary_perspectives"
+    },
+
+    {
+      "id": "cq_030",
+      "conflict_type": "regulatory_vs_news",
+      "query": "Are listed company boards required to have an independent chairperson in India?",
+      "source_a": {
+        "source_type": "sebi",
+        "namespace": "regulatory",
+        "claim": "SEBI's LODR Regulation 17 requires the top 500 listed entities by market cap to separate the roles of Chairperson and Managing Director/CEO. If the Chairperson is a promoter, at least half the board must be independent directors.",
+        "document_title": "SEBI LODR (Amendment) Regulations 2018 — Regulation 17",
+        "date": "2020-01-01"
+      },
+      "source_b": {
+        "source_type": "news",
+        "namespace": "news",
+        "claim": "Many large Indian conglomerates continue to have the same individual serving as both Chairman and Managing Director, including in Nifty 50 companies.",
+        "document_title": "Institutional Investor Advisory Services report",
+        "date": "2023-05-14"
+      },
+      "expected_conflict_type": "compliance_gap_conflict",
+      "expected_resolution": "Source A correctly states the SEBI requirement for separation of CMD roles for top 500 listed companies. Source B notes ongoing non-compliance or grandfathering provisions. SEBI granted exemptions and extended deadlines for implementation — some companies obtained extensions citing difficulty in finding suitable independent chairpersons. The conflict reflects the gap between regulation and compliance, not between two conflicting regulations.",
+      "difficulty": "hard",
+      "resolution_authority": "compliance_gap_explanation"
+    }
+
+  ]
+}

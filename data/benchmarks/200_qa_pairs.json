@@ -1,0 +1,2026 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-03-21",
+    "description": "Accuracy benchmark dataset for FinThesisGuard RAG pipeline. Covers Indian equity markets, SEBI/RBI regulations, company fundamentals, and thesis validation scenarios.",
+    "total_pairs": 200,
+    "categories": {
+      "regulatory_sebi": 40,
+      "regulatory_rbi": 30,
+      "equity_fundamentals": 50,
+      "thesis_validation": 40,
+      "macro_india": 25,
+      "financial_ratios": 15
+    },
+    "difficulty_distribution": {
+      "easy": 60,
+      "medium": 90,
+      "hard": 50
+    }
+  },
+  "qa_pairs": [
+
+    {
+      "id": "qa_001",
+      "category": "regulatory_sebi",
+      "difficulty": "easy",
+      "question": "What is the maximum permissible investment limit for domestic mutual funds in a single company as per SEBI regulations?",
+      "expected_answer": "SEBI regulations cap domestic mutual fund investment in a single company at 10% of the fund's net assets, with group-level exposure capped at 20% of net assets.",
+      "answer_keywords": ["10%", "net assets", "single company", "group exposure", "20%"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_002",
+      "category": "regulatory_sebi",
+      "difficulty": "easy",
+      "question": "What is the minimum public shareholding requirement for listed companies in India?",
+      "expected_answer": "SEBI mandates a minimum public shareholding of 25% for listed companies. PSUs have a lower threshold of 10%.",
+      "answer_keywords": ["25%", "public shareholding", "listed", "PSU", "10%"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_003",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "Under SEBI's LODR regulations, within how many days must a listed company disclose material events to stock exchanges?",
+      "expected_answer": "Under SEBI LODR Regulation 30, listed companies must disclose material events to stock exchanges within 24 hours of their occurrence or decision.",
+      "answer_keywords": ["24 hours", "LODR", "Regulation 30", "material events", "stock exchanges"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_004",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What is the open offer threshold under SEBI's Takeover Code that triggers a mandatory open offer?",
+      "expected_answer": "Under SEBI's Substantial Acquisition of Shares and Takeovers Regulations, an acquirer triggering 25% or more shareholding, or acquiring 5% or more in a financial year when already holding 25–75%, must make an open offer for at least 26% of total shares.",
+      "answer_keywords": ["25%", "open offer", "26%", "Takeover Code", "mandatory"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_005",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "How does SEBI's circular on related party transactions (RPT) define a 'material' RPT for shareholder approval purposes?",
+      "expected_answer": "Under SEBI's amended LODR regulations effective April 2022, an RPT is considered material if the transaction value exceeds Rs 1,000 crore or 10% of the company's annual consolidated turnover, whichever is lower. Such transactions require prior shareholder approval.",
+      "answer_keywords": ["Rs 1,000 crore", "10%", "consolidated turnover", "lower", "shareholder approval", "April 2022"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_006",
+      "category": "regulatory_sebi",
+      "difficulty": "easy",
+      "question": "What is the SEBI-mandated lock-in period for promoter shares in an IPO?",
+      "expected_answer": "SEBI mandates a lock-in of 18 months for promoter shareholding up to 20% of the post-issue paid-up capital, and 6 months for the remaining promoter shareholding.",
+      "answer_keywords": ["18 months", "6 months", "lock-in", "promoter", "20%", "IPO"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_007",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What are the eligibility criteria under SEBI's SME IPO framework for a company to list on the SME platform?",
+      "expected_answer": "Under SEBI's SME IPO framework, companies must have post-issue paid-up capital not exceeding Rs 25 crore, a track record of at least 3 years, positive net worth, and net tangible assets of at least Rs 3 crore in each of the preceding full years.",
+      "answer_keywords": ["Rs 25 crore", "3 years", "net worth", "net tangible assets", "Rs 3 crore"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_008",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What did SEBI's master circular on mutual funds specify regarding the swing pricing mechanism?",
+      "expected_answer": "SEBI's master circular on mutual funds introduced a partial swing pricing mechanism for open-ended debt mutual funds. When net outflows exceed 1% of a scheme's AUM, a swing factor of up to 2% is applied to the NAV to protect existing investors from dilution caused by large redemptions.",
+      "answer_keywords": ["swing pricing", "1%", "AUM", "2%", "NAV", "debt mutual funds", "outflows"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_009",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "Under SEBI's insider trading regulations, what is the definition of 'unpublished price sensitive information' (UPSI)?",
+      "expected_answer": "Under SEBI's PIT Regulations, UPSI is any information relating to a company or its securities that is not generally available and which, upon becoming generally available, would likely materially affect the price of securities. Examples include financial results, dividends, mergers, acquisitions, and board changes.",
+      "answer_keywords": ["UPSI", "not generally available", "materially affect", "price", "PIT Regulations", "financial results"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_010",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What are the SEBI guidelines on algorithmic trading and the co-location facility at stock exchanges?",
+      "expected_answer": "SEBI's guidelines on algorithmic trading require all algo orders to be tagged with a unique identifier, risk controls with automatic order-level checks, and audit trails. Co-location facilities must offer equal and fair access to all brokers. Exchanges must provide tick-by-tick data and maintain systems to detect and prevent market manipulation through algo trading.",
+      "answer_keywords": ["algo orders", "unique identifier", "risk controls", "co-location", "equal access", "tick-by-tick"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_011",
+      "category": "regulatory_sebi",
+      "difficulty": "easy",
+      "question": "What is the maximum investment a Foreign Portfolio Investor (FPI) can make in a single company under SEBI rules?",
+      "expected_answer": "A single FPI or its investor group cannot hold more than 10% of the paid-up equity capital of a listed Indian company. Aggregate FPI holdings are capped at the sectoral/statutory foreign investment limit.",
+      "answer_keywords": ["10%", "FPI", "paid-up equity", "investor group", "sectoral limit"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_012",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What are SEBI's regulations on index providers and what criteria must an index meet to be used as an underlying for derivatives?",
+      "expected_answer": "SEBI's index regulations require index providers to be registered entities. An index eligible as derivative underlying must have at least 20 constituent stocks, no single stock's weight exceeding 35%, and the top 3 stocks cumulatively not exceeding 65% weight. Liquidity and diversification are key criteria.",
+      "answer_keywords": ["20 constituent stocks", "35%", "65%", "top 3 stocks", "derivative underlying", "diversification"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_013",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What did SEBI's framework on Environmental, Social and Governance (ESG) reporting for listed entities mandate?",
+      "expected_answer": "SEBI mandated Business Responsibility and Sustainability Reporting (BRSR) for the top 1,000 listed companies by market capitalisation from FY 2022-23. BRSR requires disclosure on 9 principles covering sustainable business practices including energy, water, waste, employee wellbeing, and supply chain. SEBI also introduced BRSR Core with assured metrics for the top 150 companies from FY 2023-24.",
+      "answer_keywords": ["BRSR", "top 1,000", "FY 2022-23", "9 principles", "BRSR Core", "top 150", "assured"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_014",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What is the timeframe within which SEBI requires a listed company to respond to a show cause notice?",
+      "expected_answer": "SEBI typically provides 21 days for a listed company or individual to respond to a show cause notice, though this may vary based on the complexity of the matter. The noticee can request an extension, which SEBI may grant at its discretion.",
+      "answer_keywords": ["21 days", "show cause notice", "respond", "extension", "discretion"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_015",
+      "category": "regulatory_sebi",
+      "difficulty": "easy",
+      "question": "What is the T+1 settlement cycle and which markets does it apply to in India?",
+      "expected_answer": "India migrated to T+1 (trade plus one day) settlement for equity markets, completing the transition for all listed stocks by January 2023. This means trades are settled the next business day after execution, reducing counterparty risk and capital requirements compared to the previous T+2 cycle.",
+      "answer_keywords": ["T+1", "equity markets", "January 2023", "next business day", "T+2", "settlement"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_016",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What is SEBI's framework for Real Estate Investment Trusts (REITs) in India?",
+      "expected_answer": "SEBI's REIT regulations require a minimum asset size of Rs 500 crore, with 80% of REIT assets in completed and revenue-generating properties. REITs must distribute at least 90% of net distributable cash flows to unit holders. The minimum public offer size is Rs 250 crore and the minimum lot size is Rs 10,000–15,000.",
+      "answer_keywords": ["Rs 500 crore", "80%", "completed properties", "90%", "distributable cash flows", "Rs 250 crore"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_017",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What changes did SEBI make to the framework for offshore derivative instruments (ODIs) or participatory notes (P-Notes)?",
+      "expected_answer": "SEBI tightened P-Note regulations by requiring ODI issuers to report details of end-beneficial owners, apply know-your-customer norms equivalent to FPI registration requirements, and comply with anti-money laundering rules. SEBI also banned ODIs on derivatives other than those used for hedging, and introduced periodic reporting and renewal requirements for ODI issuers.",
+      "answer_keywords": ["ODI", "P-Notes", "beneficial owners", "KYC", "AML", "derivatives", "hedging", "reporting"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_018",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "Under SEBI regulations, what is the maximum time allowed for completing a rights issue?",
+      "expected_answer": "SEBI reduced the timeline for completing a rights issue to 31 working days from the date of approval by the board of directors. This was a significant reduction from the earlier 55 working days, aimed at making rights issues more efficient and timely.",
+      "answer_keywords": ["31 working days", "rights issue", "board approval", "55 working days"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_019",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What are the SEBI guidelines on research analyst regulations and conflict of interest disclosures?",
+      "expected_answer": "SEBI's Research Analyst Regulations require registration, a minimum qualification of a post-graduate degree or CFA, and mandatory conflict of interest disclosures. Research analysts must disclose personal holdings in covered securities, employer holdings, investment banking relationships, and receipt of compensation from issuers. Analysts must have a clear separation between research and investment banking functions.",
+      "answer_keywords": ["registration", "CFA", "conflict of interest", "personal holdings", "investment banking", "separation"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_020",
+      "category": "regulatory_sebi",
+      "difficulty": "easy",
+      "question": "What is the circuit breaker mechanism in Indian equity markets and at what levels does it trigger?",
+      "expected_answer": "India's market-wide circuit breaker halts trading when the Nifty 50 or Sensex moves 10%, 15%, or 20% from the previous day's close. A 10% move triggers a 45-minute halt (15 minutes before 2:30 PM), a 15% move triggers a 1-hour 45-minute halt (15 minutes before 1 PM), and a 20% move results in trading halt for the remainder of the day.",
+      "answer_keywords": ["10%", "15%", "20%", "circuit breaker", "Nifty 50", "Sensex", "trading halt"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_021",
+      "category": "regulatory_rbi",
+      "difficulty": "easy",
+      "question": "What is the Cash Reserve Ratio (CRR) and what is its current level in India?",
+      "expected_answer": "The Cash Reserve Ratio (CRR) is the percentage of a bank's net demand and time liabilities (NDTL) that must be maintained as cash reserves with the RBI. The RBI uses CRR as a monetary policy tool to control liquidity in the banking system.",
+      "answer_keywords": ["CRR", "net demand and time liabilities", "NDTL", "cash reserves", "RBI", "liquidity"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_022",
+      "category": "regulatory_rbi",
+      "difficulty": "easy",
+      "question": "What is the Statutory Liquidity Ratio (SLR) requirement for banks in India?",
+      "expected_answer": "The Statutory Liquidity Ratio (SLR) is the percentage of a bank's NDTL that must be maintained in the form of liquid assets such as government securities, gold, or cash. The RBI mandates the SLR requirement and adjusts it as part of monetary policy.",
+      "answer_keywords": ["SLR", "NDTL", "liquid assets", "government securities", "gold", "monetary policy"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_023",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What are RBI's guidelines on the Prompt Corrective Action (PCA) framework for banks?",
+      "expected_answer": "RBI's PCA framework is triggered when a bank breaches defined risk thresholds for Capital to Risk Weighted Assets Ratio (CRAR), Net NPA ratio, or Return on Assets (RoA). Banks under PCA face restrictions on dividend distribution, branch expansion, management compensation, and lending to certain segments. PCA has three risk thresholds of increasing severity.",
+      "answer_keywords": ["PCA", "CRAR", "Net NPA", "Return on Assets", "dividend", "branch expansion", "risk thresholds"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_024",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is RBI's definition of a Non-Performing Asset (NPA) for banks?",
+      "expected_answer": "RBI defines an NPA as a loan or advance where interest or principal payment remains overdue for more than 90 days for term loans. Sub-standard assets are NPAs for less than 12 months, doubtful assets are those in the sub-standard category for more than 12 months, and loss assets are those where the loss has been identified but not written off.",
+      "answer_keywords": ["90 days", "overdue", "sub-standard", "doubtful", "loss assets", "term loans", "NPA"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_025",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are RBI's Large Exposure Framework (LEF) norms and how do they restrict bank lending to single borrowers?",
+      "expected_answer": "RBI's Large Exposure Framework limits a bank's exposure to a single counterparty to 20% of its eligible capital base (Tier 1 capital), and to a group of connected counterparties to 25%. For systemically important banks, additional restrictions apply. The framework includes both on-balance sheet and off-balance sheet exposures and aligns with Basel Committee standards.",
+      "answer_keywords": ["20%", "Tier 1 capital", "25%", "connected counterparties", "LEF", "off-balance sheet", "Basel"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_026",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What are the RBI guidelines on priority sector lending (PSL) targets for domestic commercial banks?",
+      "expected_answer": "Domestic commercial banks must lend 40% of their Adjusted Net Bank Credit (ANBC) or Credit Equivalent Amount of Off-Balance Sheet Exposure, whichever is higher, to priority sectors. Sub-targets include 18% to agriculture (with 10% to small and marginal farmers), 7.5% to micro enterprises, and 10% to weaker sections.",
+      "answer_keywords": ["40%", "ANBC", "priority sector", "18%", "agriculture", "10%", "small and marginal farmers", "7.5%", "micro enterprises"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_027",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are RBI's guidelines on the Liquidity Coverage Ratio (LCR) for banks?",
+      "expected_answer": "RBI's LCR guidelines require banks to maintain a stock of high-quality liquid assets (HQLA) sufficient to cover 100% of net cash outflows over a 30-day stress period. HQLA includes Level 1 assets (government securities, cash) and Level 2 assets (certain corporate bonds, equities). Scheduled commercial banks must maintain 100% LCR, while smaller banks have a phased compliance schedule.",
+      "answer_keywords": ["HQLA", "100%", "30-day", "stress period", "Level 1", "Level 2", "LCR", "government securities"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_028",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is the RBI's framework for External Commercial Borrowings (ECB) by Indian companies?",
+      "expected_answer": "RBI's ECB framework allows Indian entities to borrow from foreign lenders subject to a negative list of end-uses. The all-in cost ceiling (interest and fees) varies by loan maturity. ECBs must be raised through the automatic route (RBI approval not required up to certain limits) or the approval route. Proceeds cannot be used for real estate, equity investment in India, or repayment of rupee loans.",
+      "answer_keywords": ["ECB", "negative list", "all-in cost", "automatic route", "approval route", "real estate", "rupee loans"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_029",
+      "category": "regulatory_rbi",
+      "difficulty": "easy",
+      "question": "What is the Monetary Policy Committee (MPC) and how does it determine the repo rate?",
+      "expected_answer": "The MPC is a six-member committee comprising three RBI officials (including the Governor as chairperson) and three external members appointed by the Government of India. It meets at least four times a year to assess macroeconomic conditions and vote on the policy repo rate. Decisions are by majority vote, with the RBI Governor having a casting vote in case of a tie.",
+      "answer_keywords": ["MPC", "six-member", "repo rate", "four times", "majority vote", "Governor", "casting vote"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_030",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are RBI's guidelines on Expected Credit Loss (ECL) provisioning for banks?",
+      "expected_answer": "RBI proposed moving from an incurred loss model to a forward-looking Expected Credit Loss (ECL) model for provisioning. Under ECL, banks must classify loans into three stages: Stage 1 (performing), Stage 2 (significant increase in credit risk), and Stage 3 (credit-impaired). Provisioning is based on probability of default, loss given default, and exposure at default over 12 months (Stage 1) or lifetime (Stages 2 and 3).",
+      "answer_keywords": ["ECL", "Stage 1", "Stage 2", "Stage 3", "probability of default", "loss given default", "lifetime", "incurred loss"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_031",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What are RBI's guidelines for urban cooperative banks (UCBs) on minimum capital requirements?",
+      "expected_answer": "RBI categorises UCBs into four tiers based on deposits. Tier 1 UCBs (deposits up to Rs 100 crore) must maintain a minimum CRAR of 9%, while Tier 2, 3, and 4 UCBs must maintain 12%. UCBs are also subject to limits on unsecured lending and lending to directors.",
+      "answer_keywords": ["UCBs", "four tiers", "Rs 100 crore", "CRAR", "9%", "12%", "unsecured lending"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_032",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is RBI's stance on unsecured retail loans and what macro-prudential measures has it taken?",
+      "expected_answer": "RBI increased the risk weight on consumer credit (excluding housing, vehicle, and education loans) from 100% to 125% in November 2023, citing rapid growth in unsecured retail loans. Credit card receivables risk weight was also raised to 150%. These measures aimed to improve resilience of bank and NBFC balance sheets and moderate the pace of unsecured credit growth.",
+      "answer_keywords": ["125%", "risk weight", "unsecured", "November 2023", "consumer credit", "150%", "credit card"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_033",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "How does RBI classify and regulate systemically important Non-Banking Financial Companies (NBFCs)?",
+      "expected_answer": "RBI classifies NBFCs with assets of Rs 500 crore or more as systemically important (NBFC-SI). These must maintain a minimum CRAR of 15% (with Tier II capital capped at 100% of Tier I). NBFC-SIs are subject to enhanced disclosure norms, governance requirements, and concentration limits. NBFCs are also categorised into deposit-taking (NBFC-D) and non-deposit-taking (NBFC-ND).",
+      "answer_keywords": ["Rs 500 crore", "NBFC-SI", "15%", "Tier II", "Tier I", "deposit-taking", "CRAR"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_034",
+      "category": "regulatory_rbi",
+      "difficulty": "easy",
+      "question": "What is the repo rate and how does it affect lending rates in the banking system?",
+      "expected_answer": "The repo rate is the rate at which RBI lends short-term funds to commercial banks against government securities. When RBI raises the repo rate, borrowing costs for banks increase, which generally leads to higher lending rates (MCLR/EBLR) for consumers and businesses, moderating credit growth and inflation.",
+      "answer_keywords": ["repo rate", "commercial banks", "government securities", "MCLR", "EBLR", "lending rates", "credit growth"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_035",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is the RBI's framework for payment aggregators and what compliance requirements do they face?",
+      "expected_answer": "RBI requires payment aggregators (PAs) to obtain a licence, maintain a minimum net worth of Rs 25 crore (rising to Rs 100 crore by 2026), segregate merchant funds in an escrow account, comply with KYC/AML norms for merchants, and implement cybersecurity standards. PAs facilitating cross-border payments face additional FEMA compliance requirements.",
+      "answer_keywords": ["payment aggregators", "Rs 25 crore", "Rs 100 crore", "escrow", "KYC", "AML", "FEMA", "cybersecurity"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_036",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are the RBI guidelines on the Net Stable Funding Ratio (NSFR) and which banks are subject to it?",
+      "expected_answer": "RBI's NSFR guidelines require banks to maintain a ratio of available stable funding (ASF) to required stable funding (RSF) of at least 100%. This ensures banks have sufficient stable funding over a one-year horizon under a stressed scenario. The framework applies to domestic systemically important banks (D-SIBs) and other scheduled commercial banks, excluding regional rural banks and small finance banks.",
+      "answer_keywords": ["NSFR", "ASF", "RSF", "100%", "one-year", "D-SIBs", "stable funding", "stressed"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_037",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is the MCLR and how does it differ from the EBLR (External Benchmark Lending Rate)?",
+      "expected_answer": "MCLR (Marginal Cost of Funds-based Lending Rate) is computed by banks based on their marginal cost of funds, operating costs, and tenor premium. EBLR links loan rates directly to an external benchmark (typically the RBI repo rate) plus a spread. EBLR is more transparent and transmits monetary policy changes more quickly than MCLR. All new floating-rate retail loans (home, auto, personal) must be linked to EBLR.",
+      "answer_keywords": ["MCLR", "EBLR", "repo rate", "spread", "transparent", "transmission", "floating-rate", "retail loans"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_038",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are RBI's norms on bank investments in Alternative Investment Funds (AIFs)?",
+      "expected_answer": "RBI issued a circular in December 2023 restricting banks and NBFCs from investing in AIFs that hold investments in debtor companies of the regulated entity, to prevent potential evergreening of loans. Regulated entities must liquidate such AIF investments within 30 days or make 100% provisions for those investments. Downstream investments of less than 10% of AIF corpus in debtor companies are exempt.",
+      "answer_keywords": ["AIFs", "December 2023", "evergreening", "30 days", "100% provisions", "10%", "debtor companies"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_039",
+      "category": "regulatory_rbi",
+      "difficulty": "easy",
+      "question": "What is the foreign exchange reserve and what is its strategic purpose for India?",
+      "expected_answer": "India's foreign exchange reserves are assets held by the RBI in foreign currencies, gold, Special Drawing Rights (SDRs), and the reserve tranche in the IMF. They serve to maintain confidence in the currency, support import cover (ideally 9–12 months), intervene in the forex market to manage rupee volatility, and meet external debt obligations.",
+      "answer_keywords": ["foreign exchange reserves", "SDRs", "IMF", "import cover", "rupee volatility", "gold"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_040",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What are RBI's conditions for banks to pay dividends to shareholders?",
+      "expected_answer": "RBI allows banks to declare dividends only if CRAR is at or above minimum regulatory requirements, net NPA ratio is below 6%, and the bank has complied with the CRR/SLR requirement in the preceding year. Dividend payout is capped at 50% of net profits and the bank should not be under PCA.",
+      "answer_keywords": ["dividend", "CRAR", "net NPA", "6%", "CRR", "SLR", "50%", "PCA"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_041",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What are RBI's guidelines on account aggregator (AA) framework?",
+      "expected_answer": "RBI's Account Aggregator framework enables customers to consent-based sharing of their financial data across institutions. AAs act as data intermediaries, not data custodians — they cannot see or use the underlying data. Financial Information Providers (FIPs) and Financial Information Users (FIUs) are participants. AAs need an NBFC-AA licence from RBI.",
+      "answer_keywords": ["Account Aggregator", "consent", "data intermediaries", "FIP", "FIU", "NBFC-AA", "financial data"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_042",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What triggered RBI's action against Paytm Payments Bank in early 2024 and what restrictions were imposed?",
+      "expected_answer": "RBI directed Paytm Payments Bank in January 2024 to cease onboarding new customers and stop accepting deposits, credit transactions, or top-ups in customer accounts, wallets, and FASTags after February 29, 2024. The action was attributed to persistent non-compliance with KYC norms, IT risk concerns, and significant supervisory concerns related to the bank's parent company Paytm.",
+      "answer_keywords": ["Paytm Payments Bank", "January 2024", "February 29 2024", "onboarding", "KYC", "IT risk", "deposits", "FASTags"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_043",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is RBI's framework on co-lending between banks and NBFCs?",
+      "expected_answer": "RBI's co-lending model allows banks and NBFCs to jointly originate priority sector loans, with the NBFC retaining a minimum of 20% of individual loans on its books and the bank taking the remaining 80%. The bank's lending rate is the weighted average of both partners' rates. This extends formal credit to underserved segments using NBFCs' last-mile reach.",
+      "answer_keywords": ["co-lending", "20%", "80%", "priority sector", "NBFC", "bank", "weighted average", "last-mile"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_044",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are the RBI's revised guidelines on wilful defaulters and their impact on promoters?",
+      "expected_answer": "RBI's revised wilful defaulter guidelines (2023) define a wilful default as failure to repay despite having the capacity to pay, diversion or siphoning of funds, disposal of assets without lender knowledge, or misrepresentation. Wilful defaulters are barred from accessing fresh credit from any bank or financial institution, and promoters classified as wilful defaulters cannot be on boards of any other company for 5 years.",
+      "answer_keywords": ["wilful defaulter", "2023", "capacity to pay", "diversion", "siphoning", "fresh credit", "5 years", "boards"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_045",
+      "category": "regulatory_rbi",
+      "difficulty": "easy",
+      "question": "What is the Standing Deposit Facility (SDF) and how does it differ from the reverse repo rate?",
+      "expected_answer": "The Standing Deposit Facility (SDF) was introduced by RBI in April 2022 as the floor of the Liquidity Adjustment Facility (LAF) corridor. Unlike the reverse repo, the SDF allows banks to park excess liquidity with RBI without any collateral. The SDF rate replaced the reverse repo rate as the effective lower bound of the policy rate corridor.",
+      "answer_keywords": ["SDF", "April 2022", "LAF", "collateral", "reverse repo", "floor", "liquidity"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_046",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is RBI's Integrated Ombudsman Scheme and what is its coverage?",
+      "expected_answer": "RBI's Integrated Ombudsman Scheme (2021) consolidated the separate ombudsman schemes for banks, NBFCs, and digital transactions into a single scheme. It covers complaints against banks, NBFCs (deposit-taking and non-deposit-taking above Rs 100 crore assets), payment system operators, and credit information companies. Complaints can be filed online and must be resolved within 30 days.",
+      "answer_keywords": ["Integrated Ombudsman", "2021", "banks", "NBFCs", "payment operators", "30 days", "Rs 100 crore"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_047",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are RBI's guidelines on securitisation and minimum retention requirement (MRR) for originators?",
+      "expected_answer": "RBI's securitisation guidelines require originators to retain a minimum risk retention (MRR) of 10% of the book value of securitised assets for mortgages and 5% for other assets, along with a minimum holding period (MHP) before securitisation (3–24 months depending on loan tenor). This ensures originators have skin in the game and maintain underwriting standards.",
+      "answer_keywords": ["MRR", "10%", "5%", "securitisation", "MHP", "holding period", "originator", "skin in the game"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_048",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What are RBI's guidelines on interest rate derivatives for hedging?",
+      "expected_answer": "RBI permits eligible entities (banks, primary dealers, NBFCs, mutual funds, and companies with underlying exposure) to use interest rate swaps, forward rate agreements, and interest rate futures for hedging. Market makers must have a minimum net worth of Rs 100 crore and comply with product-specific exposure and counterparty limits.",
+      "answer_keywords": ["interest rate derivatives", "interest rate swaps", "forward rate agreements", "futures", "hedging", "market makers", "Rs 100 crore"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_049",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are RBI's guidelines on digital lending through apps and the use of lending service providers (LSPs)?",
+      "expected_answer": "RBI's digital lending guidelines (2022) require that all loan disbursals and repayments must flow directly through bank accounts of the regulated entity, prohibiting pass-through of funds through LSP accounts. LSPs can perform customer acquisition and underwriting support but cannot handle loan funds. Regulated entities bear full responsibility for compliance by their LSPs. A key safety net feature (cooling off period) must be provided to borrowers.",
+      "answer_keywords": ["digital lending", "LSP", "bank accounts", "2022", "disbursals", "cooling off", "customer acquisition"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_050",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is the RBI's policy on forward guidance and inflation targeting?",
+      "expected_answer": "RBI follows a flexible inflation targeting (FIT) framework with a mandated CPI inflation target of 4%, with a tolerance band of +/-2% (i.e., 2–6%). If inflation breaches the upper or lower bound for three consecutive quarters, RBI must report to the government explaining reasons and remedial measures. The MPC sets monetary policy to achieve this target while supporting growth.",
+      "answer_keywords": ["FIT", "CPI", "4%", "2%", "6%", "tolerance band", "three consecutive quarters", "MPC", "flexible inflation targeting"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_051",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What are the key revenue drivers for TCS (Tata Consultancy Services)?",
+      "expected_answer": "TCS's revenue is primarily driven by BFSI (Banking, Financial Services, Insurance), retail, manufacturing, and hi-tech verticals. Geographically, North America contributes ~55% of revenues. Key service lines include IT outsourcing, digital transformation, cloud services, and BPO. Revenue is denominated largely in USD, GBP, and EUR, making it sensitive to INR exchange rates.",
+      "answer_keywords": ["BFSI", "North America", "55%", "digital transformation", "cloud", "USD", "exchange rates", "IT outsourcing"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_052",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is HDFC Bank's CASA ratio and why is it important for the bank's profitability?",
+      "expected_answer": "HDFC Bank's CASA (Current Account and Savings Account) ratio measures low-cost deposits as a percentage of total deposits. A higher CASA ratio reduces the bank's cost of funds since CASA deposits pay lower interest rates than term deposits. HDFC Bank has historically maintained a CASA ratio of around 40–45%, which is a key driver of its superior Net Interest Margin (NIM) relative to peers.",
+      "answer_keywords": ["CASA", "low-cost deposits", "cost of funds", "40–45%", "NIM", "Net Interest Margin", "profitability"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_053",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What are the key factors that determine Reliance Industries' earnings trajectory?",
+      "expected_answer": "Reliance Industries' earnings are driven by its three main segments: O2C (Oil-to-Chemicals), Retail, and Jio Platforms. O2C earnings depend on crude oil prices, refining margins (GRM), and petchem spreads. Retail is driven by store additions, GMV growth, and omnichannel expansion. Jio's ARPU growth, 5G monetisation, and enterprise offerings are key drivers of the digital segment.",
+      "answer_keywords": ["O2C", "GRM", "refining margins", "Jio", "ARPU", "Retail", "GMV", "5G", "crude oil"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_054",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What does the merger of HDFC Ltd with HDFC Bank mean for the combined entity's loan book composition and capital requirements?",
+      "expected_answer": "The HDFC Ltd-HDFC Bank merger (completed July 2023) added HDFC Ltd's large mortgage book (~Rs 6 lakh crore) to HDFC Bank's balance sheet, increasing the share of secured home loans in the loan mix. The merged entity faces higher priority sector lending (PSL) obligations as a larger bank, additional SLR and CRR requirements on incremental deposits, and must build CASA deposits to fund the lower-yielding mortgage book while maintaining NIM.",
+      "answer_keywords": ["merger", "July 2023", "mortgage", "Rs 6 lakh crore", "PSL", "SLR", "CRR", "NIM", "CASA"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_055",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What is the significance of the order book metric for Indian defence companies?",
+      "expected_answer": "The order book represents confirmed future revenues and is a leading indicator of growth visibility for defence companies. A strong order book (typically 3–5x annual revenues) provides revenue visibility for 3–5 years. Order wins from the Ministry of Defence, export orders, and indigenisation mandates under 'Make in India' are key drivers of order book accretion for companies like HAL, BEL, and Bharat Forge.",
+      "answer_keywords": ["order book", "revenue visibility", "3–5x", "Ministry of Defence", "Make in India", "HAL", "BEL", "indigenisation"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_056",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "How does rising competition from Chinese OEMs affect Indian auto component manufacturers?",
+      "expected_answer": "Chinese OEMs entering India with aggressive pricing disrupt the domestic auto value chain. Indian component makers face risks from OEM localisation requirements (Chinese OEMs initially importing components), margin pressure as OEMs seek cost reductions, and structural shifts in EV technology components where Indian suppliers have limited capabilities. Companies like Motherson Sumi, Minda Industries, and Bosch face mixed impacts depending on their product mix and OEM exposure.",
+      "answer_keywords": ["Chinese OEMs", "EV", "localisation", "margin pressure", "Motherson Sumi", "Minda", "component makers"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_057",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What are the key operating metrics to track for an Indian private sector bank and what are acceptable ranges?",
+      "expected_answer": "Key metrics include: NIM (Net Interest Margin) — healthy range 3.5–4.5% for retail-focused banks; CASA ratio — above 35% desirable; Gross NPA — below 2% for strong banks; Net NPA — below 0.5%; Credit Cost — below 1% in normalised years; CRAR — well above 16% regulatory minimum; Return on Assets (ROA) — above 1.5%; Return on Equity (ROE) — above 15%; Loan growth — aligned with industry at 15–18%; Cost-to-income ratio — below 45%.",
+      "answer_keywords": ["NIM", "CASA", "Gross NPA", "Net NPA", "Credit Cost", "CRAR", "ROA", "ROE", "cost-to-income"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_058",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the impact of raw material price cycles on Indian paints companies like Asian Paints?",
+      "expected_answer": "Raw material costs (titanium dioxide, crude-linked monomers, pigments) constitute ~50–55% of net sales for paints companies. Crude oil price spikes raise input costs and compress EBITDA margins unless offset by price hikes, which take 1–2 quarters to implement due to competitive dynamics. Deflation in RM costs, as seen in FY24, expands gross margins but can attract competitive price cuts. Volume growth is the more durable driver of long-term earnings.",
+      "answer_keywords": ["titanium dioxide", "crude", "50–55%", "EBITDA margins", "price hikes", "volume growth", "Asian Paints", "FY24"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_059",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What are the key credit metrics to assess for an Indian NBFC focused on microfinance lending?",
+      "expected_answer": "Key metrics for MFI NBFCs include: Portfolio at Risk > 30 days (PAR30) — a leading indicator of asset quality stress; Collection efficiency (monthly collections/demand) — should be above 97%; Average loan size and borrower overlap with other MFIs — overleveraging is a systemic risk; Cost of borrowing — given MFIs' reliance on bank loans and NCD markets; Capital adequacy — CRAR of 20%+ is expected; Gross NPA — below 3% in stable environments; and PPOP (Pre-Provision Operating Profit) as a buffer against credit costs.",
+      "answer_keywords": ["PAR30", "collection efficiency", "97%", "borrower overlap", "cost of borrowing", "CRAR", "PPOP", "MFI", "microfinance"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_060",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What factors drive cement volume growth in India?",
+      "expected_answer": "Cement volume growth in India is primarily driven by housing construction (individual home building and real estate), infrastructure projects (roads, railways, airports, water projects under Jal Jeevan Mission), and industrial construction. Government capital expenditure on infrastructure is a key demand driver. Monsoon season (June–September) typically depresses construction activity.",
+      "answer_keywords": ["housing", "infrastructure", "roads", "railways", "government capex", "monsoon", "Jal Jeevan Mission"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_061",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the significance of ARPU (Average Revenue Per User) for Reliance Jio?",
+      "expected_answer": "Jio's ARPU is a critical profitability metric as it determines revenue per subscriber. Jio's ARPU has been rising through periodic tariff hikes and subscriber migration to higher-value prepaid plans. 5G monetisation (higher data plans, fixed wireless access), enterprise offerings, and the home broadband segment (JioFiber, AirFiber) are expected to drive ARPU higher over the medium term.",
+      "answer_keywords": ["ARPU", "tariff hikes", "5G", "fixed wireless", "JioFiber", "AirFiber", "prepaid", "enterprise"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_062",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What are the structural tailwinds and headwinds for Indian IT services companies in FY26?",
+      "expected_answer": "Tailwinds include: GenAI-driven technology transformation deals, cloud migration projects, cost-optimisation outsourcing by Western clients, and India's talent cost advantage. Headwinds include: macro uncertainty in the US and Europe dampening discretionary IT spend, clients' vendor consolidation reducing deal sizes, fierce pricing competition among Tier-1 and Tier-2 vendors, and potential disruption of application support and maintenance work by AI tools reducing labour content.",
+      "answer_keywords": ["GenAI", "cloud migration", "cost-optimisation", "discretionary spend", "vendor consolidation", "pricing competition", "AI tools", "FY26"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_063",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What determines Maruti Suzuki's market share in the Indian passenger vehicle market?",
+      "expected_answer": "Maruti's market share (~40%) is driven by its breadth of product portfolio (entry, mid, and premium segments), distribution network (3,500+ outlets), low total cost of ownership, after-sales service network, strong brand trust, fuel efficiency, and growing presence in the SUV segment through Grand Vitara and Invicto. Threats include Hyundai, Tata Motors, and new entrants in the EV segment where Maruti has been a late mover.",
+      "answer_keywords": ["40%", "product portfolio", "distribution", "SUV", "Grand Vitara", "Hyundai", "Tata Motors", "EV", "market share"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_064",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "How do you analyse the capital allocation quality of an Indian conglomerate?",
+      "expected_answer": "Key indicators of capital allocation quality include: Return on Invested Capital (ROIC) relative to Weighted Average Cost of Capital (WACC); free cash flow conversion ratio (FCF/EBITDA); dividend payout and buyback history; track record of acquisitions (EV/EBITDA paid vs synergies realised); related party transaction intensity; debt accumulation pace relative to EBITDA growth; and whether management provides capital allocation guidance and adheres to it.",
+      "answer_keywords": ["ROIC", "WACC", "FCF", "EBITDA", "dividends", "buyback", "acquisitions", "related party", "debt"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_065",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What is India's Goods and Services Tax (GST) rate slab for financial services?",
+      "expected_answer": "Financial services — including banking, insurance, and brokerage — are taxed at 18% GST in India. This applies to service fees, commissions, and insurance premiums. Certain financial products like term life insurance and health insurance face GST, which has been a point of policy debate given its impact on insurance penetration.",
+      "answer_keywords": ["18%", "GST", "financial services", "banking", "insurance", "brokerage", "term life"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_066",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What metrics are most relevant to track for an Indian hospital chain like Apollo Hospitals?",
+      "expected_answer": "Key metrics include: Revenue per occupied bed (RPOB); Average Revenue Per Admission (ARPA); Occupancy rate (typically 65–75% in stable operations); ARPOB by segment (international vs domestic patients); EBITDA margin per bed (target Rs 10,000+/bed/day for premium hospitals); pharmacy and diagnostics revenue contribution; bed addition pipeline and asset turnover of new greenfield hospitals.",
+      "answer_keywords": ["RPOB", "ARPA", "occupancy", "65–75%", "EBITDA margin", "pharmacy", "diagnostics", "bed addition", "Apollo"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_067",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What structural factors support the Indian life insurance industry's growth over the next decade?",
+      "expected_answer": "India's life insurance growth is supported by: low penetration (~3% of GDP vs 7% in advanced economies); rising middle class with growing awareness of protection needs; term plan underpenetration (most policies are savings-oriented); digital distribution reducing customer acquisition costs; IRDAI's sandbox and regulatory push for increased penetration; tax benefits on life insurance premiums; and favourable demographics with a large working-age population.",
+      "answer_keywords": ["3% of GDP", "penetration", "term plan", "savings", "digital", "IRDAI", "demographics", "middle class"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_068",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the significance of the book-to-bill ratio for Indian IT companies?",
+      "expected_answer": "Book-to-bill ratio (order intake in a quarter / revenue in that quarter) above 1x signals healthy demand momentum, while below 1x suggests potential revenue deceleration. For large IT companies, a trailing twelve-month (TTM) total contract value (TCV) of deal wins above 1x of annual revenue indicates strong pipeline. Large deal announcements (TCV > $100 million) are especially watched as they underpin multi-year revenue visibility.",
+      "answer_keywords": ["book-to-bill", "1x", "order intake", "TCV", "deal wins", "revenue visibility", "$100 million", "TTM"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_069",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What is a Debt-to-Equity ratio and what is a healthy level for Indian manufacturing companies?",
+      "expected_answer": "Debt-to-Equity (D/E) ratio measures total debt relative to shareholders' equity. For Indian capital-intensive manufacturing companies, a D/E of below 1x is generally considered healthy, with well-run companies in sectors like chemicals, auto ancillaries, and FMCG typically maintaining net-debt-free or low-leverage balance sheets. Capital-intensive sectors like infrastructure and utilities may sustain higher D/E ratios (2–3x) given asset-backed cash flows.",
+      "answer_keywords": ["Debt-to-Equity", "1x", "below 1x", "net-debt-free", "capital-intensive", "manufacturing", "infrastructure"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_070",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "How do Goods and Services Tax (GST) collections serve as a real-time economic indicator?",
+      "expected_answer": "Monthly GST collections are a high-frequency indicator of economic activity and formalisation. Sustained collections above Rs 1.5–1.7 lakh crore signal robust consumption, manufacturing, and services activity. Year-on-year growth in GST collections reflects both volume growth and formalisation gains (shift from informal to GST-registered economy). Disaggregated data (CGST, SGST, IGST, cess) helps track interstate trade and consumption trends. E-way bill data is a leading indicator for the following month's GST collections.",
+      "answer_keywords": ["GST collections", "Rs 1.5–1.7 lakh crore", "formalisation", "CGST", "SGST", "IGST", "e-way bill", "economic activity"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_071",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the impact of the US dollar-INR exchange rate on Indian IT companies' revenues?",
+      "expected_answer": "A depreciating INR vs USD positively impacts Indian IT companies' reported INR revenues and margins (since costs are primarily INR while revenues are USD-denominated). Each 1% depreciation in INR adds roughly 0.5–1% to operating margins depending on hedge ratios. Conversely, INR appreciation compresses margins. Large IT companies typically hedge 12–24 months of net receivables, providing short-term margin protection but muting full benefit of INR weakness.",
+      "answer_keywords": ["USD-INR", "depreciating INR", "margins", "0.5–1%", "hedge", "12–24 months", "receivables"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_072",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What are the key regulatory risks facing Indian pharma companies in the US generics market?",
+      "expected_answer": "Key risks include: USFDA warning letters or import alerts for manufacturing non-compliance, which can shut out entire product portfolios from the US market; price erosion in the US generics market due to buyer consolidation among the 'Big 3' pharmacy chains; patent challenges (Para IV filings) from branded companies; 483 observations during inspections requiring remediation before product approvals; and regulatory scrutiny of API (Active Pharmaceutical Ingredient) sourcing from China.",
+      "answer_keywords": ["USFDA", "warning letters", "import alerts", "price erosion", "Para IV", "483 observations", "API", "China"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_073",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What is EBITDA margin and why is it used as a profitability metric?",
+      "expected_answer": "EBITDA margin is Earnings Before Interest, Tax, Depreciation, and Amortisation as a percentage of net revenue. It strips out financing structure (interest), tax jurisdiction, and non-cash charges (D&A) to measure the core operating profitability of a business. It is useful for comparing companies with different capital structures or across sectors. EBITDA margin is a key metric for manufacturing, retail, and services businesses.",
+      "answer_keywords": ["EBITDA", "interest", "tax", "depreciation", "amortisation", "operating profitability", "capital structures"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_074",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the FMCG sector's volume vs value growth dynamic in India?",
+      "expected_answer": "FMCG companies report both volume growth (units sold) and value growth (revenue growth). Value growth = volume growth + price/mix. During high inflation periods, companies take price hikes generating value growth even with flat volumes. Normalised commodity costs enable FMCG companies to either take price reductions to drive volumes, reinvest in A&P (advertising and promotion), or protect margins. Premium product mix (premiumisation) structurally lifts value growth above volume growth.",
+      "answer_keywords": ["volume", "value", "price/mix", "premiumisation", "A&P", "advertising", "commodity", "inflation"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_075",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What is the free float market capitalisation methodology and how does it determine Nifty 50 index weights?",
+      "expected_answer": "Free float market capitalisation = Total market cap × Free float factor (fraction of shares available for public trading, excluding promoter holdings, government holdings, and strategic locked-in shares). Nifty 50 index weights are proportional to free float market cap, subject to a 10% individual stock weight cap. This methodology better reflects investable universe for institutional investors compared to full market cap weighting.",
+      "answer_keywords": ["free float", "promoter holdings", "10% cap", "Nifty 50", "investable", "free float factor", "market cap"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_076",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What are the key metrics for evaluating Indian specialty chemicals companies?",
+      "expected_answer": "Key metrics include: EBITDA margin per tonne (pricing power and product mix quality); revenue per employee (asset-light vs capital-intensive); R&D expenditure as % of revenue (innovation pipeline); customer concentration (top 10 customers as % of revenue); export % (especially to regulated markets — US, Europe); capacity utilisation; working capital days (Chinese competition compresses days payable); and capex-to-sales ratio for growth trajectory.",
+      "answer_keywords": ["EBITDA margin per tonne", "revenue per employee", "R&D", "customer concentration", "export", "capacity utilisation", "working capital", "capex"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_077",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What is the Price-to-Book (P/B) ratio and when is it most useful as a valuation tool?",
+      "expected_answer": "P/B ratio = Market price per share / Book value per share (net assets per share). P/B is most relevant for financial companies (banks, NBFCs, insurance) where book value closely tracks economic value, and for asset-heavy industries. A bank trading below 1x P/B suggests the market expects returns below cost of equity. High-ROE banks deserve P/B premiums: P/B ≈ ROE/Cost of Equity × intrinsic P/B.",
+      "answer_keywords": ["P/B", "book value", "financial companies", "banks", "ROE", "cost of equity", "1x P/B"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_078",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What is the regulatory and operational risk framework for assessing Adani Group stocks?",
+      "expected_answer": "Key risk factors include: High promoter pledge levels on group shares (financial leverage risk); related party transactions between group entities; debt refinancing risk given large infrastructure capex funded by corporate bonds; regulatory/concession risk for airport and port assets (government contract dependency); SEBI investigation into alleged stock manipulation (post Hindenburg 2023); and concentration of equity in promoter-linked funds via FPIs.",
+      "answer_keywords": ["promoter pledge", "related party", "debt refinancing", "concession risk", "SEBI investigation", "Hindenburg", "FPIs"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_079",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the significance of return on equity (ROE) decomposition (DuPont analysis) for Indian banks?",
+      "expected_answer": "DuPont decomposition breaks ROE = Net Profit Margin × Asset Turnover × Equity Multiplier, or more usefully for banks: ROE = ROA × Leverage. For Indian banks, ROA drives quality of earnings (target >1.5% for private banks), while leverage (assets/equity) determines capital efficiency. A bank with 1.8% ROA and 10x leverage generates 18% ROE. Improving ROA through better NIM, fee income growth, and lower credit costs is the primary lever.",
+      "answer_keywords": ["DuPont", "ROE", "ROA", "leverage", "1.5%", "NIM", "credit costs", "equity multiplier"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_080",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "How does the 'China+1' manufacturing strategy benefit Indian companies and which sectors gain most?",
+      "expected_answer": "China+1 refers to global companies diversifying supply chains away from China to mitigate geopolitical risk and concentration risk. India benefits through PLI schemes in mobile phones, semiconductors, pharmaceuticals, textiles, and specialty chemicals. Key beneficiaries include Dixon Technologies and Amber Enterprises (electronics), Dr Reddy's (API manufacturing), SRF and Aarti Industries (specialty chemicals), and Welspun India (textiles). Constraints include infrastructure gaps, higher logistics costs, and skilled labour availability.",
+      "answer_keywords": ["China+1", "PLI", "Dixon Technologies", "Amber", "specialty chemicals", "API", "textiles", "geopolitical", "infrastructure"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_081",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What are the key risks for the Indian real estate sector in a rising interest rate environment?",
+      "expected_answer": "Rising interest rates increase home loan EMIs, reducing affordability and potentially compressing demand for residential units. Developer funding costs rise on construction finance. However, pre-sales (bookings) and collections are somewhat insulated if projects are in advanced stages. Premium segment demand is less rate-sensitive. RERA has improved delivery credibility, supporting demand. Key risks are project delays, cost overruns, and unsold inventory in mid-segment.",
+      "answer_keywords": ["interest rates", "EMI", "affordability", "construction finance", "RERA", "pre-sales", "inventory", "premium segment"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_082",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What is India's fiscal deficit and why does it matter for equity markets?",
+      "expected_answer": "The fiscal deficit is the gap between government revenues and expenditures as a percentage of GDP. A high fiscal deficit can crowd out private investment (by pushing up interest rates), increase government borrowing (compressing bank credit growth), put upward pressure on inflation, and weaken the rupee. India targets a glide path to reduce the fiscal deficit over time. Equity markets watch fiscal deficit as a macro risk indicator.",
+      "answer_keywords": ["fiscal deficit", "GDP", "crowd out", "interest rates", "government borrowing", "inflation", "rupee", "glide path"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_083",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What is a sum-of-parts (SOTP) valuation and when is it applied in Indian equity analysis?",
+      "expected_answer": "SOTP valuation values each business segment independently using the most appropriate methodology (DCF, EV/EBITDA, P/E, P/B) and adds them up to derive the total enterprise value. It is applied when a company has diversified segments with different growth profiles, margins, and risk characteristics — e.g., Reliance Industries (O2C, Retail, Jio), Tata Group companies with listed subsidiaries, or conglomerates like Mahindra & Mahindra. Holding company discounts of 20–40% are applied to listed subsidiary stakes.",
+      "answer_keywords": ["SOTP", "DCF", "EV/EBITDA", "segments", "Reliance", "Tata", "conglomerates", "holding company discount", "20–40%"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_084",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What are the major factors driving India's IT sector deal pipeline in FY26?",
+      "expected_answer": "FY26 deal pipeline for Indian IT is driven by: enterprise GenAI adoption (AI-first transformation mandates), multi-year cost takeout deals from Western banks and retailers, cloud hyperscaler partnerships (AWS, Azure, Google Cloud), BFSI core system modernisation, and US federal/state government digitisation. Headwinds from macro uncertainty and vendor consolidation are offset by large deal ramp-ups from FY25 wins. Europe remains sluggish due to energy cost headwinds.",
+      "answer_keywords": ["GenAI", "cloud", "AWS", "Azure", "BFSI", "modernisation", "vendor consolidation", "FY26", "Europe"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_085",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "How do credit rating migrations affect the cost of capital and stock valuations of Indian NBFCs?",
+      "expected_answer": "A credit rating upgrade reduces NBFC borrowing costs (NCD and bank funding rates), improving NIM and ROA, which justifies a re-rating of P/B multiples. Downgrades trigger the reverse: higher funding costs compress margins, tighten bank credit lines, and may trigger covenant breaches on existing borrowings. Equity investors watch rating trend (positive vs negative outlook), concentration of borrowings by maturity profile (ALM mismatch risk), and lender diversification as forward indicators of credit health.",
+      "answer_keywords": ["credit rating", "NCD", "NIM", "ROA", "P/B", "covenant", "ALM mismatch", "lender diversification", "borrowing costs"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_086",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What is the Nifty 50's historical P/E range and what does it signal?",
+      "expected_answer": "The Nifty 50's forward P/E has historically ranged from approximately 14–16x at market troughs to 22–24x at peaks. When the market trades at 20x+ forward earnings, it implies elevated expectations and limited margin of safety. At 16–18x, valuations are closer to long-term averages. P/E expansion (market re-rating) or compression is driven by interest rate cycles, earnings growth expectations, and global risk appetite.",
+      "answer_keywords": ["Nifty 50", "P/E", "14–16x", "22–24x", "forward earnings", "margin of safety", "re-rating", "interest rate"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_087",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "How does the Working Capital cycle affect small-cap manufacturing companies in India?",
+      "expected_answer": "Working capital = Receivable days + Inventory days - Payable days. Longer cycles (high receivables, high inventory, low payables) trap cash and require higher debt funding. Small manufacturers supplying to large OEMs or government often face 60–120 day receivable cycles and limited bargaining power on payables. GST input credit recovery delays add to working capital strain. Companies with tight cycles (FMCG, pharma APIs) generate superior FCF and lower debt.",
+      "answer_keywords": ["receivable days", "inventory days", "payable days", "OEM", "GST input credit", "FCF", "debt", "working capital cycle"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_088",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What distinguishes Indian footwear companies' competitive positioning in the mass vs premium segment?",
+      "expected_answer": "In the mass segment (below Rs 500/pair), unorganised players dominate with 60%+ share, competing on price. Branded players like Bata and Campus struggle on margins vs local competition. In the premium/athleisure segment (Rs 2,000+), global brands (Nike, Adidas) compete with Indian brands (Campus, HRX). Bata occupies the mid-market and is repositioning upward. Key moats are distribution depth, brand perception, and channel mix. D2C is a growing channel for premium brands.",
+      "answer_keywords": ["unorganised", "60%", "Bata", "Campus", "Nike", "Adidas", "premium", "D2C", "mass segment"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_089",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the relationship between India's current account deficit (CAD) and rupee depreciation?",
+      "expected_answer": "A widening CAD (more imports than exports of goods and services) means India needs more foreign currency, which can put downward pressure on the rupee if not offset by capital inflows. Oil price spikes widen India's CAD significantly (crude imports are ~30% of import bill). RBI intervenes by selling dollars from forex reserves to defend the rupee. Sustained CAD above 2.5% of GDP is considered a risk level.",
+      "answer_keywords": ["CAD", "current account deficit", "rupee", "oil", "2.5% of GDP", "RBI", "forex reserves", "capital inflows"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_090",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What are the key parameters to assess for a data centre REIT or infrastructure trust in India?",
+      "expected_answer": "Key parameters include: Weighted average lease expiry (WALE) — longer is better for income visibility; occupancy rate (target >90%); distribution yield vs cost of capital; rent escalation clauses (linked to CPI or fixed %); tenant quality and concentration; capex pipeline for expansion vs existing asset cash flows; power and cooling infrastructure cost efficiency (PUE ratio); and regulatory exposure (data localisation laws affecting hyperscaler demand).",
+      "answer_keywords": ["WALE", "occupancy", "distribution yield", "rent escalation", "tenant concentration", "PUE", "data localisation", "hyperscaler"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_091",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What is the difference between Gross NPA and Net NPA for a bank?",
+      "expected_answer": "Gross NPA is the total value of non-performing assets (loans overdue > 90 days) before any provisions. Net NPA = Gross NPA minus provisions held against those NPAs. The provision coverage ratio (PCR = Provisions / Gross NPA) measures how much buffer the bank has built. A PCR above 70–75% indicates conservative provisioning. Net NPA below 1% is considered excellent asset quality.",
+      "answer_keywords": ["Gross NPA", "Net NPA", "provisions", "PCR", "provision coverage ratio", "70–75%", "1%"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_092",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "How does Infosys's attrition rate affect its financial performance?",
+      "expected_answer": "High attrition (Infosys hit ~28% in FY22) forces companies to pay higher salaries to replace experienced staff, hire aggressively, and carry excess bench (unutilised capacity). This compresses EBITDA margins and delays project ramp-ups. Stabilising attrition (Infosys has since normalised to ~12–13%) reduces talent costs, improves utilisation rates (target 82–84%), and allows selective lateral hiring. Fresher pyramid efficiency returns as the workforce mix stabilises.",
+      "answer_keywords": ["attrition", "28%", "FY22", "12–13%", "utilisation", "82–84%", "bench", "salary", "margins"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_093",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What is the concept of 'negative working capital' and which Indian companies benefit from it?",
+      "expected_answer": "Negative working capital occurs when payable days > receivable days + inventory days, meaning the company collects cash before paying suppliers — effectively funded by its supply chain. This structural advantage reduces debt needs and generates high FCF. Examples in India include: DMart (retail — pays suppliers in 30 days, customers pay upfront), airlines (ticket sales before fuel/service costs), insurance companies (premiums received before claims), and quick service restaurants.",
+      "answer_keywords": ["negative working capital", "payable days", "receivable days", "DMart", "FCF", "cash generation", "supply chain"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_094",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What macroeconomic conditions lead to an increase in FPI (Foreign Portfolio Investor) inflows into Indian equities?",
+      "expected_answer": "FPI inflows into Indian equities increase when: US interest rates peak or decline (reducing opportunity cost of EM investing); rupee is stable or strengthening; India's GDP growth is strong relative to global peers; corporate earnings revisions are positive; India's weight in MSCI EM index rises; global risk appetite improves (VIX falls); and valuations are attractive relative to growth (PEG ratio). US Fed rate cycles are the dominant global driver of FPI flows.",
+      "answer_keywords": ["FPI", "US interest rates", "EM", "MSCI", "VIX", "rupee", "GDP", "earnings revisions", "Fed"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_095",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What is the analytical framework for evaluating a new-age listed tech company (like Zomato or Paytm) in India?",
+      "expected_answer": "For new-age tech companies, traditional P/E metrics are irrelevant while they are loss-making. Key metrics include: Gross Order Value (GOV) / Gross Merchandise Value (GMV) and its growth; contribution margin (revenue minus direct costs, approaching positivity is a key milestone); adjusted EBITDA margin trajectory; customer acquisition cost vs lifetime value (CAC/LTV); monthly active users (MAU) and cohort retention; unit economics by geography; burn rate and cash runway; and the path to profitability (quarters to EBITDA breakeven).",
+      "answer_keywords": ["GMV", "GOV", "contribution margin", "EBITDA margin", "CAC", "LTV", "MAU", "burn rate", "path to profitability"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_096",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What are the major indices in India and what do they track?",
+      "expected_answer": "Nifty 50 tracks the top 50 large-cap stocks on NSE by free float market cap. Sensex (BSE) tracks 30 large-cap stocks. Nifty 500 covers the broader market including mid and small caps. Sectoral indices (Nifty Bank, Nifty IT, Nifty Pharma) track specific sectors. Nifty Midcap 100 and Nifty Smallcap 100 cover mid and small cap segments. BSE-listed companies are governed by SEBI and BSE listing regulations.",
+      "answer_keywords": ["Nifty 50", "Sensex", "NSE", "BSE", "Nifty Bank", "Nifty 500", "midcap", "smallcap", "free float"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_097",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the strategic rationale for Indian companies acquiring businesses in the US or Europe?",
+      "expected_answer": "Outbound acquisitions by Indian companies serve multiple purposes: gaining access to advanced technology (pharma, auto components), acquiring established customer relationships and distribution channels, securing regulatory approvals in developed markets (US FDA, CE mark), diversifying geographic revenue, and acquiring talent/R&D capabilities. Examples include Tata Motors (Jaguar Land Rover), Sun Pharma (Ranbaxy international assets), and Dr Reddy's (BASF Generics).",
+      "answer_keywords": ["outbound acquisitions", "technology", "distribution", "FDA", "Tata Motors", "JLR", "Sun Pharma", "geographic diversification"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_098",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "How does India's Production Linked Incentive (PLI) scheme affect the financials of eligible companies?",
+      "expected_answer": "PLI subsidies are recognised as income (reducing cost of goods sold or as other income) based on incremental production over a base year threshold. This can add 2–5% to EBITDA margins for eligible companies. However, PLI benefits require upfront capex commitments, minimum local value addition, and export targets. Non-achievement forfeits the incentive. Analysts model PLI as a one-time driver and focus on underlying operating leverage and market share gains from capacity additions.",
+      "answer_keywords": ["PLI", "EBITDA margins", "2–5%", "capex", "local value addition", "export targets", "incentive", "incremental production"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_099",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "How do analysts assess the quality of earnings for Indian companies?",
+      "expected_answer": "Earnings quality is assessed by: FCF / Net income ratio (high ratio indicates cash-backed earnings); absence of one-time gains inflating reported profits; revenue recognition policies (percentage of completion vs completed contract); capitalisation of R&D or software costs; related party transaction proportion; deferred tax asset recognition (aggressive); and consistency of accounting policies across reporting periods. Forensic accounting red flags include frequent restatements, unexplained inventory or receivables build-up, and auditor changes.",
+      "answer_keywords": ["FCF", "net income", "revenue recognition", "capitalisation", "related party", "deferred tax", "restatements", "inventory", "auditor"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_100",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What is the role of management commentary in earnings calls for Indian listed companies?",
+      "expected_answer": "Management commentary (post-results con calls) provides qualitative context to quantitative results: demand environment comments signal near-term volume trajectory; deal pipeline and order book commentary indicates future revenue; guidance on margins, capex, and working capital helps analysts refine estimates; tone on competition, pricing, and customer conversations reveals strategic positioning. Analysts triangulate management guidance against historical guidance accuracy (beat/miss track record) and cross-check with industry data (IIP, PMI, GST, auto sales).",
+      "answer_keywords": ["management commentary", "earnings call", "demand", "deal pipeline", "guidance", "beat/miss", "IIP", "PMI", "GST", "capex"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+
+    {
+      "id": "qa_101",
+      "category": "thesis_validation",
+      "difficulty": "easy",
+      "question": "Is the thesis 'TCS will outperform over the next 12 months due to GenAI deal momentum' well-structured?",
+      "expected_answer": "The thesis is directionally stated but lacks specificity on deal size, client segment, and quantitative targets. A well-structured version would specify: expected revenue growth differential vs sector (e.g., 200bps above Infosys), specific GenAI deal wins pipeline (>$500M TCV in H2 FY26), and catalysts (large deal ramp, margin expansion). The core claim and reason are present but assumptions need to be explicit.",
+      "answer_keywords": ["directional", "specificity", "revenue growth", "200bps", "deal pipeline", "catalysts", "assumptions", "explicit"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_102",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What are the key assumptions embedded in the thesis 'HDFC Bank will deliver 18–22% earnings CAGR over 3 years'?",
+      "expected_answer": "Key assumptions include: loan growth sustaining at 15–18%; NIM stabilising at 3.5–4.0% as HDFC Ltd integration costs are absorbed; credit costs remaining below 0.8% (benign credit environment); fee income growing 20%+ driven by third-party product distribution; CASA ratio recovering to 40%+ post-merger dilution; and RBI not imposing incremental regulatory restrictions on growth. Each assumption needs to be validated against current data.",
+      "answer_keywords": ["loan growth", "15–18%", "NIM", "3.5–4.0%", "credit costs", "0.8%", "CASA", "40%", "fee income", "merger"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_103",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What break conditions would invalidate the thesis 'Reliance Industries will rerate as Jio ARPU crosses Rs 200'?",
+      "expected_answer": "Break conditions include: Jio ARPU growth stalling at Rs 170–180 due to competition from Airtel/BSNL or regulatory intervention on tariff hikes; competitive response from Airtel eroding Jio subscriber market share; O2C segment dragging overall earnings due to GRM compression offsetting Jio upside; SEBI or regulatory investigation into group entities impacting sentiment; and FPI outflows reducing overall market P/E expansion potential.",
+      "answer_keywords": ["ARPU", "Rs 170–180", "Airtel", "tariff hikes", "O2C", "GRM", "FPI", "market share", "competition"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_104",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "How should you stress-test the thesis 'Indian small cap IT companies will outperform large caps on deal wins in FY26'?",
+      "expected_answer": "Stress testing should cover: Demand risk — if US GDP growth slows below 1.5%, discretionary IT budgets compress disproportionately affecting small IT (less diversified revenue); Competitive risk — large caps with GenAI labs and hyperscaler partnerships could win mid-size transformation deals that used to go to smaller players; Margin risk — small IT companies with higher fixed cost bases have more operating leverage (both ways); Valuation risk — small IT trades at 15–20x vs large IT at 22–25x; at current premium levels, execution risk is amplified; and Execution risk — small IT's ability to scale for large deal delivery.",
+      "answer_keywords": ["US GDP", "1.5%", "GenAI", "hyperscaler", "operating leverage", "15–20x", "22–25x", "execution risk", "deal delivery"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_105",
+      "category": "thesis_validation",
+      "difficulty": "easy",
+      "question": "Is the thesis 'SBI will benefit from rate cuts' sufficiently detailed for investment decision-making?",
+      "expected_answer": "No — this thesis is too vague. It needs to specify: quantum of expected rate cuts (25–50bps); timeline (H2 FY26); transmission mechanism (lower deposit costs improving NIM by X bps, or higher loan demand driving credit growth); net impact on EPS (e.g., 25bps rate cut adds Rs 3–4 per share to EPS); and key risk (asset quality slippage from corporate book if economic conditions worsen). Without these specifics, it is an observation, not an investable thesis.",
+      "answer_keywords": ["too vague", "25–50bps", "NIM", "EPS", "asset quality", "credit growth", "deposit costs", "specifics"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_106",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "What regulatory assumptions must be validated before accepting the thesis 'Insurance sector will rerate after IRDAI allows composite licenses'?",
+      "expected_answer": "Assumptions to validate: Whether IRDAI has formally approved composite licensing (combining life, general, and health under one entity); which incumbents are positioned to apply (LIC, HDFC Life, SBI Life have capital); capital adequacy requirements for composite entities; whether FDI limits are raised to fund expansion; distribution synergies assumption (cross-selling life and general products); and competitive impact on standalone general insurers (New India, Oriental). The thesis timing risk is high if regulatory implementation is delayed.",
+      "answer_keywords": ["IRDAI", "composite licensing", "LIC", "capital adequacy", "FDI", "distribution synergies", "general insurers", "timing risk"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_107",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What is the logical chain of assumptions for the thesis 'India's power sector stocks will outperform on data centre demand'?",
+      "expected_answer": "Logical chain: (1) AI/cloud adoption drives hyperscaler data centre expansion in India; (2) Data centres are energy-intensive (10–50 MW per facility); (3) India's grid power mix increasingly includes renewables (solar, wind); (4) Data centres need reliable, 24/7 power — driving demand for hybrid (grid + captive solar + battery storage) solutions; (5) Power sector companies (NTPC, Tata Power, Torrent Power) benefit through captive solar projects, PPAs, and distribution network upgrades; (6) Earnings uplift from new long-term PPAs for data centres. Risk: REC/PPA pricing compression as supply scales.",
+      "answer_keywords": ["data centres", "hyperscaler", "10–50 MW", "renewables", "NTPC", "Tata Power", "PPA", "captive solar", "earnings uplift"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_108",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "How does a circular dependency in a thesis assumption chain manifest and how should it be flagged?",
+      "expected_answer": "A circular dependency occurs when assumption A depends on B, B depends on C, and C depends on A — creating a logical loop with no independent anchor. Example: 'HDFC Bank will grow loans at 18% because CASA recovers to 40%, and CASA will recover because loan growth attracts more retail customers' — loan growth depends on CASA, and CASA improvement depends on loan growth. This is circular. It should be flagged as a bootstrap assumption with no external validation point. The analyst must find an independent driver (e.g., salary account mandates, product expansion) that breaks the circularity.",
+      "answer_keywords": ["circular dependency", "logical loop", "CASA", "loan growth", "bootstrap", "independent driver", "salary account", "external validation"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_109",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What macro risk factors should be included in a bear case scenario for the thesis 'Indian mid-cap stocks will deliver 20% CAGR over 3 years'?",
+      "expected_answer": "Bear case macro risks: (1) US recession driving FPI outflows from Indian equities, compressing P/E multiples by 20–30%; (2) Crude oil spike above $100/bbl widening CAD and weakening rupee by 8–10%, increasing inflation; (3) Domestic credit cycle turning — rising NPAs in mid-cap focused lenders tightening credit availability; (4) Government capex slowdown post-election in FY27 reducing infrastructure sector demand; (5) Geopolitical event (India-China or India-Pakistan escalation) causing risk-off sentiment; (6) Earnings disappointments from consensus overestimation of margin recovery.",
+      "answer_keywords": ["US recession", "FPI", "crude oil", "$100", "CAD", "NPAs", "government capex", "geopolitical", "P/E compression"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_110",
+      "category": "thesis_validation",
+      "difficulty": "easy",
+      "question": "What is meant by 'thesis robustness' in the context of investment analysis?",
+      "expected_answer": "Thesis robustness refers to how many of the core thesis assumptions must simultaneously be correct for the investment to work. A robust thesis requires few, high-conviction assumptions (e.g., 'India's Nifty EPS will grow at 12–14% CAGR — an historically consistent base'). A fragile thesis requires many concurrent assumptions (e.g., ARPU growth + GRM recovery + regulatory approval + FPI inflows) — all must materialise simultaneously. The more independent assumptions required, the lower the thesis robustness.",
+      "answer_keywords": ["robustness", "core assumptions", "concurrent", "fragile", "independent assumptions", "CAGR", "high-conviction"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_111",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "How should you validate the demand assumption in the thesis 'Zomato will achieve EBITDA profitability by FY26 driven by order volume growth'?",
+      "expected_answer": "Demand assumption validation requires: (1) Cross-checking order volume trajectory (MoM growth, AOV trends, customer cohort retention); (2) Assessing market penetration rate in Tier-2/3 cities (addressable market expansion); (3) Evaluating competitive intensity from Swiggy and new entrants; (4) Tracking monthly active user (MAU) growth and engagement metrics from alternative data sources; (5) Analysing take rate trajectory (platform commission sustainability); and (6) Comparing against contribution margin per order trend to verify profitability lever.",
+      "answer_keywords": ["order volume", "AOV", "cohort retention", "Tier-2/3", "Swiggy", "MAU", "take rate", "contribution margin", "profitability"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_112",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What is a 'crowded trade' risk in Indian equity markets and how does it affect investment theses?",
+      "expected_answer": "A crowded trade occurs when too many institutional investors hold the same position with the same thesis, creating vulnerability to simultaneous exits. If the thesis is invalidated (e.g., earnings miss, regulatory change), the exit pressure amplifies price declines beyond fundamental value. In India, FPI and domestic MF crowding in quality mid-caps (e.g., Bajaj Finance, Titan) amplified corrections in 2022–23. Monitoring institutional ownership concentration and positioning surveys helps assess crowdedness as a risk factor.",
+      "answer_keywords": ["crowded trade", "institutional", "simultaneous exits", "Bajaj Finance", "Titan", "FPI", "MF", "ownership concentration"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_113",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "How should you assess the assumption that 'SEBI's new retail participation rules will drive mutual fund AUM growth'?",
+      "expected_answer": "Assessment framework: (1) Identify the specific SEBI rule change and its mechanism (e.g., simplification of KYC, new fund categories, new distribution channels); (2) Quantify potential beneficiary pool (India's undeserved savings population in Tier-2/3 cities); (3) Validate against historical precedent — SIP growth post-demonetisation and COVID-19 equity awareness; (4) Assess distributor/AMC readiness for penetration (Jan Dhan, bank partnerships); (5) Check for offsetting risks (market underperformance reducing SIP continuation, mis-selling complaints triggering SEBI action); and (6) Model AUM growth scenario: 20% CAGR in SIP flows vs 12% base case.",
+      "answer_keywords": ["SEBI rule", "KYC", "Tier-2/3", "SIP growth", "demonetisation", "AMC", "Jan Dhan", "mis-selling", "20% CAGR"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_114",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What makes a short thesis on an Indian small-cap stock different from a long thesis in terms of validation requirements?",
+      "expected_answer": "Short theses require validation of: (1) Negative catalyst with a specific timeline (earnings miss in Q1, regulatory action within 6 months); (2) Balance sheet stress signals (rising debt, promoter pledge, declining CFO-to-EBITDA); (3) Liquidity risk (low free float, no institutional ownership means wide bid-ask spreads and difficulty covering); (4) Legal/regulatory risk (SFIO, SEBI inquiry, Enforcement Directorate notice); (5) Management red flags (frequent accounting restatements, auditor resignation). Short theses must account for India's circuit breaker rules limiting intraday moves.",
+      "answer_keywords": ["short thesis", "negative catalyst", "promoter pledge", "CFO", "liquidity", "SFIO", "SEBI", "ED", "circuit breaker", "restatements"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_115",
+      "category": "thesis_validation",
+      "difficulty": "easy",
+      "question": "Why is 'India's GDP growth will remain above 6.5%' not a sufficient thesis for investing in Indian equities?",
+      "expected_answer": "GDP growth is a macro condition, not a specific catalyst for stock returns. Market returns depend on earnings growth (which may or may not track GDP), P/E re-rating (driven by liquidity and sentiment), currency, and corporate profitability margins. India grew at 7%+ in FY24 but certain sectors (IT, mid-cap FMCG) underperformed due to sector-specific headwinds. A valid investment thesis needs specific sector and company-level linkages to macro growth.",
+      "answer_keywords": ["GDP", "earnings growth", "P/E", "re-rating", "sector-specific", "FY24", "IT", "FMCG", "company-level"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_116",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "How do you identify and assess hidden assumptions in the thesis 'Indian PSU banks will close the valuation gap with private sector banks'?",
+      "expected_answer": "Hidden assumptions include: (1) PSU bank ROA and ROE will sustain improvement (assumption: credit costs stay low, which assumes no infrastructure NPA cycle revival); (2) CASA ratio improvement assumption for PSU banks — but private banks have structural distribution advantages; (3) Government will not use PSU banks for directed lending (political economy assumption); (4) Market will re-rate PSU banks to private bank P/B multiples (8x vs 3x currently) — assumes sustained profitability over 3–5 years; (5) No dilutive equity fundraising by the government at low P/B levels.",
+      "answer_keywords": ["ROA", "ROE", "credit costs", "CASA", "directed lending", "8x", "3x", "dilutive", "equity fundraising", "hidden assumptions"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_117",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What is the concept of a 'thesis within a thesis' in investment analysis?",
+      "expected_answer": "A thesis within a thesis occurs when a key assumption supporting the main thesis is itself a separate directional call that requires its own validation. For example, the thesis 'Paytm will achieve profitability driven by payments margin improvement' embeds the sub-thesis 'UPI monetisation will be permitted by NPCI/RBI' — which is a separate regulatory call. Analysts must identify and separately validate each embedded sub-thesis, as compounding probability of correctness across embedded theses significantly lowers overall conviction.",
+      "answer_keywords": ["embedded sub-thesis", "Paytm", "UPI", "NPCI", "compounding probability", "separate validation", "regulatory call", "conviction"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_118",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "What data sources should be used to validate the supply-side assumption in the thesis 'Indian cement companies will benefit from pricing power as capacity utilisation rises to 80%'?",
+      "expected_answer": "Data sources: (1) DIPP/industry data on total installed cement capacity and planned capacity additions by company; (2) CMA (Cement Manufacturers Association) monthly dispatch data for volume trends; (3) Company disclosures on capacity under construction and commissioning timelines; (4) Price trend data from independent trackers (grey cement price per bag in key markets); (5) Regional demand-supply balance analysis (South India is structurally oversupplied vs North); (6) Clinker utilisation rates (more accurate than production data); and (7) Freight cost and power cost trends affecting margins at different utilisation levels.",
+      "answer_keywords": ["DIPP", "CMA", "capacity additions", "dispatch data", "clinker utilisation", "80%", "South India", "freight cost", "pricing power"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_119",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "How does the 'duration mismatch' risk manifest in a thesis about long-term structural stories in India?",
+      "expected_answer": "Duration mismatch risk is when a valid long-term structural thesis (e.g., 'Indian insurance penetration will rise from 3% to 6% of GDP over 10 years') is paired with a short-term investment horizon. Market re-rating may not occur within the investor's timeframe if near-term earnings disappoint. The investor may be 'right on direction but wrong on timing.' Mitigating this requires identifying near-term catalysts (product launches, regulatory changes, large deal wins) that crystallise long-term value within the investment period.",
+      "answer_keywords": ["duration mismatch", "structural thesis", "3% to 6%", "timing", "near-term catalysts", "earnings disappoint", "investment period"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_120",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "What is the 'reflexivity' risk in investment theses about Indian financial markets?",
+      "expected_answer": "Reflexivity, described by George Soros, occurs when market participant beliefs influence the underlying fundamentals they are measuring. In Indian markets: FPI inflows appreciating the rupee attract more FPI flows (positive feedback); rising mutual fund SIP inflows into mid-caps inflate prices, improving ROE (via market cap used for acquisitions), which attracts more SIP flows. The thesis that 'quality mid-cap companies deserve premium valuations' becomes self-fulfilling until it reverses. Identifying when reflexive cycles are at extremes is critical for risk management.",
+      "answer_keywords": ["reflexivity", "Soros", "FPI inflows", "rupee", "SIP", "mid-caps", "self-fulfilling", "feedback loop", "premium valuations"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_121",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What does 'thesis conviction level' mean and how should it be communicated?",
+      "expected_answer": "Conviction level reflects the analyst's confidence in the thesis, combining: (1) strength of evidence for each assumption; (2) sensitivity of the outcome to key variables; (3) reversibility of the thesis if wrong (how quickly can you exit?); and (4) consensus vs contrarian positioning. High conviction = strong evidence, low sensitivity, liquid position, contrarian view. Conviction should be communicated explicitly: 'High conviction / Medium confidence / Low but asymmetric' rather than as binary buy/sell. This aligns with probabilistic investment thinking.",
+      "answer_keywords": ["conviction level", "evidence", "sensitivity", "consensus", "contrarian", "high conviction", "probabilistic", "asymmetric"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_122",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "What is 'thesis drift' and how can an investment management system prevent it?",
+      "expected_answer": "Thesis drift occurs when the original investment rationale is replaced over time (either consciously or not) with new, post-hoc justifications for holding a position — particularly when the original catalyst has either already played out or failed to materialise. Prevention requires: documenting the original thesis with specific testable milestones at investment; quarterly thesis review against original assumptions; explicit rules for thesis invalidation (e.g., 'if credit costs exceed 1.5%, thesis is broken'); and position-level governance requiring fresh thesis documentation for positions held beyond 18 months.",
+      "answer_keywords": ["thesis drift", "post-hoc", "catalyst", "testable milestones", "quarterly review", "invalidation", "1.5%", "governance", "fresh documentation"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_123",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What regulatory events would constitute 'break conditions' for any Indian banking sector thesis?",
+      "expected_answer": "Break conditions from regulatory events: (1) RBI imposing moratorium or cancelling banking licence (existential risk); (2) RBI placing a bank under PCA framework — restricts growth, signals supervisory concern; (3) New provisioning norms (ECL) requiring large one-time provisions impacting CET1 capital; (4) RBI levying major penalties for compliance failures (payment banks case); (5) SEBI or ED investigation into promoter-related entities causing governance discount; (6) Mandatory priority sector lending (PSL) shortfalls requiring costly RIDF deposits.",
+      "answer_keywords": ["moratorium", "PCA", "ECL", "CET1", "penalties", "SEBI", "ED", "PSL", "RIDF", "break conditions"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_124",
+      "category": "thesis_validation",
+      "difficulty": "easy",
+      "question": "Why is it important to distinguish between 'leading' and 'lagging' indicators when validating an investment thesis?",
+      "expected_answer": "Leading indicators predict future outcomes (PMI, credit growth, order book, freight rates) and are more actionable for thesis validation before market moves. Lagging indicators (quarterly earnings, NPA disclosures, annual reports) confirm what already happened — by the time they appear in data, the market may have already priced the outcome. Thesis validation should rely primarily on leading indicators with lagging indicators used as confirmation. Using only lagging indicators leads to reactive rather than anticipatory investing.",
+      "answer_keywords": ["leading indicators", "lagging indicators", "PMI", "credit growth", "order book", "anticipatory", "reactive", "earnings", "NPA"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_125",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "How does 'base rate neglect' cause systematic errors in Indian equity investment theses?",
+      "expected_answer": "Base rate neglect occurs when analysts focus on the specific narrative of a stock while ignoring the historical base rate of similar situations. Examples in Indian markets: (1) Only 10–15% of Indian companies maintain revenue CAGR > 20% over 5 years — most 'growth at reasonable price' theses overestimate persistence; (2) Turnaround theses historically succeed in <30% of cases; (3) Companies breaching 3x D/E rarely deleverage organically without equity dilution. Anchoring thesis assumptions to base rates from comparable companies/situations improves calibration.",
+      "answer_keywords": ["base rate", "10–15%", "CAGR", "turnaround", "30%", "3x D/E", "deleverage", "calibration", "neglect", "persistence"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_126",
+      "category": "macro_india",
+      "difficulty": "easy",
+      "question": "What is India's current account balance composition and which sectors drive it?",
+      "expected_answer": "India's current account comprises: Trade in goods (largest deficit driver — crude oil, electronics, machinery imports vs merchandise exports); Services trade (surplus driven by IT/BPO exports, ~$250–280 billion annually); Secondary income (remittances from Indian diaspora — world's largest recipient, ~$100–110 billion); and Primary income (investment income deficit). Net, India typically runs a CAD of 1.5–2.5% of GDP, with oil prices being the primary swing factor.",
+      "answer_keywords": ["trade in goods", "services surplus", "IT exports", "$250–280 billion", "remittances", "$100–110 billion", "CAD", "oil prices"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_127",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What is the impact of monsoon variability on India's CPI inflation and rural demand?",
+      "expected_answer": "An above-normal monsoon (100–105% of Long Period Average) supports kharif crop output, keeping food prices in check and boosting rural incomes. Below-normal monsoon (<96% LPA) raises food inflation (particularly vegetables, pulses, cereals) which dominates CPI (food = 45% of CPI basket), complicates RBI's inflation management, and dampens rural consumption. Agricultural income directly affects FMCG rural volumes, 2-wheeler sales, microfinance demand, and agri-input company revenues.",
+      "answer_keywords": ["LPA", "kharif", "CPI", "45%", "food inflation", "rural income", "FMCG", "2-wheeler", "monsoon"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_128",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "How does India's demographic dividend affect long-term economic growth potential?",
+      "expected_answer": "India has a median age of ~28 years, with ~65% of its population in the working age group (15–64 years). This demographic dividend (low dependency ratio) can support higher savings rates, labour force growth, and consumption-led GDP expansion over the next 20–25 years. However, realising this potential requires skill development (education quality), job creation in the formal economy (particularly manufacturing and services), and reduction of informal employment. Failure to absorb the working-age population productively could create a demographic liability rather than dividend.",
+      "answer_keywords": ["28 years", "65%", "working age", "dependency ratio", "savings", "skill development", "formal employment", "manufacturing"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_129",
+      "category": "macro_india",
+      "difficulty": "hard",
+      "question": "What is the fiscal multiplier effect of government infrastructure capex in India?",
+      "expected_answer": "Government infrastructure capex (roads, railways, urban infrastructure) has a fiscal multiplier typically estimated at 2–3x in India — i.e., Rs 1 of government spending generates Rs 2–3 of GDP. This is driven by backward linkages (cement, steel, equipment demand) and forward linkages (lower logistics costs enabling private investment). However, the multiplier depends on speed of execution (project completion), financing mix (borrowings vs tax-financed), and whether private capex is crowded in or out. Capital expenditure under the National Infrastructure Pipeline (NIP) of Rs 111 lakh crore aims to leverage this effect.",
+      "answer_keywords": ["fiscal multiplier", "2–3x", "backward linkages", "cement", "steel", "NIP", "Rs 111 lakh crore", "private capex", "crowding out"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_130",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What are the drivers of India's services export growth and its sustainability?",
+      "expected_answer": "India's services exports (~$300+ billion) are driven by IT-BPM services (~60% of total), professional services, tourism, and financial services. Sustainability factors: global AI/cloud adoption driving IT demand; India's large English-speaking STEM talent pool; competitive wage advantage despite 8–10% annual salary inflation; growing share of higher-value services (consulting, AI/ML, engineering); and diversification into BFSI, healthcare, and legal process outsourcing. Risks: automation reducing labour content, geopolitical data localisation laws, and visa restrictions on IT professionals.",
+      "answer_keywords": ["IT-BPM", "60%", "$300 billion", "STEM", "AI/ML", "wage advantage", "automation", "data localisation", "visa"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_131",
+      "category": "macro_india",
+      "difficulty": "easy",
+      "question": "What is the significance of the Index of Industrial Production (IIP) for equity investors?",
+      "expected_answer": "IIP measures the volume change in industrial output across mining, manufacturing, and electricity sectors on a monthly basis. It is a leading-to-coincident indicator for manufacturing sector stocks (capital goods, metals, textiles) and corporate earnings growth. Strong IIP growth in capital goods and infrastructure segments signals private capex recovery, benefiting engineering and construction companies. Weak IIP growth may signal demand headwinds for industrial stocks.",
+      "answer_keywords": ["IIP", "mining", "manufacturing", "electricity", "capital goods", "private capex", "engineering", "construction", "monthly"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_132",
+      "category": "macro_india",
+      "difficulty": "hard",
+      "question": "How does India's twin deficit problem (fiscal + current account) affect capital market risk?",
+      "expected_answer": "Twin deficits occur when both fiscal deficit (government spending > revenue) and current account deficit (imports > exports) are elevated simultaneously. The fiscal deficit requires government borrowing, raising domestic interest rates and potentially crowding out private credit. The CAD requires capital inflows (FDI + FPI + ECBs) to finance it; if capital inflows slow or reverse, rupee depreciates, raising import costs and inflation. Both deficits amplify each other during global risk-off episodes. India's twin deficits (fiscal ~5.1% GDP, CAD ~1.8% GDP) are manageable but become systemic risk if global conditions deteriorate.",
+      "answer_keywords": ["twin deficit", "fiscal 5.1%", "CAD 1.8%", "borrowing", "capital inflows", "rupee", "inflation", "crowding out", "risk-off"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_133",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What is the Union Budget's impact on Indian equity markets?",
+      "expected_answer": "The Union Budget (typically presented February 1) sets tax policy, government expenditure priorities, and fiscal deficit targets. Market-moving elements include: changes to capital gains tax rates (STT, LTCG, STCG — directly affecting equity investor returns); sectoral capex allocations (infrastructure, defence, housing — sector-specific catalysts); income tax reliefs affecting consumer spending capacity; divestment targets (supply overhang for PSU stocks); customs duty changes (affecting import-competing sectors); and the overall fiscal consolidation glide path (affecting bond yields and equity risk premium).",
+      "answer_keywords": ["Union Budget", "February 1", "LTCG", "STCG", "STT", "capex", "divestment", "customs duty", "fiscal consolidation"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_134",
+      "category": "macro_india",
+      "difficulty": "hard",
+      "question": "What is the mechanism through which global oil prices affect Indian corporate earnings broadly?",
+      "expected_answer": "Oil price transmission: (1) Direct sector impact — OMCs (HPCL, BPCL, IOC) face under-recovery risk if retail fuel prices are not revised; (2) Aviation — jet fuel is ~30–35% of airline operating costs; (3) Input cost inflation for petrochemical users (paints, plastics, synthetic fibres, tyres); (4) Logistics cost inflation affecting EBITDA margins across manufacturing and distribution companies; (5) CAD widening → rupee depreciation → import cost inflation across sectors; and (6) RBI inflation risk → higher rates → multiple compression across equity market. Oil is thus a systemic risk variable for Indian corporate earnings.",
+      "answer_keywords": ["OMCs", "HPCL", "BPCL", "jet fuel", "30–35%", "petrochemical", "logistics", "CAD", "rupee", "RBI", "multiple compression"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_135",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What is the significance of India's manufacturing PMI and services PMI for equity market direction?",
+      "expected_answer": "The S&P Global India Manufacturing PMI and Services PMI are monthly surveys of purchasing managers indicating expansion (>50) or contraction (<50). Manufacturing PMI above 55 indicates robust factory activity, benefiting industrial stocks. Services PMI above 55 reflects strong IT, hospitality, and financial sector activity. Sequential trends (PMI rising vs falling) are more important than absolute levels. India's PMIs have been among the strongest globally (typically 55–60) in FY24–25, supporting bullish equity sentiment.",
+      "answer_keywords": ["Manufacturing PMI", "Services PMI", "50", "55–60", "expansion", "contraction", "sequential", "FY24–25"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_136",
+      "category": "macro_india",
+      "difficulty": "hard",
+      "question": "What is the mechanism through which US Federal Reserve rate decisions affect Indian equity and debt markets?",
+      "expected_answer": "Fed rate hike transmission to India: (1) Higher US rates increase the attractiveness of US treasuries, drawing capital from EMs including India → FPI debt outflows → bond yield rise → Indian bond prices fall; (2) FPI equity outflows compress P/E multiples in Indian equities; (3) Rupee depreciates vs USD as dollar strengthens globally → import inflation → RBI faces dilemma of hiking rates to defend rupee and curb inflation; (4) Tighter global financial conditions tighten domestic credit via external borrowing costs for Indian corporates. Rate cuts by the Fed have the reverse effect — EM inflows, rupee appreciation, equity re-rating.",
+      "answer_keywords": ["Fed rate hike", "US treasuries", "FPI debt", "bond yield", "P/E", "rupee", "RBI", "credit conditions", "EM inflows"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_137",
+      "category": "macro_india",
+      "difficulty": "easy",
+      "question": "What is India's gross fixed capital formation (GFCF) and why does it matter for equity investors?",
+      "expected_answer": "GFCF represents investment in physical assets (machinery, buildings, infrastructure) by government, households, and corporates. It is the primary driver of productive capacity in the economy. High GFCF growth (above 7–8%) signals private capex recovery, benefiting capital goods companies, engineering, and construction sectors. India's GFCF as % of GDP (~30%) is lower than China's peak (~45%), indicating structural room for private capex growth. Government capex has been crowding in private capex in recent years.",
+      "answer_keywords": ["GFCF", "physical assets", "30%", "7–8%", "capital goods", "construction", "private capex", "government capex"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_138",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What are the key indicators of credit cycle health in India's banking system?",
+      "expected_answer": "Key indicators: (1) Credit-to-GDP ratio — India at ~55% of GDP (room to grow vs peers); (2) Credit growth (RBI fortnightly data) — 12–14% is healthy, >20% raises over-leverage concerns; (3) Gross NPA trend across bank groups (PSU vs private vs foreign banks); (4) Credit cost cycle — rising provisioning signals stress ahead; (5) Slippage ratio (fresh NPAs as % of loans); (6) GNPA and NNPA ratio by sector (retail vs MSME vs corporate); and (7) RBI Financial Stability Report as semi-annual systemic risk assessment.",
+      "answer_keywords": ["credit-to-GDP", "55%", "credit growth", "Gross NPA", "slippage ratio", "credit cost", "MSME", "corporate", "Financial Stability Report"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_139",
+      "category": "macro_india",
+      "difficulty": "hard",
+      "question": "How does India's state government fiscal position affect credit offtake and private investment in states?",
+      "expected_answer": "States with high own-revenue deficits or high debt-to-GSDP ratios (above 30%) face constraints on capital expenditure, impacting infrastructure project pipeline in those states. High state government borrowing competes with corporate bonds for savings, raising yields. States with disciplined fiscal management (Gujarat, Tamil Nadu) attract more private investment and FDI. UDAY-type bailouts for state power distribution companies (DISCOMs) create contingent liabilities affecting state credit ratings. FRBM limits state deficits to 3% of GSDP (with conditions for higher deficits).",
+      "answer_keywords": ["state government", "30%", "GSDP", "capital expenditure", "UDAY", "DISCOMs", "FRBM", "3%", "own-revenue", "private investment"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_140",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What are the leading indicators for predicting a slowdown in India's private consumption?",
+      "expected_answer": "Leading indicators of private consumption slowdown: (1) FMCG volume growth deceleration (Nielsen/NielsenIQ rural/urban scanner data); (2) 2-wheeler retail sales (Society of Indian Automobile Manufacturers data) — proxy for rural/semi-urban demand; (3) Credit card spends growth trend; (4) Consumer confidence surveys (RBI/Conference Board); (5) Real wage growth in agriculture and manufacturing; (6) Household debt-to-income ratio; and (7) Passenger traffic at airports and railway bookings as aspirational consumption proxy.",
+      "answer_keywords": ["FMCG volume", "2-wheeler", "SIAM", "credit card spends", "consumer confidence", "real wage", "household debt", "airport traffic"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_141",
+      "category": "macro_india",
+      "difficulty": "hard",
+      "question": "What is the role of India's National Infrastructure Pipeline (NIP) and PM Gati Shakti in attracting private capital?",
+      "expected_answer": "NIP (Rs 111 lakh crore over FY20–25) provides a project pipeline across 34 sectors with defined funding sources (central govt, state govt, private). PM Gati Shakti is a digital platform integrating 16 ministries for multi-modal infrastructure planning, reducing land acquisition delays and project overlap. Together they improve project predictability — reducing execution risk and enabling private sector participation through PPP models, InvITs (Infrastructure Investment Trusts), and BOT (build-operate-transfer) structures. Key sectors: roads, railways, airports, ports, logistics parks.",
+      "answer_keywords": ["NIP", "Rs 111 lakh crore", "Gati Shakti", "16 ministries", "PPP", "InvIT", "BOT", "roads", "railways", "airports"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_142",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What factors determine FDI (Foreign Direct Investment) inflows into India?",
+      "expected_answer": "FDI inflows ($70–85 billion annually) are driven by: Market size and growth potential (1.4 billion consumers, 7%+ GDP growth); ease of doing business (GST unification, bankruptcy code, NCLT); sector-specific policies (100% FDI in most manufacturing, relaxed limits in insurance, retail); PLI scheme incentives; talent availability; infrastructure quality (improving but a constraint); and geopolitical positioning (China+1 strategic shift). Top investing countries: Mauritius, Singapore, US (routing vehicles); top sectors: IT, telecom, pharma, autos.",
+      "answer_keywords": ["$70–85 billion", "ease of doing business", "GST", "PLI", "China+1", "Mauritius", "Singapore", "IT", "telecom"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_143",
+      "category": "macro_india",
+      "difficulty": "easy",
+      "question": "What is the difference between WPI and CPI inflation in India?",
+      "expected_answer": "CPI (Consumer Price Index) measures price changes at the retail consumer level and is India's primary inflation targeting metric (4% target). CPI has a large weight for food (~45%) and is more representative of household inflation experience. WPI (Wholesale Price Index) measures price changes at the producer/wholesale level and is a leading indicator for CPI as it captures input cost trends (raw materials, manufactured goods). RBI uses CPI for monetary policy. WPI diverging from CPI (e.g., negative WPI with positive food CPI) indicates sector-specific pressures.",
+      "answer_keywords": ["CPI", "WPI", "4% target", "45%", "food", "retail", "wholesale", "monetary policy", "producer"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_144",
+      "category": "macro_india",
+      "difficulty": "hard",
+      "question": "What are the structural impediments to India becoming a global manufacturing hub?",
+      "expected_answer": "Structural impediments include: (1) Land acquisition challenges — LARR Act complexity slows greenfield factory development; (2) Labour laws — rigidity in hiring/firing (though reformed by Labour Codes); (3) Infrastructure gaps — power reliability, port connectivity, cold chain; (4) Logistics cost (~13–14% of GDP vs 8% in China); (5) Skill mismatch — vocational training underinvestment; (6) Environmental and forest clearances — project delays; (7) High tariff protection in certain sectors reducing global competitiveness; (8) MSME financing constraints. PLI schemes address some but not all of these.",
+      "answer_keywords": ["LARR", "land acquisition", "labour laws", "logistics", "13–14% of GDP", "skill mismatch", "clearances", "PLI", "MSME"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_145",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "How does the India-US trade relationship affect Indian equity markets?",
+      "expected_answer": "The India-US bilateral trade (~$120–130 billion) is India's largest with a significant surplus (~$30–35 billion in India's favour). US is the largest export market for Indian IT, pharma, and specialty chemicals. Key risks: US trade policy (Section 301 investigations, tariffs on Indian goods); visa restrictions on H-1B visas affecting IT sector talent mobility; pharmaceutical pricing pressure from US payers/PBMs. Positive catalysts: India-US tech partnership (ITIC), semiconductor investments, and China+1 supply chain shifts.",
+      "answer_keywords": ["$120–130 billion", "$30–35 billion", "trade surplus", "IT", "pharma", "H-1B", "Section 301", "ITIC", "semiconductor"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_146",
+      "category": "financial_ratios",
+      "difficulty": "easy",
+      "question": "How is the Interest Coverage Ratio calculated and what does it indicate?",
+      "expected_answer": "Interest Coverage Ratio = EBIT / Interest Expense. It measures how many times a company can cover its interest payments from operating earnings. A ratio below 1.5x is concerning as it suggests the company may struggle to meet interest obligations. A ratio above 3x is generally healthy. For highly leveraged Indian infrastructure companies, analysts often use EBITDA/Interest (which includes depreciation) to assess cash interest coverage more accurately.",
+      "answer_keywords": ["EBIT", "interest expense", "1.5x", "3x", "EBITDA", "interest coverage", "leverage", "operating earnings"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_147",
+      "category": "financial_ratios",
+      "difficulty": "medium",
+      "question": "What is the significance of Return on Capital Employed (ROCE) for Indian manufacturing companies?",
+      "expected_answer": "ROCE = EBIT / Capital Employed (equity + debt) measures how efficiently a company generates profits from total capital invested, including debt. A ROCE above the Weighted Average Cost of Capital (WACC) creates economic value. For Indian manufacturers, ROCE above 15–20% indicates superior capital efficiency. ROCE is more relevant than ROE for capital-intensive businesses where leverage can artificially inflate ROE. Companies like Asian Paints and Pidilite consistently generate ROCE of 35–50%, explaining their premium valuations.",
+      "answer_keywords": ["ROCE", "EBIT", "capital employed", "WACC", "15–20%", "Asian Paints", "Pidilite", "35–50%", "leverage"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_148",
+      "category": "financial_ratios",
+      "difficulty": "medium",
+      "question": "What is the EV/EBITDA multiple and how does it compare across Indian sectors?",
+      "expected_answer": "EV/EBITDA = Enterprise Value / EBITDA measures total company value (equity + net debt) relative to operating earnings. It strips out capital structure and taxation differences. Typical Indian sector ranges: IT services (18–25x for large caps), consumer staples (30–50x for leaders), banks (10–15x P/PPOP equivalent), pharma (15–20x), cement (12–18x), auto OEMs (10–15x), power utilities (8–12x), metals (5–8x cyclically). Premium multiples reflect higher growth, asset-light models, and stronger moats.",
+      "answer_keywords": ["EV/EBITDA", "enterprise value", "IT 18–25x", "consumer staples 30–50x", "cement 12–18x", "metals 5–8x", "capital structure"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_149",
+      "category": "financial_ratios",
+      "difficulty": "hard",
+      "question": "How is the Capital to Risk Weighted Assets Ratio (CRAR) calculated and what are the Basel III minimum requirements for Indian banks?",
+      "expected_answer": "CRAR = (Tier 1 Capital + Tier 2 Capital) / Risk Weighted Assets. Risk Weighted Assets assign different weights to assets by risk (cash = 0%, government bonds = 0%, corporate loans = 100%, real estate = 100–150%). Basel III requires Indian banks to maintain a minimum total CRAR of 10.5% (including 2.5% capital conservation buffer), with Common Equity Tier 1 (CET1) at minimum 5.5% and total Tier 1 at 7%. D-SIBs (HDFC Bank, SBI, ICICI Bank) must maintain an additional 0.2–0.8% D-SIB surcharge.",
+      "answer_keywords": ["CRAR", "Tier 1", "Tier 2", "Risk Weighted Assets", "10.5%", "CET1", "5.5%", "D-SIB", "0.2–0.8%", "capital conservation buffer"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_150",
+      "category": "financial_ratios",
+      "difficulty": "easy",
+      "question": "What is the difference between operating cash flow and free cash flow?",
+      "expected_answer": "Operating Cash Flow (OCF) = Cash generated from business operations (net income + non-cash charges - changes in working capital). Free Cash Flow (FCF) = OCF minus Capital Expenditure (capex). FCF represents cash available to service debt, pay dividends, or fund acquisitions. A company with high EBITDA but low FCF is consuming cash through high capex or working capital build — a warning sign for cash-based investors. FCF yield (FCF / Market Cap) is a key valuation metric.",
+      "answer_keywords": ["OCF", "FCF", "capex", "working capital", "dividends", "FCF yield", "EBITDA", "cash available"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_151",
+      "category": "financial_ratios",
+      "difficulty": "medium",
+      "question": "What is the Price-to-Earnings Growth (PEG) ratio and when should it be used?",
+      "expected_answer": "PEG ratio = P/E Ratio / Expected EPS Growth Rate (%). A PEG of 1x is considered 'fairly valued' — you're paying 1x for each unit of growth. Below 1x suggests the market undervalues growth; above 2x suggests premium pricing for growth. PEG is most useful for comparing growth companies within the same sector (e.g., mid-cap IT or specialty pharma). Limitations: relies on earnings growth estimates (which can be wrong); less useful for value, cyclical, or restructuring plays.",
+      "answer_keywords": ["PEG", "P/E", "EPS growth", "1x", "fairly valued", "2x", "growth companies", "limitations"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_152",
+      "category": "financial_ratios",
+      "difficulty": "hard",
+      "question": "How is Net Interest Margin (NIM) calculated for Indian banks and what are the drivers of NIM compression?",
+      "expected_answer": "NIM = (Interest Income - Interest Expense) / Average Interest Earning Assets. NIM is the most critical profitability metric for banks. Drivers of NIM compression: (1) Rising deposit costs when rates increase (deposit repricing faster than loan repricing in EBLR-linked books); (2) CASA ratio decline (shift to term deposits for higher returns); (3) Portfolio mix shift towards secured/lower-yield assets (home loans, gold loans) which carry lower rates; (4) PSL shortfalls requiring investment in low-yield RIDF deposits; (5) Excess liquidity parked at SDF at below-lending rates.",
+      "answer_keywords": ["NIM", "interest income", "interest expense", "earning assets", "deposit costs", "CASA", "RIDF", "SDF", "repricing"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_153",
+      "category": "financial_ratios",
+      "difficulty": "medium",
+      "question": "What is the Gross Merchandise Value (GMV) to revenue conversion ratio and why does it matter for e-commerce companies?",
+      "expected_answer": "GMV is the total value of goods transacted on a platform. Revenue = GMV × Take Rate (platform commission %). A rising take rate signals pricing power and monetisation improvement; a falling take rate may indicate competitive pressure. For Indian e-commerce (Meesho, Myntra, Nykaa), GMV growth overstates revenue growth if take rates are compressed. Investors should focus on contribution margin and EBITDA generated per GMV unit rather than GMV alone.",
+      "answer_keywords": ["GMV", "take rate", "revenue", "commission", "pricing power", "contribution margin", "EBITDA", "e-commerce"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_154",
+      "category": "financial_ratios",
+      "difficulty": "hard",
+      "question": "How do you calculate and interpret the Gordon Growth Model for valuing an Indian large-cap equity?",
+      "expected_answer": "Gordon Growth Model: Intrinsic Value = D1 / (r - g), where D1 is next year's expected dividend, r is the required rate of return (cost of equity), and g is the perpetual growth rate. For Indian large-caps: r typically 12–14% (accounting for equity risk premium of 5–7% over the 10-year government bond yield of 7%); g typically 6–8% for mature companies. Limitations: highly sensitive to (r-g) spread; small changes in g or r dramatically change valuation; assumes constant growth forever — unrealistic for most companies. More appropriate for dividend-rich utilities and mature banks.",
+      "answer_keywords": ["Gordon Growth", "dividend", "cost of equity", "12–14%", "6–8%", "equity risk premium", "government bond", "(r-g)", "utilities"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_155",
+      "category": "financial_ratios",
+      "difficulty": "easy",
+      "question": "What is Return on Equity (ROE) and what ROE levels indicate a high-quality Indian company?",
+      "expected_answer": "ROE = Net Profit / Shareholders' Equity, measuring the returns generated for equity investors. For Indian companies, sustainable ROE above 20% is considered high quality (companies like Asian Paints, Titan, HDFC Bank). ROE above 25% over 5+ years with improving or stable margins indicates a genuine economic moat. Leveraged ROE (through debt) should be distinguished from unleveraged ROE — compare with ROCE to assess quality.",
+      "answer_keywords": ["ROE", "net profit", "shareholders equity", "20%", "25%", "Asian Paints", "Titan", "moat", "ROCE"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_156",
+      "category": "financial_ratios",
+      "difficulty": "medium",
+      "question": "How is the Loan-to-Deposit Ratio (LDR) used in analysing Indian banks?",
+      "expected_answer": "LDR = Gross Loans / Total Deposits, measuring a bank's funding profile. An LDR above 85–90% indicates the bank is aggressively deploying deposits and may face liquidity pressure if deposit growth slows. Below 70% suggests excess liquidity and sub-optimal deployment. Post HDFC merger, HDFC Bank's LDR rose significantly (above 100%) due to HDFC Ltd's large loan book being funded by bank deposits — a key concern for NIM and deposit mobilisation strategy.",
+      "answer_keywords": ["LDR", "gross loans", "total deposits", "85–90%", "70%", "liquidity", "HDFC Bank", "100%", "funding profile"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_157",
+      "category": "financial_ratios",
+      "difficulty": "hard",
+      "question": "What is the DCF terminal value and how sensitive is it for Indian growth companies?",
+      "expected_answer": "In a DCF model, Terminal Value = FCF_n × (1+g) / (WACC - g), typically representing 60–80% of total enterprise value for Indian growth companies. This extreme sensitivity to terminal growth rate means a 0.5% change in g (e.g., 5% vs 5.5%) can change EV by 15–25%. For Indian mid-caps with high growth rates, WACC-g spread may be narrow (e.g., 12% WACC - 6.5% g = 5.5% divisor) making the multiple very large. Analysts use multiple exit methods (exit EV/EBITDA multiple, explicit long-term period) to triangulate rather than rely on a single terminal value.",
+      "answer_keywords": ["terminal value", "FCF", "WACC", "60–80%", "0.5%", "15–25%", "exit multiple", "EV/EBITDA", "triangulate"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_158",
+      "category": "financial_ratios",
+      "difficulty": "easy",
+      "question": "What is EBITDA and why is it commonly used in financial analysis?",
+      "expected_answer": "EBITDA = Earnings Before Interest, Tax, Depreciation, and Amortisation. It approximates operating cash flow generation before financing and accounting choices. EBITDA is useful for: comparing operating performance across companies with different capital structures (debt levels) and tax jurisdictions; as the basis for EV/EBITDA valuation multiples; and as a proxy for debt service capacity (Net Debt/EBITDA leverage ratio). Its limitation is that it can overstate cash generation by ignoring high capex needs or working capital consumption.",
+      "answer_keywords": ["EBITDA", "interest", "tax", "depreciation", "amortisation", "capital structure", "EV/EBITDA", "debt service", "capex"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_159",
+      "category": "financial_ratios",
+      "difficulty": "medium",
+      "question": "How is the Net Debt/EBITDA ratio used to assess Indian corporate leverage?",
+      "expected_answer": "Net Debt = Total Debt - Cash and Cash Equivalents. Net Debt/EBITDA shows how many years of operating earnings are needed to repay all debt. Above 3.5x is considered high leverage for most sectors; 2–3x is moderate; below 1.5x is low leverage. For capital-intensive sectors (real estate, infrastructure, telecom), higher multiples are acceptable if backed by stable asset cash flows. During FY21-23 India's corporate sector deleveraged significantly, improving balance sheet health.",
+      "answer_keywords": ["Net Debt/EBITDA", "3.5x", "2–3x", "1.5x", "leverage", "deleverage", "capital-intensive", "cash equivalents"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_160",
+      "category": "financial_ratios",
+      "difficulty": "hard",
+      "question": "What is the significance of operating leverage for Indian manufacturing companies during a volume recovery cycle?",
+      "expected_answer": "Operating leverage = % change in EBIT / % change in Revenue. Companies with high fixed costs (overhead, depreciation) and low variable costs have high operating leverage — meaning revenue growth translates to disproportionate EBIT and margin expansion. Indian cement, auto OEM, and specialty chemical companies with large fixed asset bases exhibit strong operating leverage. In a volume recovery: 10% revenue growth may translate to 25–30% EBIT growth. However, the same leverage amplifies downside in a revenue slowdown. Investors should model operating leverage explicitly when volumes are recovering from a trough.",
+      "answer_keywords": ["operating leverage", "EBIT", "fixed costs", "variable costs", "cement", "auto OEM", "10% revenue", "25–30% EBIT", "trough"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+
+    {
+      "id": "qa_161",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What are SEBI's disclosure requirements for listed company insiders trading in company shares?",
+      "expected_answer": "SEBI's PIT Regulations require promoters and persons acting in concert to disclose holdings initially within 2 days of PIT Regulations applicability and thereafter within 2 trading days whenever holdings change by 2% or more. Designated persons (employees with access to UPSI) must pre-clear trades above a threshold and trade only in open trading windows (post quarterly earnings for 48 hours, then open). Annual disclosures of all designated persons' holdings are mandatory.",
+      "answer_keywords": ["PIT Regulations", "2 trading days", "2%", "designated persons", "pre-clear", "trading window", "48 hours", "promoters"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_162",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What is SEBI's regulatory framework for Category III Alternative Investment Funds (AIFs) using leverage?",
+      "expected_answer": "Category III AIFs (hedge funds, long-short funds) are permitted to employ leverage up to 2x of NAV for open-ended funds and higher leverage for close-ended funds with investor consent. SEBI requires Category III AIFs to appoint a custodian and comply with short-selling and derivatives reporting requirements. Investments in listed securities via derivatives must be through recognised clearing corporations. SEBI introduced 'performance fee' regulations requiring high watermarks and minimum return hurdles for fee transparency.",
+      "answer_keywords": ["Category III AIF", "2x NAV", "leverage", "custodian", "short-selling", "clearing corporations", "performance fee", "high watermark"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_163",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What are the RBI's guidelines on resolution of stressed assets under the IBC framework?",
+      "expected_answer": "RBI's framework on stressed asset resolution directs banks to implement a resolution plan within 180 days of a borrower's default. If unresolved, the account must be referred to NCLT under IBC. The resolution plan must involve at least a 75% (by value) and 60% (by number) lender agreement for it to be binding. Haircuts accepted in resolution and provisioning requirements are monitored by RBI. RBI's Project Sashakt and SAMADHAN framework provided earlier out-of-court resolution templates.",
+      "answer_keywords": ["IBC", "NCLT", "180 days", "resolution plan", "75%", "60%", "haircuts", "Sashakt", "SAMADHAN"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_164",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What differentiates a high-quality NBFC from a high-risk one in India's credit markets?",
+      "expected_answer": "High-quality NBFC indicators: diversified funding mix (bank loans + NCDs + securitisation + deposits), ALM match (asset duration close to liability duration), conservative LTV norms, granular retail portfolio (no single-borrower concentration), strong underwriting via bureau checks and proprietary scoring, seasoned management with demonstrated credit cycle experience, CRAR >20%, PCR >60%. Red flags: concentrated wholesale funding, promoter pledge, high LTV on collateral-free products, recent rapid branch expansion outpacing credit infrastructure, and low PPOP/credit cost buffer.",
+      "answer_keywords": ["funding mix", "ALM", "LTV", "granular", "bureau checks", "CRAR 20%", "PCR 60%", "PPOP", "promoter pledge"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_165",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "What is the 'Kelly Criterion' in the context of investment thesis conviction and position sizing?",
+      "expected_answer": "The Kelly Criterion calculates the optimal position size: f = (bp - q) / b, where b = odds (upside/downside), p = probability of upside, q = 1-p. For an investment with 60% probability of 50% gain and 40% probability of 25% loss, Kelly suggests: f = (2×0.6 - 0.4) / 2 = 40% of portfolio. Most practitioners use 'half Kelly' (20%) as a risk management buffer. The formula directly links thesis conviction (probability estimate) and risk/reward to position sizing — higher conviction and better risk/reward justify larger positions.",
+      "answer_keywords": ["Kelly Criterion", "f", "odds", "probability", "position sizing", "half Kelly", "upside", "downside", "conviction"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_166",
+      "category": "macro_india",
+      "difficulty": "hard",
+      "question": "How does India's geopolitical positioning affect equity market risk premium?",
+      "expected_answer": "India's equity risk premium is influenced by: (1) India-China LAC border tensions — periodic flare-ups create short-term risk-off episodes but have not permanently re-rated the market; (2) India-Pakistan relations — historically a market risk during escalation periods; (3) India-US strategic partnership deepening (QUAD, AUKUS) — positive for FDI and geopolitical premium reduction; (4) Russia-Ukraine war impact — India's balanced diplomatic stance and continued oil imports at discounts provide economic pragmatism; (5) US tariff policies on Indian goods (pharma, IT, textiles) as an election-cycle risk.",
+      "answer_keywords": ["LAC", "China", "Pakistan", "QUAD", "Russia", "oil imports", "equity risk premium", "US tariffs", "election-cycle"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_167",
+      "category": "financial_ratios",
+      "difficulty": "medium",
+      "question": "What is the difference between diluted EPS and basic EPS and why does it matter?",
+      "expected_answer": "Basic EPS = Net Income / Weighted Average Basic Shares Outstanding. Diluted EPS = Net Income / Weighted Average Diluted Shares (including all potentially dilutive instruments: stock options, convertible bonds, warrants, ESOPs). Diluted EPS is more conservative and relevant for companies with large ESOP grants (tech/startup companies) or convertible bonds. Indian IT companies with significant ESOP programs may have 3–5% dilution annually, meaning diluted EPS is meaningfully lower than basic EPS. Investors should value companies on diluted EPS basis.",
+      "answer_keywords": ["diluted EPS", "basic EPS", "stock options", "convertible bonds", "ESOP", "dilution", "3–5%", "weighted average"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_168",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What are SEBI's rules on delisting of listed companies in India?",
+      "expected_answer": "SEBI's delisting regulations require the acquirer to make a reverse book-building offer at a minimum floor price (derived from VWAP/highest price methodologies). Delisting succeeds only if post-offer promoter shareholding reaches 90%. The discovered exit price must be accepted by the acquirer for the delisting to proceed. Shareholders tendering below the discovered price can still participate. Post-delisting, residual public shareholders retain a 1-year window to exit at the discovered price. Delisting fails if 90% threshold is not met.",
+      "answer_keywords": ["delisting", "reverse book-building", "90%", "floor price", "VWAP", "exit price", "1-year window", "promoter shareholding"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_169",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What are the key metrics to track for evaluating Indian QSR (Quick Service Restaurant) companies?",
+      "expected_answer": "Key metrics: Same-Store Sales Growth (SSSG) — most important organic growth indicator (target >5%); Average Daily Sales (ADS) per store; New store additions and maturity timeline; Restaurant-level EBITDA margin (target 18–22%); Company EBITDA margin (post central overhead, target 12–18%); Total Addressable Stores (TAM) in India vs current penetration; Delivery mix % (higher delivery = lower margin but volume growth); and Food cost % and employee cost % as operating efficiency indicators.",
+      "answer_keywords": ["SSSG", "ADS", "store additions", "restaurant EBITDA", "18–22%", "delivery mix", "food cost", "employee cost", "QSR"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_170",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What historical analog would you apply to validate the thesis that 'Indian infrastructure companies will sustain 20%+ earnings CAGR for 5 years'?",
+      "expected_answer": "Historical analog: The 2004–2008 Indian infrastructure boom, when NHAI road ordering and power sector capex drove L&T, NCC, HCC, and Gammon India to deliver 30–40% earnings CAGR. However, the bust from 2012–2016 (project delays, cost overruns, land acquisition failures, FCCB defaults) caused NPAs and destroyed 60–80% of peak market caps. The analog suggests: the thesis is plausible in a government-capex-led cycle, but requires validation that project execution capacity has improved (RERA, GeM, PM Gati Shakti) and balance sheets are not over-leveraged vs 2008.",
+      "answer_keywords": ["2004–2008", "NHAI", "L&T", "NCC", "30–40% CAGR", "2012–2016", "NPAs", "60–80%", "historical analog", "Gati Shakti"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_171",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What is SEBI's framework for Social Stock Exchanges (SSE) in India?",
+      "expected_answer": "SEBI introduced Social Stock Exchanges (SSE) as a segment of existing stock exchanges (NSE, BSE) to allow non-profit organisations (NPOs) and for-profit social enterprises (FPSEs) to raise funds from the public for social impact activities. NPOs can issue Zero Coupon Zero Principal (ZCZP) instruments. FPSEs must demonstrate minimum 67% social intent. SSE-listed entities must disclose social impact using standardised reporting frameworks. A minimum issue size of Rs 50 lakh applies.",
+      "answer_keywords": ["SSE", "Social Stock Exchange", "NPOs", "FPSEs", "ZCZP", "67%", "social impact", "Rs 50 lakh", "NSE", "BSE"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_172",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "How does EV modelling differ from P/E-based valuation for cyclical sectors in India?",
+      "expected_answer": "EV/EBITDA is preferred for cyclical sectors (metals, cement, chemicals) because P/E distorts at earnings troughs (denominator near zero inflates P/E) and peaks (appears cheap but earnings are unsustainable). EV/EBITDA using through-cycle normalised EBITDA provides a stable comparison base. For metals companies, EV/tonne (enterprise value per tonne of installed capacity) is used alongside EV/EBITDA. Analysts apply regression-to-mean assumptions for commodity spreads. Buying cyclicals when reported P/E is high (trough) and selling when P/E is low (peak) is a classic mean-reversion strategy.",
+      "answer_keywords": ["EV/EBITDA", "cyclical", "P/E", "trough", "normalised EBITDA", "EV/tonne", "metals", "regression-to-mean", "mean-reversion"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_173",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What are RBI's guidelines on resolution of failed payment systems under the PSS Act?",
+      "expected_answer": "Under the Payment and Settlement Systems Act (PSS Act, 2007), RBI has powers to direct winding up of authorised payment systems, protect systemically important payment systems from insolvency, and designate payment infrastructure as critical financial infrastructure. RBI coordinates resolution with NCLT for payment companies under insolvency. The NPCI (National Payments Corporation of India) and CCIL (Clearing Corporation of India) are designated critical payment system operators with enhanced RBI oversight.",
+      "answer_keywords": ["PSS Act", "2007", "winding up", "systemically important", "NCLT", "NPCI", "CCIL", "critical financial infrastructure"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_174",
+      "category": "financial_ratios",
+      "difficulty": "hard",
+      "question": "What is the Asset Quality Review (AQR) conducted by RBI and what was its impact on Indian bank NPA recognition?",
+      "expected_answer": "RBI's AQR (2015-16) was a supervisory exercise directing banks to classify stressed assets more conservatively (as NPAs) that had previously been restructured or evergreened. The AQR revealed that reported NPAs were substantially understated across PSU banks. Gross NPAs of PSU banks rose from ~5% in FY15 to ~14–15% by FY18 post-AQR. This led to large credit cost provisions, losses, PCA framework triggers for several banks, and ultimately government recapitalisation of Rs 2.1 lakh crore in PSU banks.",
+      "answer_keywords": ["AQR", "2015-16", "NPAs", "5%", "14–15%", "FY18", "restructured", "evergreened", "PCA", "Rs 2.1 lakh crore recapitalisation"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_175",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What is the impact of INR depreciation on India's IT sector exports vs manufacturing imports?",
+      "expected_answer": "INR depreciation is a net positive for the IT sector (dollar revenues converted to more INR, expanding margins by ~50bps per 1% depreciation). For manufacturing importers (oil, electronics, capital goods, API raw materials), depreciation raises input costs in INR terms, compressing margins unless offset by end-product price hikes. Consumer-facing sectors importing finished goods (luxury goods, high-end electronics) face demand impact as import prices rise. Overall, net impact on the economy depends on oil import sensitivity (largest drag) vs services export gain.",
+      "answer_keywords": ["INR depreciation", "IT margins", "50bps", "oil imports", "API", "electronics", "services exports", "manufacturing", "net impact"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_176",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What are SEBI's regulations on off-market trades and their transparency requirements?",
+      "expected_answer": "SEBI requires promoters and major shareholders to report off-market transfers (trades not done on exchange) above a specified threshold within 2 trading days. Off-market trades between related parties require disclosures under LODR. Bulk deals (>0.5% of shares) and block deals (>Rs 5 crore on BSE/NSE block window) must be reported immediately. SEBI monitors off-market deals for potential insider trading and market manipulation, requiring broker-level reporting of all off-market transaction details.",
+      "answer_keywords": ["off-market", "2 trading days", "0.5%", "bulk deals", "block deals", "Rs 5 crore", "LODR", "insider trading", "promoters"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_177",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What drives gold loan NBFC earnings in India and what are the key risks?",
+      "expected_answer": "Gold loan NBFCs (Muthoot Finance, Manappuram) earn NIM of 10–12% on gold-collateralised loans. Drivers: gold price appreciation increases LTV of existing portfolio (higher loan per gram), allowing higher disbursements; rural demand for agricultural credit and business loans. Risks: gold price decline reduces collateral coverage, triggering customer defaults or forced auctions at a loss; RBI's periodic LTV cap changes (current 75% cap); competition from banks offering gold loans at lower rates; and operational risk of gold custody.",
+      "answer_keywords": ["gold loan", "Muthoot", "Manappuram", "NIM 10–12%", "LTV", "75% cap", "gold price", "auctions", "rural demand"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_178",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "How do you apply a 'devil's advocate' framework to stress-test a bullish India consumption thesis?",
+      "expected_answer": "Devil's advocate challenges: (1) 'India's demographic dividend requires job creation — urban unemployment among youth is rising, not falling'; (2) 'Premiumisation is happening in top decile households; rural wages adjusted for inflation are stagnant since FY22'; (3) 'Consumer debt servicing (personal loans, credit cards) consuming a rising share of household income, reducing discretionary spend'; (4) 'Modern trade and e-commerce are disintermediating traditional distributors, compressing FMCG intermediary margins and slowing channel replenishment signals'; (5) 'Competition from private labels (D-Mart, Reliance) compressing branded FMCG volume growth'.",
+      "answer_keywords": ["demographic dividend", "urban unemployment", "premiumisation", "rural wages", "consumer debt", "private labels", "D-Mart", "modern trade", "FMCG"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_179",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What is RBI's framework for setting the Base Rate and MCLR for bank lending?",
+      "expected_answer": "Base Rate (discontinued for new loans, still applicable for older loans) was computed as marginal cost of funds + return on net worth + operating costs + CRR cost. MCLR (introduced April 2016) is computed monthly based on marginal cost of funds (the marginal cost of overnight, 1-month, 3-month, and 1-year deposits weighted by NDTL composition), operating costs, and tenor premium. MCLR must be reset at least monthly. All new floating-rate retail and MSME loans must be linked to external benchmark (EBLR) since October 2019.",
+      "answer_keywords": ["Base Rate", "MCLR", "April 2016", "marginal cost of funds", "NDTL", "tenor premium", "EBLR", "October 2019", "floating-rate"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_180",
+      "category": "equity_fundamentals",
+      "difficulty": "easy",
+      "question": "What does 'market capitalisation' mean and how is it classified in India?",
+      "expected_answer": "Market capitalisation = Share price × Total shares outstanding. SEBI/AMFI classify Indian stocks as: Large Cap — top 100 companies by average market cap over 6 months; Mid Cap — 101st to 250th company; Small Cap — 251st and below. As of 2025, large-cap threshold is approximately Rs 20,000+ crore, mid-cap Rs 5,000–20,000 crore, small-cap below Rs 5,000 crore. These classifications determine mutual fund category mandates (large-cap, mid-cap, small-cap, multi-cap funds).",
+      "answer_keywords": ["market capitalisation", "Large Cap", "Mid Cap", "Small Cap", "top 100", "101–250", "AMFI", "Rs 20,000 crore", "mutual fund"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_181",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What are SEBI's regulations on proxy advisory firms in India?",
+      "expected_answer": "SEBI registered proxy advisors under its Proxy Adviser Regulations. Proxy advisors must be registered, have qualified staff (research professionals), disclose conflicts of interest (any business relationship with the company they rate), and make recommendations for shareholders based on publicly available information and their fiduciary framework. SEBI allows companies to respond publicly to proxy advisor recommendations before the shareholder vote. Proxy advisors cannot charge issuers for rating services — only institutional investor subscribers.",
+      "answer_keywords": ["proxy advisors", "registered", "conflicts of interest", "fiduciary", "publicly available", "respond publicly", "institutional investors", "subscriber"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_182",
+      "category": "financial_ratios",
+      "difficulty": "hard",
+      "question": "What is the DSCR (Debt Service Coverage Ratio) and how is it used in project finance for Indian infrastructure?",
+      "expected_answer": "DSCR = Net Operating Income / Debt Service (principal + interest due). For project finance (roads, ports, power plants), DSCR is the primary credit metric. Lenders require a minimum average DSCR of 1.25–1.30x over the loan period for investment grade projects, with a minimum single-year DSCR of 1.05–1.10x. DSCR below 1x means project cash flows cannot cover debt service — requiring reserves or equity support. Lenders model DSCR under base case and stress case (traffic/tariff/revenue haircuts of 15–20%).",
+      "answer_keywords": ["DSCR", "1.25–1.30x", "1.05–1.10x", "project finance", "debt service", "roads", "ports", "stress case", "15–20% haircut"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_183",
+      "category": "macro_india",
+      "difficulty": "medium",
+      "question": "What is the role of Sovereign Wealth Funds (SWFs) in Indian equity markets?",
+      "expected_answer": "SWFs (Abu Dhabi Investment Authority, GIC Singapore, CPPIB, Temasek) are long-term institutional investors in Indian equities, infrastructure, and private equity. They typically take direct large-block stakes in listed companies, infrastructure projects, and large private companies. Their investment signals long-term confidence and provides a price floor. SEBI provides certain regulatory relaxations for registered SWFs (category I FPIs). SWF investments have been notable in Reliance Jio (Facebook, Google partnership context), infrastructure InvITs, and HDFC group entities.",
+      "answer_keywords": ["SWF", "ADIA", "GIC", "CPPIB", "Temasek", "long-term", "Jio", "InvITs", "FPI category I", "large-block"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_184",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the significance of pre-provision operating profit (PPOP) for Indian bank analysis?",
+      "expected_answer": "PPOP = Net Interest Income + Non-Interest Income - Operating Expenses. PPOP represents the profit a bank generates before credit costs (provisions). A high and growing PPOP gives the bank a large buffer to absorb credit losses without dipping into capital. PPOP/Average Assets of 3–4% (for top private banks) provides the cushion to absorb 1.5–2% credit costs and still deliver 1.5%+ ROA. PPOP growth is a better predictor of medium-term profitability resilience than reported PAT, which fluctuates with provisioning.",
+      "answer_keywords": ["PPOP", "NII", "non-interest income", "operating expenses", "credit costs", "3–4%", "ROA 1.5%", "provisioning", "resilience"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_185",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "How do you differentiate between a valuation thesis and an earnings thesis for the same stock?",
+      "expected_answer": "An earnings thesis predicts earnings will exceed consensus estimates due to operational drivers (market share gains, margin expansion, new products). A valuation thesis predicts the market will rerate the stock's multiple even if earnings are in line with consensus (due to sector rotation, index inclusion, analyst coverage initiation, or investor awareness). Each requires different catalysts and validation metrics. The strongest investment theses combine both: earnings beat AND multiple expansion. The riskiest positions are pure multiple expansion plays with no earnings support — these require precise timing and depend on sentiment shifts.",
+      "answer_keywords": ["earnings thesis", "valuation thesis", "consensus", "multiple expansion", "sector rotation", "index inclusion", "catalysts", "sentiment"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_186",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What are SEBI's regulations on investment by listed companies in other listed companies (cross-holdings)?",
+      "expected_answer": "SEBI's LODR regulations require listed companies to disclose significant cross-holdings in other listed entities (above 5% of the investee company's shares or a material value threshold). Related party cross-holdings require specific disclosure and shareholder approval under RPT regulations. Holding company discounts arise when listed holding companies own stakes in other listed subsidiaries. SEBI monitors cross-holdings for potential market manipulation, insider trading, and circular transaction risks.",
+      "answer_keywords": ["cross-holdings", "5%", "LODR", "RPT", "holding company discount", "circular transaction", "insider trading", "investee company"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_187",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What are the key performance indicators for an Indian hospital chain's greenfield expansion?",
+      "expected_answer": "Greenfield hospital KPIs: (1) Time to breakeven (typically 3–5 years for a new hospital); (2) Bed occupancy progression year-by-year (Year 1: 30–40%, Year 3: 60–65%); (3) ARPU ramp-up as case mix shifts from general to complex; (4) Capex per bed (Rs 50–80 lakh/bed for multi-specialty); (5) Asset turnover (revenue/capex) improvement over 5 years; (6) Payback period on invested capital (typically 8–12 years). Investors should compare new hospital unit economics against mature hospitals within the same chain.",
+      "answer_keywords": ["greenfield", "3–5 years", "breakeven", "30–40%", "60–65%", "ARPU", "capex per bed", "Rs 50–80 lakh", "payback period", "8–12 years"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_188",
+      "category": "regulatory_rbi",
+      "difficulty": "medium",
+      "question": "What are the key features of RBI's Unified Payments Interface (UPI) from a regulatory perspective?",
+      "expected_answer": "UPI is operated by NPCI under oversight from RBI. Key regulatory features: instant settlement between bank accounts using mobile phones; merchant discount rate (MDR) is currently zero for UPI transactions on RuPay and UPI (mandated by government); person-to-person transactions are unlimited; person-to-merchant transactions have a Rs 1 lakh daily limit (higher for specific categories). RBI and government debate monetisation to sustain NPCI/bank infrastructure. UPI 123Pay extends UPI to feature phone users; UPI Lite enables offline small-value transactions.",
+      "answer_keywords": ["UPI", "NPCI", "MDR", "zero MDR", "Rs 1 lakh", "UPI 123Pay", "UPI Lite", "offline", "instant settlement"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_189",
+      "category": "thesis_validation",
+      "difficulty": "medium",
+      "question": "What is the 'sum of all fears' scenario and how does it differ from a standard bear case for Indian equities?",
+      "expected_answer": "A 'sum of all fears' scenario combines multiple tail risks simultaneously — e.g., US recession + crude oil at $120/bbl + RBI emergency rate hike to 8% + FPI equity outflows of $30B + INR at 100/USD + SEBI governance action on a large conglomerate. Unlike a standard bear case (1–2 risks materialise), this extreme scenario stress-tests portfolio resilience to correlated risks. It is used to size tail hedges, assess maximum drawdown, and test portfolio liquidity. Indian equities corrected 55% in 2008 when multiple global and domestic risks converged — a historical reference for this scenario.",
+      "answer_keywords": ["sum of all fears", "tail risks", "$120/bbl", "8%", "$30B", "INR 100", "correlated risks", "2008", "55%", "portfolio resilience"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_190",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What are SEBI's norms on corporate governance for listed companies in India?",
+      "expected_answer": "SEBI's LODR Regulations require: independent directors to comprise at least 50% of the board for listed companies with a non-executive chairman; at least one woman director; separation of CMD (Chairman & MD) roles for top 500 listed companies; mandatory audit committee with majority independent directors; stakeholder relationship committee and nomination/remuneration committee. Independent directors can serve a maximum of 2 terms of 5 years each. Approval of material RPTs by independent directors and shareholders is mandated.",
+      "answer_keywords": ["50%", "independent directors", "woman director", "CMD separation", "audit committee", "2 terms", "5 years", "LODR", "RPTs"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_191",
+      "category": "equity_fundamentals",
+      "difficulty": "hard",
+      "question": "What are the analytical differences between evaluating a branded consumer goods company vs a commodity manufacturer in India?",
+      "expected_answer": "Branded consumer: focus on brand equity (pricing power, ad spend/sales ratio), gross margin stability across commodity cycles, distribution depth (direct reach, BSIL/stockist coverage), innovation pipeline, and premium/mass mix. Commodity manufacturer: focus on cost position on the cost curve, capacity utilisation, commodity price cycle position, working capital efficiency, and balance sheet leverage through the cycle. Valuation approach also differs: branded companies valued on forward P/E (earnings quality, premium multiples); commodity companies on EV/EBITDA through normalised cycle or EV/tonne capacity metrics.",
+      "answer_keywords": ["brand equity", "pricing power", "gross margin", "distribution", "cost curve", "capacity utilisation", "commodity cycle", "EV/tonne", "forward P/E"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_192",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What is SEBI's policy on fractional shares and new investor products?",
+      "expected_answer": "As of 2025, SEBI is evaluating fractional share ownership frameworks to improve retail participation. SEBI's sandbox framework allows testing of new financial products and services. Currently, fractional ownership is not permitted for listed equities in India. SEBI has approved fractional ownership of commercial real estate through Small Medium REITs (SM REITs) with minimum investment of Rs 10 lakh, lowered from the Rs 25 crore threshold. Digital gold and SGB (Sovereign Gold Bonds) represent partial analogues for fractional investment.",
+      "answer_keywords": ["fractional shares", "sandbox", "SM REITs", "Rs 10 lakh", "Rs 25 crore", "digital gold", "SGB", "retail participation"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_193",
+      "category": "financial_ratios",
+      "difficulty": "medium",
+      "question": "How is asset turnover ratio used to evaluate Indian retail companies?",
+      "expected_answer": "Asset Turnover = Revenue / Total Assets. For Indian retailers like DMart, high asset turnover (3–4x) reflects efficient deployment of physical and inventory assets. High asset turnover combined with thin net margins (3–5%) can still generate attractive ROCE through leverage (DuPont: Net Margin × Asset Turnover × Equity Multiplier). Conversely, large-format retailers with high capex (new store fit-outs) have lower asset turnover in early years; monitoring turnover improvement trajectory validates the business model as stores mature.",
+      "answer_keywords": ["asset turnover", "3–4x", "DMart", "net margins 3–5%", "ROCE", "DuPont", "equity multiplier", "new stores", "trajectory"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_194",
+      "category": "thesis_validation",
+      "difficulty": "easy",
+      "question": "What does the phrase 'the market can remain irrational longer than you can remain solvent' mean for investment thesis timing?",
+      "expected_answer": "Attributed to Keynes, this phrase warns that even a correctly identified mispricing can persist long enough to cause losses through margin calls, redemptions, or opportunity cost before the thesis is validated. For India-specific theses: a correctly bearish thesis on overvalued mid-caps may take 18–24 months to play out; a bullish thesis on a deeply discounted cyclical may require 2–3 years for the cycle to turn. This reinforces the need for a defined time horizon in every thesis, adequate capital to survive interim volatility, and position sizing that allows staying power.",
+      "answer_keywords": ["Keynes", "irrational", "solvent", "margin calls", "redemptions", "18–24 months", "time horizon", "position sizing", "staying power"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_195",
+      "category": "regulatory_rbi",
+      "difficulty": "hard",
+      "question": "What is the significance of India's Insolvency and Bankruptcy Code (IBC) for bank NPA resolution?",
+      "expected_answer": "IBC (2016) created a time-bound 270-day resolution process (extendable to 330 days) for stressed companies under NCLT jurisdiction. It shifted power from debtors to creditors — Committee of Creditors (CoC) votes on resolution plans with 66% majority requirement. IBC has facilitated recovery of ~Rs 3.16 lakh crore (as of 2024) across resolved cases, though haircuts average 60–70% of admitted claims. IBC improved credit culture by creating credible liquidation threat, reducing wilful defaults. Challenges include slow NCLT/NCLAT capacity, appeals delaying resolution, and promoter-friendly resolution attempts.",
+      "answer_keywords": ["IBC", "270 days", "330 days", "NCLT", "CoC", "66%", "Rs 3.16 lakh crore", "60–70% haircut", "wilful defaults", "2016"],
+      "source_namespace": "regulatory",
+      "source_type": "rbi"
+    },
+    {
+      "id": "qa_196",
+      "category": "equity_fundamentals",
+      "difficulty": "medium",
+      "question": "What is the difference between a 'compounder' stock and a 'cyclical' stock in the Indian context?",
+      "expected_answer": "A compounder delivers consistent earnings growth (15–25% EPS CAGR) regardless of economic cycle, driven by structural market penetration, pricing power, and reinvestment at high ROCE. Indian examples: HDFC Bank (FY10-20), Asian Paints, Pidilite, Eicher Motors. These command premium P/E multiples (30–60x) because of earnings visibility. A cyclical company's earnings swing dramatically with the macro/commodity cycle (Tata Steel, Hindalco, ONGC, cement companies). Cyclicals are valued on EV/EBITDA or P/B at trough and P/E or EV/EBITDA at peak. Different risk/return frameworks apply to each.",
+      "answer_keywords": ["compounder", "cyclical", "15–25%", "ROCE", "HDFC Bank", "Asian Paints", "Tata Steel", "30–60x", "P/E at trough", "EV/EBITDA"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_197",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What are SEBI's regulations on market making for illiquid SME stocks?",
+      "expected_answer": "SEBI mandates market making for SME IPO-listed stocks for a minimum of 3 years post-listing. Market makers (registered broker-dealers) must provide two-way quotes within a maximum bid-ask spread of 10% for a minimum of 75% of trading hours. Minimum lot size for market maker quotes is aligned with the IPO lot size. Market makers are compensated through a fee paid by the issuer company, pre-funded at IPO. SEBI's market making framework aims to improve liquidity and reduce manipulation risk in SME stocks.",
+      "answer_keywords": ["market making", "SME IPO", "3 years", "10% bid-ask spread", "75% trading hours", "lot size", "issuer-funded", "liquidity", "manipulation"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_198",
+      "category": "thesis_validation",
+      "difficulty": "hard",
+      "question": "What is Bayesian updating in the context of investment thesis management?",
+      "expected_answer": "Bayesian updating means revising the probability of a thesis being correct as new evidence arrives, rather than treating the thesis as binary (right or wrong). Prior probability (initial conviction based on analysis) is updated by new data: a positive data point (earnings beat, deal win, regulatory clarity) increases the posterior probability; a negative data point reduces it. In practice: if initial thesis had 65% conviction, one earnings beat (strong evidence) might raise it to 75%; an earnings miss with management guidance cut might drop it to 50% (trigger review) or below 40% (exit threshold). This avoids anchoring to the original thesis regardless of disconfirming evidence.",
+      "answer_keywords": ["Bayesian", "prior probability", "posterior", "new evidence", "65%", "75%", "50%", "anchoring", "disconfirming", "exit threshold"],
+      "source_namespace": "news",
+      "source_type": "news"
+    },
+    {
+      "id": "qa_199",
+      "category": "regulatory_sebi",
+      "difficulty": "medium",
+      "question": "What is SEBI's mandate regarding mutual fund expense ratios and TER caps?",
+      "expected_answer": "SEBI's Total Expense Ratio (TER) regulations cap the annual fees charged by mutual fund schemes. For equity schemes: 2.25% for AUM up to Rs 500 crore, reducing to 1.05% for AUM above Rs 50,000 crore. Debt schemes face lower caps (2% for smaller AUMs). Direct plans must be cheaper than regular plans (no distributor commission). SEBI mandated disclosure of TER and brokerage costs in SID. Expense ratios are charged daily and directly deducted from NAV.",
+      "answer_keywords": ["TER", "2.25%", "Rs 500 crore", "1.05%", "Rs 50,000 crore", "direct plans", "regular plans", "NAV", "expense ratio caps"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    },
+    {
+      "id": "qa_200",
+      "category": "regulatory_sebi",
+      "difficulty": "hard",
+      "question": "What is SEBI's regulatory framework for InvITs (Infrastructure Investment Trusts) in India?",
+      "expected_answer": "SEBI's InvIT regulations allow infrastructure projects (roads, power transmission, gas pipelines) to be securitised and listed, giving retail and institutional investors access to infrastructure cash flows. InvITs must have at least 80% assets in completed, revenue-generating infrastructure. They must distribute 90% of net distributable cash flows to unit holders. Minimum public offer size is Rs 250 crore; minimum lot size Rs 10,000–15,000 for retail. Leverage is capped at 70% of AUM. Key InvITs in India: IRB InvIT, IndInfravit, Powergrid InvIT, IndiGrid.",
+      "answer_keywords": ["InvIT", "80%", "completed infrastructure", "90%", "Rs 250 crore", "70%", "leverage cap", "IRB InvIT", "Powergrid InvIT", "IndiGrid"],
+      "source_namespace": "regulatory",
+      "source_type": "sebi"
+    }
+  ]
+}
