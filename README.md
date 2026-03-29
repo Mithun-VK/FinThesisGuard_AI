@@ -87,7 +87,7 @@ graph TD
     %% ========== OBSERVABILITY ==========
     O --> OBS[Monitoring\nMetrics · Logs · Circuit Breakers]
     G --> OBS
-``
+```
 
 ## 🎓 Flow Diagram: 7-Agent Pipeline
 
