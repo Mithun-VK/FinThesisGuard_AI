@@ -30,106 +30,123 @@
 - **Demo:** See `demo.gif` (30s screencast)
 
 ---
-## 🎓 Architecture Diagram: 
-``mermaid
+
+## 🎓 Architecture Diagram: Full System
+
+```mermaid
 graph TD
+    %% ── CLIENT LAYER ─────────────────────────────────────────
+    U["🌐 Client Apps\nWeb · Mobile · API Consumers"]
 
-    %% ========== CLIENT LAYER ==========
-    U[Client Apps\nWeb · Mobile · API Consumers]
+    %% ── API LAYER ────────────────────────────────────────────
+    U --> G["🔒 API Gateway — FastAPI\nAuth · Rate Limit · Logging"]
 
-    %% ========== API LAYER ==========
-    U --> G[API Gateway FastAPI\nAuth · Rate Limit · Logging]
+    %% ── APPLICATION LAYER ────────────────────────────────────
+    G --> O["🎯 Orchestrator Service\nWorkflow Engine"]
 
-    %% ========== APPLICATION LAYER ==========
-    G --> O[Orchestrator Service\nWorkflow Engine]
+    %% ── AGENT LAYER ──────────────────────────────────────────
+    O --> A1["Agent 1 · Acronym Resolver\n594 terms · 0.8ms"]
+    O --> A2["Agent 2 · Query Decomposer\nUp to 6 sub-queries"]
+    O --> A3["Agent 3 · Retriever Service\n4 Angles × 5 Namespaces"]
+    O --> A4["Agent 4 · Reranker\nscore = 0.6×sim + 0.2×recency + 0.2×authority"]
+    O --> A5["Agent 5 · Conflict Detector\n3-src min · 5% threshold · 16ms"]
+    O --> A6["Agent 6 · Quant Validator\nz-score=3.0 · ratio-tol=15%"]
+    O --> A7["Agent 7 · Thesis Analyzer\n7 assumptions · 3 analogs · 1266ms"]
+    O --> A8["Agent 8 · Stress Synthesizer\n6 parallel risk scores · 2375ms"]
 
-    %% ========== AGENT LAYER ==========
-    O --> A1[Acronym Resolver]
-    O --> A2[Query Decomposer]
-    O --> A3[Retriever Service]
-    O --> A4[Reranker]
-    O --> A5[Conflict Detector]
-    O --> A6[Quant Validator]
-    O --> A7[Thesis Analyzer]
-    O --> A8[Stress Synthesizer]
-
-    %% ========== MODEL LAYER ==========
-    A1 --> LLM[LLM Service Groq\nllama-3.3-70b]
+    %% ── MODEL LAYER ──────────────────────────────────────────
+    A1 --> LLM["🤖 LLM Service — Groq\nllama-3.3-70b-versatile"]
     A2 --> LLM
     A5 --> LLM
     A7 --> LLM
     A8 --> LLM
 
-    %% ========== RETRIEVAL LAYER ==========
-    A3 --> EMB[Embedding Model\nMiniLM L6 v2]
-    EMB --> VDB[Pinecone Vector DB\nfinthesisguard index]
+    %% ── RETRIEVAL LAYER ──────────────────────────────────────
+    A3 --> EMB["🔍 Embedding Model\nall-MiniLM-L6-v2 · dim=384"]
+    EMB --> VDB["🗄️ Pinecone Vector DB\nfinthesisguard index\nregulatory: 20 · news: 18 vectors"]
 
-    %% ========== DATA SOURCES ==========
-    DS1[SEBI Circulars]
-    DS2[RBI Policies]
-    DS3[Earnings Calls]
-    DS4[Market News]
-
-    DS1 --> ING[Ingestion Pipeline]
-    DS2 --> ING
-    DS3 --> ING
-    DS4 --> ING
-
+    %% ── INGESTION PIPELINE ───────────────────────────────────
+    DS1["📄 SEBI Circulars"] --> ING["📥 Ingestion Pipeline\nPyMuPDF → Chunker → Tagger → Embedder"]
+    DS2["📄 RBI Policies"] --> ING
+    DS3["📄 Earnings Calls"] --> ING
+    DS4["📄 Market News"] --> ING
     ING --> EMB
 
-    %% ========== CACHE LAYER ==========
-    A8 --> CACHE[Redis Cache\nTTL 3600s]
+    %% ── CACHE LAYER ──────────────────────────────────────────
+    A8 --> CACHE["⚡ Redis Cache\nthesis TTL=3600s · embed TTL=86400s"]
 
-    %% ========== RESPONSE LAYER ==========
-    CACHE --> R[Response Builder\nScores · Citations · Confidence]
+    %% ── RESPONSE LAYER ───────────────────────────────────────
+    CACHE --> R["📊 Response Builder\nScores · Citations · Confidence"]
     R --> G
 
-    %% ========== OBSERVABILITY ==========
-    O --> OBS[Monitoring\nMetrics · Logs · Circuit Breakers]
+    %% ── OBSERVABILITY ────────────────────────────────────────
+    O --> OBS["🔧 Monitoring\nMetrics · Logs · Circuit Breakers\nCB:redis · CB:thesis · CB:rag"]
     G --> OBS
 
+    %% ── STYLES ───────────────────────────────────────────────
+    classDef gateway  fill:#1a3135,stroke:#4f98a3,stroke-width:2px,color:#9dd4db
+    classDef agent    fill:#2e2010,stroke:#fdab43,stroke-width:2px,color:#fec97e
+    classDef model    fill:#251838,stroke:#a86fdf,stroke-width:2px,color:#c9a0ef
+    classDef retrieval fill:#162030,stroke:#5591c7,stroke-width:2px,color:#92bdde
+    classDef vectordb fill:#281f08,stroke:#e8af34,stroke-width:2px,color:#f0cc7a
+    classDef ingest   fill:#1c1b19,stroke:#555452,stroke-width:1.5px,color:#797876
+    classDef cache    fill:#301525,stroke:#d163a7,stroke-width:2px,color:#e49fca
+    classDef output   fill:#1e3019,stroke:#6daa45,stroke-width:2px,color:#9dcb7a
+    classDef obs      fill:#1c1b19,stroke:#555452,stroke-width:1.5px,color:#797876
 
-## 🎓 Flow Diagram: 7-Agent Pipeline
+    class U,G,O gateway
+    class A1,A2,A3,A4,A5,A6,A7,A8 agent
+    class LLM model
+    class EMB retrieval
+    class VDB vectordb
+    class DS1,DS2,DS3,DS4,ING ingest
+    class CACHE cache
+    class R output
+    class OBS obs
+```
+
+---
+
+## 🎓 Flow Diagram: 7-Agent Pipeline (Simple View)
 
 ```mermaid
 graph TB
-    TITLE["FinThesisGuard AI — How It Works  Simple View"]:::title
+    TITLE["FinThesisGuard AI — How It Works  Simple View\nTwo modes · One product · Under 3 seconds"]:::title
 
-    %% ── LEFT COLUMN — RAG PIPELINE ───────────────────────────────
-    L0["You Ask a Financial Question\n'What is HDFC NIM vs ICICI NIM for Q3 FY26?'\n→ any question about stocks, banks, funds, tax, regulations"]:::left
+    %% ── LEFT COLUMN — RAG PIPELINE ───────────────────────────
+    L0["💬 You Ask a Financial Question\n'What is HDFC NIM vs ICICI NIM for Q3 FY26?'\n→ any question about stocks, banks, funds, tax, regulations"]:::left
 
-    L1["Step 1 — FinThesisGuard Reads Your Language\nExpands all short-forms automatically:\nNIM → 'Net Interest Margin'  ·  GNPA → 'Gross Non-Performing Assets'"]:::left
+    L1["Step 1 — FinThesisGuard Reads Your Language\nExpands all short-forms automatically:\nNIM → Net Interest Margin  ·  GNPA → Gross Non-Performing Assets"]:::left
 
-    L2["Step 2 — Breaks Your Question Into Parts\n'Compare HDFC vs ICICI NIM & NPA'\n→ 4 focused searches run at the same time"]:::left
+    L2["Step 2 — Breaks Your Question Into Parts\n'Compare HDFC vs ICICI NIM and NPA'\n→ 4 focused searches run at the same time"]:::left
 
-    %% ── RIGHT COLUMN — THESIS PIPELINE ──────────────────────────
-    R0["You Submit an Investment Thesis\n'HDFC will outperform because NIM will expand 20bps\nas RBI cuts rates by 75bps over FY26'"]:::right
+    %% ── RIGHT COLUMN — THESIS PIPELINE ──────────────────────
+    R0["📈 You Submit an Investment Thesis\n'HDFC will outperform because NIM will expand 20bps\nas RBI cuts rates by 75bps over FY26'"]:::right
 
-    R1["Step 1 — Thesis is Checked First\nMust have:  Subject + Claim + Reason\n✓ Valid   ✗ 'HDFC is good' → rejected immediately"]:::right
+    R1["Step 1 — Thesis is Checked First\nMust have: Subject + Claim + Reason\n✓ Valid   ✗ 'HDFC is good' → rejected immediately"]:::right
 
-    R2["Step 2 — Finds What the Thesis is Really Saying\nReads every claim: 'RBI will cut → NIM expands → PAT grows'\nBuilds the full chain of assumptions automatically"]:::right
+    R2["Step 2 — Finds What the Thesis is Really Saying\nReads every claim: RBI will cut → NIM expands → PAT grows\nBuilds the full chain of assumptions automatically"]:::right
 
-    %% ── SHARED STEP 3 ────────────────────────────────────────────
-    SHARED["Step 3 — Searches a Library of 100,000+ Real Financial Documents\nRBI Circulars  ·  SEBI Notifications  ·  Annual Reports  ·  Earnings Calls  ·  Broker Research  ·  News Articles\nNewer documents score higher  ·  Official sources RBI/SEBI trusted more than blogs  ·  All results ranked by relevance"]:::shared
+    %% ── SHARED STEP 3 ─────────────────────────────────────────
+    SHARED["Step 3 — Searches a Library of 100,000+ Real Financial Documents\nRBI Circulars · SEBI Notifications · Annual Reports · Earnings Calls · Broker Research · News Articles\nNewer docs score higher · Official sources RBI/SEBI trusted more than blogs · All results ranked by relevance"]:::shared
 
-    %% ── LEFT STEP 4 + OUTPUT ─────────────────────────────────────
-    L4["Step 4 — Catches Lies & Mistakes in Sources\nFinds: Source A says NPA = 1.26%,  Source B says 1.31%\nPicks the official/newer one  ·  Flags the conflict to you"]:::left
+    %% ── LEFT STEP 4 + OUTPUT ──────────────────────────────────
+    L4["Step 4 — Catches Lies and Mistakes in Sources\nFinds: Source A says NPA = 1.26%  Source B says 1.31%\nPicks the official/newer one · Flags the conflict to you"]:::left
 
     LOUT["📋 You Get Back\nAnswer + Sources + Any Conflicts Found\nConfidence: High / Medium / Low"]:::leftout
 
     LTAG["FINANCIAL Q&A — RAG PIPELINE"]:::lefttag
 
-    %% ── RIGHT STEP 4 + OUTPUT ────────────────────────────────────
-    R4["Step 4 — Stress-Tests Every Assumption\nScores each risk 1 to 10:  Demand · Margin · Valuation · Regulatory\nFinds what would break the thesis  ·  Checks historical patterns"]:::right
+    %% ── RIGHT STEP 4 + OUTPUT ─────────────────────────────────
+    R4["Step 4 — Stress-Tests Every Assumption\nScores each risk 1 to 10: Demand · Margin · Valuation · Regulatory\nFinds what would break the thesis · Checks historical patterns"]:::right
 
     ROUT["📋 You Get Back\nAll Assumptions · Risk Scores · Break Conditions\nThesis Strength: Strong / Medium / Weak"]:::rightout
 
     RTAG["THESIS VALIDATION — THESIS PIPELINE"]:::righttag
 
-    %% ── OR LABEL (conceptual) ────────────────────────────────────
     OR(["OR"]):::or
 
-    %% ── EDGES — LEFT FLOW ────────────────────────────────────────
+    %% ── EDGES — LEFT FLOW ─────────────────────────────────────
     TITLE --> L0
     TITLE --> R0
     L0 --- OR
@@ -141,7 +158,7 @@ graph TB
     L4 --> LOUT
     LOUT --> LTAG
 
-    %% ── EDGES — RIGHT FLOW ───────────────────────────────────────
+    %% ── EDGES — RIGHT FLOW ────────────────────────────────────
     R0 --> R1
     R1 --> R2
     R2 --> SHARED
@@ -149,7 +166,7 @@ graph TB
     R4 --> ROUT
     ROUT --> RTAG
 
-    %% ── STYLES ───────────────────────────────────────────────────
+    %% ── STYLES ────────────────────────────────────────────────
     classDef title    fill:#2d1a6e,stroke:#7c5cbf,stroke-width:2px,color:#c9b8ff,font-weight:bold
     classDef left     fill:#0a1f3a,stroke:#4fc3f7,stroke-width:2px,color:#90d8f5
     classDef right    fill:#0a2a0a,stroke:#4caf50,stroke-width:2px,color:#90ee90
@@ -160,6 +177,7 @@ graph TB
     classDef righttag fill:none,stroke:none,color:#4caf50,font-weight:bold
     classDef or       fill:#1a1a2e,stroke:#7c5cbf,stroke-width:2px,color:#c9b8ff,font-weight:bold
 ```
+
 ---
 
 ## 🛠️ Tech Stack
@@ -170,6 +188,7 @@ graph TB
 | 🔍 Embedder | all-MiniLM-L6-v2 (dim=384) |
 | 📊 Vector DB | Pinecone (`finthesisguard` index) |
 | 💾 Cache | Redis (TTL=3600s) |
+| 🌐 API | FastAPI + Python 3.11 |
 | 📈 Observability | Production metrics + circuit breakers |
 
 ---
@@ -183,7 +202,7 @@ graph TB
 | Theses/day/trader | 5 | Internal research |
 | Manual validation | 8 hrs @ ₹1,600/hr | Analyst rates |
 | FinThesisGuard speed | 3s automated | Live demo |
-| Time saved/thesis | ₹213 | 8hr × ₹26.6/hr |
+| Time saved/thesis | ₹12,800 | 8hr × ₹1,600/hr |
 | Monthly savings | $1.6M | 1.25M theses × $1.28 |
 
 ### Subscription Model
@@ -253,6 +272,8 @@ Try these theses:
 |---|---|---|
 | Data source | Hallucinated | Real SEBI/RBI filings |
 | Risk output | Generic advice | 6 parallel risk scores |
+| Audit trail | None | Per-node timestamped log |
+| Latency (warm) | ~5s | <100ms (Redis cache) |
 | Observability | Toy demo | Production circuit breakers |
 
 ---
@@ -260,7 +281,7 @@ Try these theses:
 ## 📈 Live Metrics (From Startup)
 
 ```
-✅ Pinecone:  70 vectors ['news', 'regulatory']
+✅ Pinecone:  70 vectors  ['news', 'regulatory']
 ✅ Embedder:  all-MiniLM-L6-v2 (dim=384, CPU)
 ✅ LLM:       llama-3.3-70b-versatile (Groq)
 ✅ Latency:   P95=2.9s retrieval (target <2s)
@@ -273,9 +294,9 @@ Try these theses:
 
 | Phase | Milestone | Timeline |
 |---|---|---|
-| Phase 1 | Corporate filings | Q2 2026 |
-| Phase 2 | Real-time NSE data | Q3 2026 |
-| Phase 3 | Mobile app + alerts | Q4 2026 |
+| Phase 1 | Corporate filings ingestion | Q2 2026 |
+| Phase 2 | Real-time NSE data feed | Q3 2026 |
+| Phase 3 | Mobile app + trade alerts | Q4 2026 |
 
 ---
 
@@ -285,9 +306,9 @@ MIT License — Free for hackathons, startups, traders.
 
 ---
 
-⭐ **Star this repo if it helps your trading!**  
+⭐ **Star this repo if it helps your trading!**
 🐛 **Issues?** Open one — production-ready contributions welcome.
 
 ---
 
-*Built for ET AI HACKATHON 2026*
+*Built for ET AI HACKATHON 2026 · Finance Domain Track · Domain-Specialized AI Agents with Compliance Guardrails*
