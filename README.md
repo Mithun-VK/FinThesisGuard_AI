@@ -36,13 +36,13 @@
 ```mermaid
 graph TD
     %% ── CLIENT LAYER ─────────────────────────────────────────
-    U["🌐 Client Apps\nWeb · Mobile · API Consumers"]
+    U[" Client Apps\nWeb · Mobile · API Consumers"]
 
     %% ── API LAYER ────────────────────────────────────────────
-    U --> G["🔒 API Gateway — FastAPI\nAuth · Rate Limit · Logging"]
+    U --> G[" API Gateway — FastAPI\nAuth · Rate Limit · Logging"]
 
     %% ── APPLICATION LAYER ────────────────────────────────────
-    G --> O["🎯 Orchestrator Service\nWorkflow Engine"]
+    G --> O[" Orchestrator Service\nWorkflow Engine"]
 
     %% ── AGENT LAYER ──────────────────────────────────────────
     O --> A1["Agent 1 · Acronym Resolver\n594 terms · 0.8ms"]
@@ -55,32 +55,32 @@ graph TD
     O --> A7["Agent 7 · Stress Synthesizer\n6 parallel risk scores · 2375ms"]
 
     %% ── MODEL LAYER ──────────────────────────────────────────
-    A1 --> LLM["🤖 LLM Service — Groq\nllama-3.3-70b-versatile"]
+    A1 --> LLM[" LLM Service — Groq\nllama-3.3-70b-versatile"]
     A2 --> LLM
     A4 --> LLM
     A6 --> LLM
     A7 --> LLM
 
     %% ── RETRIEVAL LAYER ──────────────────────────────────────
-    RET --> EMB["🔍 Embedding Model\nall-MiniLM-L6-v2 · dim=384"]
-    EMB --> VDB["🗄️ Pinecone Vector DB\nfinthesisguard index\nregulatory: 20 · news: 18 vectors"]
+    RET --> EMB[" Embedding Model\nall-MiniLM-L6-v2 · dim=384"]
+    EMB --> VDB[" Pinecone Vector DB\nfinthesisguard index\nregulatory: 20 · news: 18 vectors"]
 
     %% ── INGESTION PIPELINE ───────────────────────────────────
-    DS1["📄 SEBI Circulars"] --> ING["📥 Ingestion Pipeline\nPyMuPDF → Chunker → Tagger → Embedder"]
-    DS2["📄 RBI Policies"] --> ING
-    DS3["📄 Earnings Calls"] --> ING
-    DS4["📄 Market News"] --> ING
+    DS1[" SEBI Circulars"] --> ING[" Ingestion Pipeline\nPyMuPDF → Chunker → Tagger → Embedder"]
+    DS2[" RBI Policies"] --> ING
+    DS3[" Earnings Calls"] --> ING
+    DS4[" Market News"] --> ING
     ING --> EMB
 
     %% ── CACHE LAYER ──────────────────────────────────────────
-    A7 --> CACHE["⚡ Redis Cache\nthesis TTL=3600s · embed TTL=86400s"]
+    A7 --> CACHE[" Redis Cache\nthesis TTL=3600s · embed TTL=86400s"]
 
     %% ── RESPONSE LAYER ───────────────────────────────────────
-    CACHE --> R["📊 Response Builder\nScores · Citations · Confidence"]
+    CACHE --> R[" Response Builder\nScores · Citations · Confidence"]
     R --> G
 
     %% ── OBSERVABILITY ────────────────────────────────────────
-    O --> OBS["🔧 Monitoring\nMetrics · Logs · Circuit Breakers\nCB:redis · CB:thesis · CB:rag"]
+    O --> OBS[" Monitoring\nMetrics · Logs · Circuit Breakers\nCB:redis · CB:thesis · CB:rag"]
     G --> OBS
 
     %% ── STYLES ───────────────────────────────────────────────
@@ -114,14 +114,14 @@ graph TB
     TITLE["FinThesisGuard AI — How It Works  Simple View\nTwo modes · One product · Under 3 seconds"]:::title
 
     %% ── LEFT COLUMN — RAG PIPELINE ───────────────────────────
-    L0["💬 You Ask a Financial Question\n'What is HDFC NIM vs ICICI NIM for Q3 FY26?'\n→ any question about stocks, banks, funds, tax, regulations"]:::left
+    L0[" You Ask a Financial Question\n'What is HDFC NIM vs ICICI NIM for Q3 FY26?'\n→ any question about stocks, banks, funds, tax, regulations"]:::left
 
     L1["Step 1 — FinThesisGuard Reads Your Language\nExpands all short-forms automatically:\nNIM → Net Interest Margin  ·  GNPA → Gross Non-Performing Assets"]:::left
 
     L2["Step 2 — Breaks Your Question Into Parts\n'Compare HDFC vs ICICI NIM and NPA'\n→ 4 focused searches run at the same time"]:::left
 
     %% ── RIGHT COLUMN — THESIS PIPELINE ──────────────────────
-    R0["📈 You Submit an Investment Thesis\n'HDFC will outperform because NIM will expand 20bps\nas RBI cuts rates by 75bps over FY26'"]:::right
+    R0[" You Submit an Investment Thesis\n'HDFC will outperform because NIM will expand 20bps\nas RBI cuts rates by 75bps over FY26'"]:::right
 
     R1["Step 1 — Thesis is Checked First\nMust have: Subject + Claim + Reason\n✓ Valid   ✗ 'HDFC is good' → rejected immediately"]:::right
 
@@ -133,14 +133,14 @@ graph TB
     %% ── LEFT STEP 4 + OUTPUT ──────────────────────────────────
     L4["Step 4 — Catches Lies and Mistakes in Sources\nFinds: Source A says NPA = 1.26%  Source B says 1.31%\nPicks the official/newer one · Flags the conflict to you"]:::left
 
-    LOUT["📋 You Get Back\nAnswer + Sources + Any Conflicts Found\nConfidence: High / Medium / Low"]:::leftout
+    LOUT[" You Get Back\nAnswer + Sources + Any Conflicts Found\nConfidence: High / Medium / Low"]:::leftout
 
     LTAG["FINANCIAL Q&A — RAG PIPELINE"]:::lefttag
 
     %% ── RIGHT STEP 4 + OUTPUT ─────────────────────────────────
     R4["Step 4 — Stress-Tests Every Assumption\nScores each risk 1 to 10: Demand · Margin · Valuation · Regulatory\nFinds what would break the thesis · Checks historical patterns"]:::right
 
-    ROUT["📋 You Get Back\nAll Assumptions · Risk Scores · Break Conditions\nThesis Strength: Strong / Medium / Weak"]:::rightout
+    ROUT[" You Get Back\nAll Assumptions · Risk Scores · Break Conditions\nThesis Strength: Strong / Medium / Weak"]:::rightout
 
     RTAG["THESIS VALIDATION — THESIS PIPELINE"]:::righttag
 
