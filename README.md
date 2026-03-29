@@ -34,20 +34,73 @@
 ## 🎓 Architecture: 7-Agent Pipeline
 
 ```mermaid
-graph TD
-    A["Client: POST /api/validate-thesis"] --> B["API Gateway FastAPI\nRate Limiter · Validator · Logger"]
-    B --> C["Orchestrator"]
-    C --> N1["Node 1 · Classify\nTHESIS / FACTUAL"]
-    N1 --> N2["Node 2 · Acronym Resolver\n594 terms · 0.8ms"]
-    N2 --> N3["Node 3 · Multi-Angle Retriever\n4 Angles × 5 Namespaces"]
-    N3 --> ANG1 & ANG2 & ANG3 & ANG4 --> DB["Pinecone · dim=384\nregulatory:20 · news:18"]
-    DB --> N4["Node 4 · Reranker · 19ms"]
-    N4 --> N5["Node 5 · Conflict Detector · 16ms"]
-    N5 --> N6["Node 6 · Quant Validator · 16ms"]
-    N6 --> N7["Node 7 · Thesis Analyzer · 1266ms"]
-    N7 --> N8["Node 8 · Stress Synthesizer · 2375ms"]
-    N8 --> OUT --> CACHE -->|"<100ms hit"| RES
-    INGEST --> DB
+graph TB
+    TITLE["FinThesisGuard AI — How It Works  Simple View"]:::title
+
+    %% ── LEFT COLUMN — RAG PIPELINE ───────────────────────────────
+    L0["You Ask a Financial Question\n'What is HDFC NIM vs ICICI NIM for Q3 FY26?'\n→ any question about stocks, banks, funds, tax, regulations"]:::left
+
+    L1["Step 1 — FinThesisGuard Reads Your Language\nExpands all short-forms automatically:\nNIM → 'Net Interest Margin'  ·  GNPA → 'Gross Non-Performing Assets'"]:::left
+
+    L2["Step 2 — Breaks Your Question Into Parts\n'Compare HDFC vs ICICI NIM & NPA'\n→ 4 focused searches run at the same time"]:::left
+
+    %% ── RIGHT COLUMN — THESIS PIPELINE ──────────────────────────
+    R0["You Submit an Investment Thesis\n'HDFC will outperform because NIM will expand 20bps\nas RBI cuts rates by 75bps over FY26'"]:::right
+
+    R1["Step 1 — Thesis is Checked First\nMust have:  Subject + Claim + Reason\n✓ Valid   ✗ 'HDFC is good' → rejected immediately"]:::right
+
+    R2["Step 2 — Finds What the Thesis is Really Saying\nReads every claim: 'RBI will cut → NIM expands → PAT grows'\nBuilds the full chain of assumptions automatically"]:::right
+
+    %% ── SHARED STEP 3 ────────────────────────────────────────────
+    SHARED["Step 3 — Searches a Library of 100,000+ Real Financial Documents\nRBI Circulars  ·  SEBI Notifications  ·  Annual Reports  ·  Earnings Calls  ·  Broker Research  ·  News Articles\nNewer documents score higher  ·  Official sources RBI/SEBI trusted more than blogs  ·  All results ranked by relevance"]:::shared
+
+    %% ── LEFT STEP 4 + OUTPUT ─────────────────────────────────────
+    L4["Step 4 — Catches Lies & Mistakes in Sources\nFinds: Source A says NPA = 1.26%,  Source B says 1.31%\nPicks the official/newer one  ·  Flags the conflict to you"]:::left
+
+    LOUT["📋 You Get Back\nAnswer + Sources + Any Conflicts Found\nConfidence: High / Medium / Low"]:::leftout
+
+    LTAG["FINANCIAL Q&A — RAG PIPELINE"]:::lefttag
+
+    %% ── RIGHT STEP 4 + OUTPUT ────────────────────────────────────
+    R4["Step 4 — Stress-Tests Every Assumption\nScores each risk 1 to 10:  Demand · Margin · Valuation · Regulatory\nFinds what would break the thesis  ·  Checks historical patterns"]:::right
+
+    ROUT["📋 You Get Back\nAll Assumptions · Risk Scores · Break Conditions\nThesis Strength: Strong / Medium / Weak"]:::rightout
+
+    RTAG["THESIS VALIDATION — THESIS PIPELINE"]:::righttag
+
+    %% ── OR LABEL (conceptual) ────────────────────────────────────
+    OR(["OR"]):::or
+
+    %% ── EDGES — LEFT FLOW ────────────────────────────────────────
+    TITLE --> L0
+    TITLE --> R0
+    L0 --- OR
+    R0 --- OR
+    L0 --> L1
+    L1 --> L2
+    L2 --> SHARED
+    SHARED --> L4
+    L4 --> LOUT
+    LOUT --> LTAG
+
+    %% ── EDGES — RIGHT FLOW ───────────────────────────────────────
+    R0 --> R1
+    R1 --> R2
+    R2 --> SHARED
+    SHARED --> R4
+    R4 --> ROUT
+    ROUT --> RTAG
+
+    %% ── STYLES ───────────────────────────────────────────────────
+    classDef title    fill:#2d1a6e,stroke:#7c5cbf,stroke-width:2px,color:#c9b8ff,font-weight:bold
+    classDef left     fill:#0a1f3a,stroke:#4fc3f7,stroke-width:2px,color:#90d8f5
+    classDef right    fill:#0a2a0a,stroke:#4caf50,stroke-width:2px,color:#90ee90
+    classDef shared   fill:#2a1800,stroke:#ff9800,stroke-width:2px,color:#ffcc80
+    classDef leftout  fill:#1a0000,stroke:#ef5350,stroke-width:2px,color:#ff8a80
+    classDef rightout fill:#0a2a0a,stroke:#4caf50,stroke-width:2px,color:#90ee90
+    classDef lefttag  fill:none,stroke:none,color:#4fc3f7,font-weight:bold
+    classDef righttag fill:none,stroke:none,color:#4caf50,font-weight:bold
+    classDef or       fill:#1a1a2e,stroke:#7c5cbf,stroke-width:2px,color:#c9b8ff,font-weight:bold
 ```
 ---
 
