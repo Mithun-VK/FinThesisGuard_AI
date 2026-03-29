@@ -35,19 +35,20 @@
 
 ```mermaid
 graph TD
-    A["Client: POST /api/validate-thesis"] --> B["Orchestrator"]
-    B --> C1["Agent 1: Acronym Resolver\nHDFC -> HDFC Bank"]
-    B --> C2["Agent 2: Query Decomposer"]
-    B --> C3["Retriever: 4 Angles x 5 Namespaces"]
-    C3 --> D["Pinecone Vector DB\n70+ vectors loaded"]
-    D --> E1["Agent 3: Reranker\nRecency + Authority"]
-    E1 --> E2["Agent 4: Conflict Detector"]
-    E2 --> E3["Agent 5: Quant Validator"]
-    E3 --> F["Agent 6: Thesis Analyzer\n7 assumptions extracted"]
-    F --> G["Agent 7: Stress Synthesizer\n6 parallel risk scores"]
-    G --> H["Response: Strength/Confidence\n5 Citations"]
+    A["Client: POST /api/validate-thesis"] --> B["API Gateway FastAPI\nRate Limiter · Validator · Logger"]
+    B --> C["Orchestrator"]
+    C --> N1["Node 1 · Classify\nTHESIS / FACTUAL"]
+    N1 --> N2["Node 2 · Acronym Resolver\n594 terms · 0.8ms"]
+    N2 --> N3["Node 3 · Multi-Angle Retriever\n4 Angles × 5 Namespaces"]
+    N3 --> ANG1 & ANG2 & ANG3 & ANG4 --> DB["Pinecone · dim=384\nregulatory:20 · news:18"]
+    DB --> N4["Node 4 · Reranker · 19ms"]
+    N4 --> N5["Node 5 · Conflict Detector · 16ms"]
+    N5 --> N6["Node 6 · Quant Validator · 16ms"]
+    N6 --> N7["Node 7 · Thesis Analyzer · 1266ms"]
+    N7 --> N8["Node 8 · Stress Synthesizer · 2375ms"]
+    N8 --> OUT --> CACHE -->|"<100ms hit"| RES
+    INGEST --> DB
 ```
-
 ---
 
 ## 🛠️ Tech Stack
