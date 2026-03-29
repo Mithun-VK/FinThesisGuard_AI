@@ -30,8 +30,66 @@
 - **Demo:** See `demo.gif` (30s screencast)
 
 ---
+## 🎓 Architecture Diagram: 
+``mermaid
+graph TD
 
-## 🎓 Architecture: 7-Agent Pipeline
+    %% ========== CLIENT LAYER ==========
+    U[Client Apps\nWeb · Mobile · API Consumers]
+
+    %% ========== API LAYER ==========
+    U --> G[API Gateway FastAPI\nAuth · Rate Limit · Logging]
+
+    %% ========== APPLICATION LAYER ==========
+    G --> O[Orchestrator Service\nWorkflow Engine]
+
+    %% ========== AGENT LAYER ==========
+    O --> A1[Acronym Resolver]
+    O --> A2[Query Decomposer]
+    O --> A3[Retriever Service]
+    O --> A4[Reranker]
+    O --> A5[Conflict Detector]
+    O --> A6[Quant Validator]
+    O --> A7[Thesis Analyzer]
+    O --> A8[Stress Synthesizer]
+
+    %% ========== MODEL LAYER ==========
+    A1 --> LLM[LLM Service Groq\nllama-3.3-70b]
+    A2 --> LLM
+    A5 --> LLM
+    A7 --> LLM
+    A8 --> LLM
+
+    %% ========== RETRIEVAL LAYER ==========
+    A3 --> EMB[Embedding Model\nMiniLM L6 v2]
+    EMB --> VDB[Pinecone Vector DB\nfinthesisguard index]
+
+    %% ========== DATA SOURCES ==========
+    DS1[SEBI Circulars]
+    DS2[RBI Policies]
+    DS3[Earnings Calls]
+    DS4[Market News]
+
+    DS1 --> ING[Ingestion Pipeline]
+    DS2 --> ING
+    DS3 --> ING
+    DS4 --> ING
+
+    ING --> EMB
+
+    %% ========== CACHE LAYER ==========
+    A8 --> CACHE[Redis Cache\nTTL 3600s]
+
+    %% ========== RESPONSE LAYER ==========
+    CACHE --> R[Response Builder\nScores · Citations · Confidence]
+    R --> G
+
+    %% ========== OBSERVABILITY ==========
+    O --> OBS[Monitoring\nMetrics · Logs · Circuit Breakers]
+    G --> OBS
+``
+
+## 🎓 Flow Diagram: 7-Agent Pipeline
 
 ```mermaid
 graph TB
