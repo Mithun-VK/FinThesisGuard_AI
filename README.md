@@ -35,73 +35,78 @@
 
 ```mermaid
 graph TD
-    %% ── CLIENT LAYER ─────────────────────────────────────────
+    %% ── CLIENT LAYER ─────────────────────────────────────────────
     U["🌐 Client Apps\nWeb · Mobile · API Consumers"]
 
-    %% ── API LAYER ────────────────────────────────────────────
+    %% ── API LAYER ────────────────────────────────────────────────
     U --> G["🔒 API Gateway — FastAPI\nAuth · Rate Limit · Logging"]
 
-    %% ── APPLICATION LAYER ────────────────────────────────────
-    G --> O["🎯 Orchestrator Service\nWorkflow Engine"]
+    %% ── ORCHESTRATOR ─────────────────────────────────────────────
+    G --> O["🎯 Orchestrator\nbackend.pipeline.orchestrator"]
 
-    %% ── AGENT LAYER ──────────────────────────────────────────
-    O --> A1["Agent 1 · Acronym Resolver\n594 terms · 0.8ms"]
-    O --> A2["Agent 2 · Query Decomposer\nUp to 6 sub-queries"]
-    O --> A3["Agent 3 · Retriever Service\n4 Angles × 5 Namespaces"]
-    O --> A4["Agent 4 · Reranker\nscore = 0.6×sim + 0.2×recency + 0.2×authority"]
-    O --> A5["Agent 5 · Conflict Detector\n3-src min · 5% threshold · 16ms"]
-    O --> A6["Agent 6 · Quant Validator\nz-score=3.0 · ratio-tol=15%"]
-    O --> A7["Agent 7 · Thesis Analyzer\n7 assumptions · 3 analogs · 1266ms"]
-    O --> A8["Agent 8 · Stress Synthesizer\n6 parallel risk scores · 2375ms"]
+    %% ── PRE-PROCESSING AGENTS ────────────────────────────────────
+    O --> A1["agent1_acronym_resolver.py\n594 financial terms · 0.8ms\nHDFC → HDFC Bank · TCS disambiguation"]
+    A1 --> A2["agent2_query_decomposer.py\nBreaks thesis into ≤6 sub-queries\nSimple queries bypass this node"]
 
-    %% ── MODEL LAYER ──────────────────────────────────────────
-    A1 --> LLM["🤖 LLM Service — Groq\nllama-3.3-70b-versatile"]
-    A2 --> LLM
-    A5 --> LLM
-    A7 --> LLM
-    A8 --> LLM
+    %% ── RETRIEVAL PIPELINE (not an agent — rag_pipeline.py) ──────
+    A2 --> RET["rag_pipeline.py / thesis_pipeline.py\nMulti-Angle Retriever\nAngle 1: Direct · Angle 2: Regulatory\nAngle 3: Historical · Angle 4: Valuation"]
 
-    %% ── RETRIEVAL LAYER ──────────────────────────────────────
-    A3 --> EMB["🔍 Embedding Model\nall-MiniLM-L6-v2 · dim=384"]
+    %% ── VECTOR DB ────────────────────────────────────────────────
+    RET --> EMB["🔍 Embedder\nall-MiniLM-L6-v2 · dim=384"]
     EMB --> VDB["🗄️ Pinecone Vector DB\nfinthesisguard index\nregulatory: 20 · news: 18 vectors"]
+    VDB --> EMB
 
-    %% ── INGESTION PIPELINE ───────────────────────────────────
-    DS1["📄 SEBI Circulars"] --> ING["📥 Ingestion Pipeline\nPyMuPDF → Chunker → Tagger → Embedder"]
-    DS2["📄 RBI Policies"] --> ING
-    DS3["📄 Earnings Calls"] --> ING
-    DS4["📄 Market News"] --> ING
-    ING --> EMB
+    %% ── VALIDATION AGENTS ────────────────────────────────────────
+    VDB --> A3["agent3_reranker.py\nscore = 0.6×sim + 0.2×recency + 0.2×authority\nmin threshold: 0.30 · top-k: 6 · 19ms"]
+    A3 --> A4["agent4_conflict_detector.py\n3-source minimum · 5% divergence threshold\nFlags contradictory numerical claims · 16ms"]
+    A4 --> A5["agent5_quant_validator.py\nz-score anomaly detection = 3.0\nratio tolerance = 15% · 16ms\nBlocks LLM hallucinations"]
 
-    %% ── CACHE LAYER ──────────────────────────────────────────
-    A8 --> CACHE["⚡ Redis Cache\nthesis TTL=3600s · embed TTL=86400s"]
+    %% ── INTELLIGENCE AGENTS ──────────────────────────────────────
+    A5 --> A6["agent6_thesis_analyzer.py\nllama-3.3-70b · temp=0.15\n7 assumptions · 3 analogs\ncycle detection via topological sort · 1266ms"]
+    A6 --> A7["agent7_stress_synthesizer.py\n6 parallel LLM calls\ndemand · margin · macro · valuation\ncompetitive · regulatory · avg_risk=6.67 · 2375ms"]
 
-    %% ── RESPONSE LAYER ───────────────────────────────────────
-    CACHE --> R["📊 Response Builder\nScores · Citations · Confidence"]
-    R --> G
+    %% ── LLM (shared by A1, A4, A6, A7) ──────────────────────────
+    A1 -.->|fallback| LLM["🤖 Groq LLM\nllama-3.3-70b-versatile"]
+    A4 -.-> LLM
+    A6 -.-> LLM
+    A7 -.-> LLM
 
-    %% ── OBSERVABILITY ────────────────────────────────────────
-    O --> OBS["🔧 Monitoring\nMetrics · Logs · Circuit Breakers\nCB:redis · CB:thesis · CB:rag"]
-    G --> OBS
+    %% ── OUTPUT ───────────────────────────────────────────────────
+    A7 --> OUT["📊 Response Builder\nstrength · confidence · avg_risk\ncitations · assumptions · analogs"]
 
-    %% ── STYLES ───────────────────────────────────────────────
-    classDef gateway  fill:#1a3135,stroke:#4f98a3,stroke-width:2px,color:#9dd4db
-    classDef agent    fill:#2e2010,stroke:#fdab43,stroke-width:2px,color:#fec97e
-    classDef model    fill:#251838,stroke:#a86fdf,stroke-width:2px,color:#c9a0ef
-    classDef retrieval fill:#162030,stroke:#5591c7,stroke-width:2px,color:#92bdde
-    classDef vectordb fill:#281f08,stroke:#e8af34,stroke-width:2px,color:#f0cc7a
-    classDef ingest   fill:#1c1b19,stroke:#555452,stroke-width:1.5px,color:#797876
-    classDef cache    fill:#301525,stroke:#d163a7,stroke-width:2px,color:#e49fca
-    classDef output   fill:#1e3019,stroke:#6daa45,stroke-width:2px,color:#9dcb7a
-    classDef obs      fill:#1c1b19,stroke:#555452,stroke-width:1.5px,color:#797876
+    OUT --> CACHE["⚡ Redis Cache\nthesis TTL=3600s · embed TTL=86400s\nrag TTL=3600s · dedup TTL=604800s"]
+    CACHE -->|"Cache hit <100ms"| G
+    OUT --> G
+
+    %% ── INGESTION (offline) ──────────────────────────────────────
+    DS["📄 Data Sources\nSEBI Circulars · RBI Policy\nHDFC Earnings · Market News"]
+    DS --> ING["📥 ingest_pipeline.py\nPDF Parser → chunker.py\n→ metadata_tagger.py → Embedder\nbatch=32 · chunk size=600-800"]
+    ING --> VDB
+
+    %% ── OBSERVABILITY ────────────────────────────────────────────
+    O --> OBS["🔧 Observability\nCircuit Breakers: CB:redis · CB:thesis · CB:rag\nPer-node: timestamp · latency · tokens · cost"]
+
+    %% ── STYLES ───────────────────────────────────────────────────
+    classDef gateway   fill:#1a3135,stroke:#4f98a3,stroke-width:2px,color:#9dd4db
+    classDef preproc   fill:#251838,stroke:#a86fdf,stroke-width:2px,color:#c9a0ef
+    classDef pipeline  fill:#162030,stroke:#5591c7,stroke-width:2px,color:#92bdde
+    classDef vectordb  fill:#281f08,stroke:#e8af34,stroke-width:2px,color:#f0cc7a
+    classDef validate  fill:#2e2010,stroke:#fdab43,stroke-width:2px,color:#fec97e
+    classDef intel     fill:#1e3019,stroke:#6daa45,stroke-width:2px,color:#9dcb7a
+    classDef llm       fill:#251838,stroke:#a86fdf,stroke-width:2px,color:#c9a0ef
+    classDef output    fill:#301525,stroke:#d163a7,stroke-width:2px,color:#e49fca
+    classDef ingest    fill:#1c1b19,stroke:#555452,stroke-width:1.5px,color:#797876
+    classDef obs       fill:#1c1b19,stroke:#555452,stroke-width:1.5px,color:#797876
 
     class U,G,O gateway
-    class A1,A2,A3,A4,A5,A6,A7,A8 agent
-    class LLM model
-    class EMB retrieval
+    class A1,A2 preproc
+    class RET,EMB pipeline
     class VDB vectordb
-    class DS1,DS2,DS3,DS4,ING ingest
-    class CACHE cache
-    class R output
+    class A3,A4,A5 validate
+    class A6,A7 intel
+    class LLM llm
+    class OUT,CACHE output
+    class DS,ING ingest
     class OBS obs
 ```
 
