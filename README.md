@@ -33,7 +33,8 @@
 
 ## 🎓 Architecture Diagram: Full System
 
-```mermaidgraph TD
+```mermaid
+graph TD
     %% ── CLIENT LAYER ─────────────────────────────────────────
     U["🌐 Client Apps\nWeb · Mobile · API Consumers"]
 
